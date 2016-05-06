@@ -55,6 +55,14 @@
                 s.classList.add('num_light_on');
             }
         }
+        
+        for(var k = 0; k < cnl[tr].length; k++){
+            if(cnl[tr][k][0]){
+                var lId = 'cnl'+tr+'_'+k; 
+                var l = document.querySelector('#'+lId);
+                l.classList.add('num_light_on');   
+            }
+        }
         ed.onmouseout = function(e){
             for(var j = 0; j < cnt.length; j++){
                 if(cnt[j][td][0]){
@@ -63,18 +71,26 @@
                     s.classList.remove('num_light_on');
                     s.classList.add('num');
                 }
-            }   
+            }
+            for(var m = 0; m < cnl[tr].length; m++){
+                if(cnl[tr][m][0]){
+                    var uId = 'cnl'+tr+'_'+m;
+                    var u = document.querySelector('#'+uId);
+                    u.classList.remove('num_light_on');
+                    u.classList.add('num');
+                }
+            }    
         }
              
         if(a.which == 1){
             ed.style.backgroundColor = bgColor;
             ed.style.backgroundImage = '';
-            cma[tr][tc] = bgStatus;    
+            cma[tr][td] = bgStatus;    
         }
         else if(a.which == 3){
             ed.style.backgroundColor = 'white';
             ed.style.backgroundImage = bgImg;
-            cma[tr][tc] = bgStatus;   
+            cma[tr][td] = bgStatus;   
         }
         console.log(bgColor);
         console.log(bgImg);

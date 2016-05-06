@@ -89,7 +89,7 @@
                                 <td id="cnt0_2" onmousedown="crossNumderTop(event,0,2)" class="num">
                                     <div>10</div>
                                 </td>
-                                <td id="cnt1_2" onmousedown="crossNumder(event,1,2)" class="num">
+                                <td id="cnt1_2" onmousedown="crossNumderTop(event,1,2)" class="num">
                                     <div>2</div>
                                 </td>
                                 <td id="cnt2_2" onmousedown="crossNumderTop(event,2,2)" class="num">
@@ -369,7 +369,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l4">
+                            <tr id="l4"  class="nmt_tr5">
                                 <td id="cma4_0" onmousedown="crossPic(event, 4, 0)" onmouseover="hoverCrossPic(event, 4, 0)">
                                     <div>&nbsp;</div>
                                 </td>
