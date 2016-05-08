@@ -52,7 +52,7 @@
             if(cnt[i][td][0] != 'n'){
                 var sId = 'cnt'+td+'_'+i;
                 var s = document.querySelector('#'+sId);
-                s.classList.add('num_light_on');
+                s.classList.add('kletka_light');
             }
         }
         
@@ -60,7 +60,7 @@
             if(cnl[tr][k][0]){
                 var lId = 'cnl'+tr+'_'+k; 
                 var l = document.querySelector('#'+lId);
-                l.classList.add('num_light_on');   
+                l.classList.add('kletka_light');   
             }
         }
         ed.onmouseout = function(e){
@@ -68,16 +68,16 @@
                 if(cnt[j][td][0] != 'n'){
                     var sId = 'cnt'+td+'_'+j;
                     var s = document.querySelector('#'+sId);
-                    s.classList.remove('num_light_on');
-                    s.classList.add('num');
+                    s.classList.remove('kletka_light');
+                    s.classList.add('kletka');
                 }
             }
             for(var m = 0; m < cnl[tr].length; m++){
                 if(cnl[tr][m][0]){
                     var uId = 'cnl'+tr+'_'+m;
                     var u = document.querySelector('#'+uId);
-                    u.classList.remove('num_light_on');
-                    u.classList.add('num');
+                    u.classList.remove('kletka_light');
+                    u.classList.add('kletka');
                 }
             }    
         }

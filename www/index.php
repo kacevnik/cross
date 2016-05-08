@@ -3,7 +3,6 @@
     
     $res = getArrayTop(1);
     $arr_top = strToArr($res[arr_top]);
-    print_arr($arr_top);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -11,25 +10,26 @@
     	<meta http-equiv="content-type" content="text/html" />
     	<meta name="author" content="kacevnik" />
         <link rel="stylesheet" href="http://www.nonograms.ru/css/style.033.static.css" type="text/css">
+        <link rel="stylesheet" href="style/style.css" type="text/css">
     	<title>Японик</title>
         <style>
             td{background-position: 50%, 50%;}
         </style>
     </head>
     <body>
-    <table class="nonogram_table" id="nonogram_table" oncontextmenu="return false;">
+    <table class="cross_main" oncontextmenu="return false;">
         <tbody>
             <tr>         
-                <td style="background:#f0f0f0;cursor:default;" id="nmti">&nbsp;</td>
-                <td class="nmtt">
+                <td style="background: #f1f1f1; cursor: default;">&nbsp;</td>
+                <td>
                     <table>
                         <tbody>
                         <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
                             echo "<tr>";
                             foreach($item_top as $item_td_top){
-                                if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' nmt_td5';}else{$class_num_5 = '';}      
+                                if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}      
                         ?>
-                              <td <?php if($item_td_top[0] == 'n'){echo 'class="num_empty"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="num'.$class_num_5.'"';} ?>>
+                              <td <?php if($item_td_top[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
                                 <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
                               </td>
                         <?php
@@ -40,193 +40,131 @@
                             $count_tr_top++;  
                         }
                         ?>
-                            <tr>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td><td id="cnt1_1" onmousedown="crossNumderTop(event,1,1)" class="num">
-                                    <div>3</div>
-                                </td><td id="cnt2_1" onmousedown="crossNumderTop(event,2,1)" class="num">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnt3_1" onmousedown="crossNumderTop(event,3,1)" class="num">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnt4_1" onmousedown="crossNumderTop(event,4,1)" class="num nmt_td5">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnt5_1" onmousedown="crossNumderTop(event,5,1)" class="num">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnt6_1" onmousedown="crossNumderTop(event,6,1)" class="num">
-                                    <div>1</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cnt0_2" onmousedown="crossNumderTop(event,0,2)" class="num">
-                                    <div>10</div>
-                                </td>
-                                <td id="cnt1_2" onmousedown="crossNumderTop(event,1,2)" class="num">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnt2_2" onmousedown="crossNumderTop(event,2,2)" class="num">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnt3_2" onmousedown="crossNumderTop(event,3,2)" class="num">
-                                    <div>4</div>
-                                </td>
-                                <td id="cnt4_2" onmousedown="crossNumderTop(event,4,2)" class="num nmt_td5">
-                                    <div>5</div>
-                                </td>
-                                <td id="cnt5_2" onmousedown="crossNumderTop(event,5,2)" class="num">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnt6_2" onmousedown="crossNumderTop(event,6,2)" class="num">
-                                    <div>6</div>
-                                </td>
-                                <td id="cnt7_2" onmousedown="crossNumderTop(event,7,2)" class="num">
-                                    <div>8</div>
-                                </td>
-                                <td id="cnt8_2" onmousedown="crossNumderTop(event,8,2)" class="num">
-                                    <div>6</div>
-                                </td>
-                                <td id="cnt9_2" onmousedown="crossNumderTop(event,9,2)" class="num">
-                                    <div>4</div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </td>
             </tr>
             <tr>
-                <td class="nmtl">
+                <td>
                     <table>
                         <tbody>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl0_2" onmousedown="crossNumderRight(event,0,2)" class="num">
+                                <td id="cnl0_2" onmousedown="crossNumderRight(event,0,2)" class="kletka">
                                     <div>7</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl1_1" onmousedown="crossNumderRight(event,1,1)" class="num">
+                                <td id="cnl1_1" onmousedown="crossNumderRight(event,1,1)" class="kletka">
                                     <div>3</div>
                                 </td>
-                                <td id="cnl1_2" onmousedown="crossNumderRight(event,1,2)" class="num">
+                                <td id="cnl1_2" onmousedown="crossNumderRight(event,1,2)" class="kletka">
                                     <div>1</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="cnl2_0" onmousedown="crossNumderRight(event,2,0)" class="num">
+                                <td id="cnl2_0" onmousedown="crossNumderRight(event,2,0)" class="kletka">
                                     <div>2</div>
                                 </td>
-                                <td id="cnl2_1" onmousedown="crossNumderRight(event,2,1)" class="num">
+                                <td id="cnl2_1" onmousedown="crossNumderRight(event,2,1)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl2_2" onmousedown="crossNumderRight(event,2,2)" class="num">
+                                <td id="cnl2_2" onmousedown="crossNumderRight(event,2,2)" class="kletka">
                                     <div>2</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl3_1" onmousedown="crossNumderRight(event,3,1)" class="num">
+                                <td id="cnl3_1" onmousedown="crossNumderRight(event,3,1)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl3_2" onmousedown="crossNumderRight(event,3,2)" class="num">
+                                <td id="cnl3_2" onmousedown="crossNumderRight(event,3,2)" class="kletka">
                                     <div>3</div>
                                 </td>
                             </tr>
-                            <tr class="nmt_tr5">
-                                <td class="num_empty">
+                            <tr class="tr_str5">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl4_1" onmousedown="crossNumderRight(event,4,1)" class="num">
+                                <td id="cnl4_1" onmousedown="crossNumderRight(event,4,1)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl4_2" onmousedown="crossNumderRight(event,4,2)" class="num">
+                                <td id="cnl4_2" onmousedown="crossNumderRight(event,4,2)" class="kletka">
                                     <div>4</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl5_1" onmousedown="crossNumderRight(event,5,1)" class="num">
+                                <td id="cnl5_1" onmousedown="crossNumderRight(event,5,1)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl5_2" onmousedown="crossNumderRight(event,5,2)" class="num">
+                                <td id="cnl5_2" onmousedown="crossNumderRight(event,5,2)" class="kletka">
                                     <div>6</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl6_1" onmousedown="crossNumderRight(event,6,1)" class="num">
+                                <td id="cnl6_1" onmousedown="crossNumderRight(event,6,1)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl6_2" onmousedown="crossNumderRight(event,6,2)" class="num">
+                                <td id="cnl6_2" onmousedown="crossNumderRight(event,6,2)" class="kletka">
                                     <div>7</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="cnl7_0" onmousedown="crossNumderRight(event,7,0)" class="num">
+                                <td id="cnl7_0" onmousedown="crossNumderRight(event,7,0)" class="kletka">
                                     <div>1</div>
                                 </td>
-                                <td id="cnl7_1" onmousedown="crossNumderRight(event,7,1)" class="num">
+                                <td id="cnl7_1" onmousedown="crossNumderRight(event,7,1)" class="kletka">
                                     <div>2</div>
                                 </td>
-                                <td id="cnl7_2" onmousedown="crossNumderRight(event,7,2)" class="num">
+                                <td id="cnl7_2" onmousedown="crossNumderRight(event,7,2)" class="kletka">
                                     <div>3</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl8_1" onmousedown="crossNumderRight(event,8,1)" class="num">
+                                <td id="cnl8_1" onmousedown="crossNumderRight(event,8,1)" class="kletka">
                                     <div>2</div>
                                 </td>
-                                <td id="cnl8_2" onmousedown="crossNumderRight(event,8,2)" class="num">
+                                <td id="cnl8_2" onmousedown="crossNumderRight(event,8,2)" class="kletka">
                                     <div>5</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td class="num_empty">
+                                <td class="td_null">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cnl9_2" onmousedown="crossNumderRight(event,9,2)" class="num">
+                                <td id="cnl9_2" onmousedown="crossNumderRight(event,9,2)" class="kletka">
                                     <div>7</div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
-                <td class="nmtc">
+                <td>
                     <table>
                         <tbody>
-                            <tr id="l0">
+                            <tr>
                                 <td id="cma0_0" onmousedown="crossPic(event, 0, 0)" onmouseover="hoverCrossPic(event, 0, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -239,7 +177,7 @@
                                 <td id="cma0_3" onmousedown="crossPic(event, 0, 3)" onmouseover="hoverCrossPic(event, 0, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma0_4" onmousedown="crossPic(event, 0, 4)" onmouseover="hoverCrossPic(event, 0, 4)" class="nmt_td5">
+                                <td id="cma0_4" onmousedown="crossPic(event, 0, 4)" onmouseover="hoverCrossPic(event, 0, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma0_5" onmousedown="crossPic(event, 0, 5)" onmouseover="hoverCrossPic(event, 0, 5)">
@@ -258,7 +196,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l1">
+                            <tr>
                                 <td id="cma1_0" onmousedown="crossPic(event, 1, 0)" onmouseover="hoverCrossPic(event, 1, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -271,7 +209,7 @@
                                 <td id="cma1_3" onmousedown="crossPic(event, 1, 3)" onmouseover="hoverCrossPic(event, 1, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma1_4" onmousedown="crossPic(event, 1, 4)" onmouseover="hoverCrossPic(event, 1, 4)" class="nmt_td5">
+                                <td id="cma1_4" onmousedown="crossPic(event, 1, 4)" onmouseover="hoverCrossPic(event, 1, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma1_5" onmousedown="crossPic(event, 1, 5)" onmouseover="hoverCrossPic(event, 1, 5)">
@@ -290,7 +228,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l2">
+                            <tr>
                                 <td id="cma2_0" onmousedown="crossPic(event, 2, 0)" onmouseover="hoverCrossPic(event, 2, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -303,7 +241,7 @@
                                 <td id="cma2_3" onmousedown="crossPic(event, 2, 3)" onmouseover="hoverCrossPic(event, 2, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma2_4" onmousedown="crossPic(event, 2, 4)" onmouseover="hoverCrossPic(event, 2, 4)" class="nmt_td5">
+                                <td id="cma2_4" onmousedown="crossPic(event, 2, 4)" onmouseover="hoverCrossPic(event, 2, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma2_5" onmousedown="crossPic(event, 2, 5)" onmouseover="hoverCrossPic(event, 2, 5)">
@@ -322,7 +260,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l3">
+                            <tr>
                                 <td id="cma3_0" onmousedown="crossPic(event, 3, 0)" onmouseover="hoverCrossPic(event, 3, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -335,7 +273,7 @@
                                 <td id="cma3_3" onmousedown="crossPic(event, 3, 3)" onmouseover="hoverCrossPic(event, 3, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma3_4" onmousedown="crossPic(event, 3, 4)" onmouseover="hoverCrossPic(event, 3, 4)" class="nmt_td5">
+                                <td id="cma3_4" onmousedown="crossPic(event, 3, 4)" onmouseover="hoverCrossPic(event, 3, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma3_5" onmousedown="crossPic(event, 3, 5)" onmouseover="hoverCrossPic(event, 3, 5)">
@@ -354,7 +292,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l4"  class="nmt_tr5">
+                            <tr class="tr_str5">
                                 <td id="cma4_0" onmousedown="crossPic(event, 4, 0)" onmouseover="hoverCrossPic(event, 4, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -367,7 +305,7 @@
                                 <td id="cma4_3" onmousedown="crossPic(event, 4, 3)" onmouseover="hoverCrossPic(event, 4, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma4_4" onmousedown="crossPic(event, 4, 4)" onmouseover="hoverCrossPic(event, 4, 4)" class="nmt_td5">
+                                <td id="cma4_4" onmousedown="crossPic(event, 4, 4)" onmouseover="hoverCrossPic(event, 4, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma4_5" onmousedown="crossPic(event, 4, 5)" onmouseover="hoverCrossPic(event, 4, 5)">
@@ -386,7 +324,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l5">
+                            <tr>
                                 <td id="cma5_0" onmousedown="crossPic(event, 5, 0)" onmouseover="hoverCrossPic(event, 5, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -399,7 +337,7 @@
                                 <td id="cma5_3" onmousedown="crossPic(event, 5, 3)" onmouseover="hoverCrossPic(event, 5, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma5_4" onmousedown="crossPic(event, 5, 4)" onmouseover="hoverCrossPic(event, 5, 4)" class="nmt_td5">
+                                <td id="cma5_4" onmousedown="crossPic(event, 5, 4)" onmouseover="hoverCrossPic(event, 5, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma5_5" onmousedown="crossPic(event, 5, 5)" onmouseover="hoverCrossPic(event, 5, 5)">
@@ -418,7 +356,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l6">
+                            <tr>
                                 <td id="cma6_0" onmousedown="crossPic(event, 6, 0)" onmouseover="hoverCrossPic(event, 6, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -431,7 +369,7 @@
                                 <td id="cma6_3" onmousedown="crossPic(event, 6, 3)" onmouseover="hoverCrossPic(event, 6, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma6_4" onmousedown="crossPic(event, 6, 4)" onmouseover="hoverCrossPic(event, 6, 4)" class="nmt_td5">
+                                <td id="cma6_4" onmousedown="crossPic(event, 6, 4)" onmouseover="hoverCrossPic(event, 6, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma6_5" onmousedown="crossPic(event, 6, 5)" onmouseover="hoverCrossPic(event, 6, 5)">
@@ -450,7 +388,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l7">
+                            <tr>
                                 <td id="cma7_0" onmousedown="crossPic(event, 7, 0)" onmouseover="hoverCrossPic(event, 7, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -463,7 +401,7 @@
                                 <td id="cma7_3" onmousedown="crossPic(event, 7, 3)" onmouseover="hoverCrossPic(event, 7, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma7_4" onmousedown="crossPic(event, 7, 4)" onmouseover="hoverCrossPic(event, 7, 4)" class="nmt_td5">
+                                <td id="cma7_4" onmousedown="crossPic(event, 7, 4)" onmouseover="hoverCrossPic(event, 7, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma7_5" onmousedown="crossPic(event, 7, 5)" onmouseover="hoverCrossPic(event, 7, 5)">
@@ -482,7 +420,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l8">
+                            <tr>
                                 <td id="cma8_0" onmousedown="crossPic(event, 8, 0)" onmouseover="hoverCrossPic(event, 8, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -495,7 +433,7 @@
                                 <td id="cma8_3" onmousedown="crossPic(event, 8, 3)" onmouseover="hoverCrossPic(event, 8, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma8_4" onmousedown="crossPic(event, 8, 4)" onmouseover="hoverCrossPic(event, 8, 4)" class="nmt_td5">
+                                <td id="cma8_4" onmousedown="crossPic(event, 8, 4)" onmouseover="hoverCrossPic(event, 8, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma8_5" onmousedown="crossPic(event, 8, 5)" onmouseover="hoverCrossPic(event, 8, 5)">
@@ -514,7 +452,7 @@
                                     <div>&nbsp;</div>
                                 </td>
                             </tr>
-                            <tr id="l9">
+                            <tr>
                                 <td id="cma9_0" onmousedown="crossPic(event, 9, 0)" onmouseover="hoverCrossPic(event, 9, 0)">
                                     <div>&nbsp;</div>
                                 </td>
@@ -527,7 +465,7 @@
                                 <td id="cma9_3" onmousedown="crossPic(event, 9, 3)" onmouseover="hoverCrossPic(event, 9, 3)">
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma9_4" onmousedown="crossPic(event, 9, 4)" onmouseover="hoverCrossPic(event, 9, 4)" class="nmt_td5">
+                                <td id="cma9_4" onmousedown="crossPic(event, 9, 4)" onmouseover="hoverCrossPic(event, 9, 4)" class="td_str5">
                                     <div>&nbsp;</div>
                                 </td>
                                 <td id="cma9_5" onmousedown="crossPic(event, 9, 5)" onmouseover="hoverCrossPic(event, 9, 5)">
