@@ -34,6 +34,9 @@ $ git checkout -b branchName (создаст и перейдет в ветку)
 //Удалит ветку с указанным именем
 $ git branch -d branchName
 
+//Слияние веток (следует перейти в ту в которую будет произведено слияние)
+$ git merge branchName
+
 //Удалит ветку с указанным именем
 $ git merge branchName
 
