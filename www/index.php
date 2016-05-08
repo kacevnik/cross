@@ -1,8 +1,10 @@
 <?php
     include("inc/core.php");
     
-    $res = getArrayTop(1);
-    $arr_top = strToArr($res[arr_top]);
+    $resTop = getArrayTop(1);
+    $resLeft = getArrayLeft(1);
+    $arr_top = strToArr($resTop[arr_top]);
+    $arr_left = strToArr($resLeft[arr_left]);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -48,116 +50,18 @@
                 <td>
                     <table>
                         <tbody>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
+                            <?php 
+                                $count_tr_left = 0; $count_td_left = 0; foreach($arr_left as $item_left){ 
+                                if(($count_tr_left + 1)%5 == 0 && ($count_tr_left + 1) != count($arr_left)){$class_num_5 = ' class="tr_str5"';}else{$class_num_5 = '';}    
+                            ?>
+                            <tr<?php echo $class_num_5; ?>>
+                                <?php foreach($item_left as $item_td_left){ ?>
+                                <td <?php if($item_td_left[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnl'.$count_tr_left.'_'.$count_td_left.'" onmousedown="crossNumderLeft(event, '.$count_tr_left.', '.$count_td_left.')" class="kletka'.$class_num_5.'"';} ?>>
+                                    <div><?php if($item_td_left[0] == 'n'){echo '&nbsp;';}else{echo $item_td_left[0];} ?></div>
                                 </td>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl0_2" onmousedown="crossNumderRight(event,0,2)" class="kletka">
-                                    <div>7</div>
-                                </td>
+                                <?php $count_td_left++; } ?>
                             </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl1_1" onmousedown="crossNumderRight(event,1,1)" class="kletka">
-                                    <div>3</div>
-                                </td>
-                                <td id="cnl1_2" onmousedown="crossNumderRight(event,1,2)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cnl2_0" onmousedown="crossNumderRight(event,2,0)" class="kletka">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnl2_1" onmousedown="crossNumderRight(event,2,1)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl2_2" onmousedown="crossNumderRight(event,2,2)" class="kletka">
-                                    <div>2</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl3_1" onmousedown="crossNumderRight(event,3,1)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl3_2" onmousedown="crossNumderRight(event,3,2)" class="kletka">
-                                    <div>3</div>
-                                </td>
-                            </tr>
-                            <tr class="tr_str5">
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl4_1" onmousedown="crossNumderRight(event,4,1)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl4_2" onmousedown="crossNumderRight(event,4,2)" class="kletka">
-                                    <div>4</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl5_1" onmousedown="crossNumderRight(event,5,1)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl5_2" onmousedown="crossNumderRight(event,5,2)" class="kletka">
-                                    <div>6</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl6_1" onmousedown="crossNumderRight(event,6,1)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl6_2" onmousedown="crossNumderRight(event,6,2)" class="kletka">
-                                    <div>7</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cnl7_0" onmousedown="crossNumderRight(event,7,0)" class="kletka">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnl7_1" onmousedown="crossNumderRight(event,7,1)" class="kletka">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnl7_2" onmousedown="crossNumderRight(event,7,2)" class="kletka">
-                                    <div>3</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl8_1" onmousedown="crossNumderRight(event,8,1)" class="kletka">
-                                    <div>2</div>
-                                </td>
-                                <td id="cnl8_2" onmousedown="crossNumderRight(event,8,2)" class="kletka">
-                                    <div>5</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="td_null">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cnl9_2" onmousedown="crossNumderRight(event,9,2)" class="kletka">
-                                    <div>7</div>
-                                </td>
-                            </tr>
+                            <?php $count_td_left = 0; $count_tr_left++; } ?>
                         </tbody>
                     </table>
                 </td>

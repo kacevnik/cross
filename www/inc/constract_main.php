@@ -19,7 +19,22 @@
 
     function getArrayTop($id){
         global $db;
-        $sql = "SELECT arr_top FROM dk_cross WHERE id='1'";
+        $sql = "SELECT arr_top FROM dk_cross WHERE id='$id'";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res)){
+            $myr = mysqli_fetch_assoc($res);                
+        }
+        else{return false;}
+        return $myr;
+    }
+
+/**
+ * Функция получения массива из базы данных для левой таблицы чисел.
+ **/
+
+    function getArrayLeft($id){
+        global $db;
+        $sql = "SELECT arr_left FROM dk_cross WHERE id='$id'";
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
             $myr = mysqli_fetch_assoc($res);                
