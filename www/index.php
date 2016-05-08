@@ -2,7 +2,8 @@
     include("inc/core.php");
     
     $res = getArrayTop(1);
-    $arr = strToArr($res[arr_top]);
+    $arr_top = strToArr($res[arr_top]);
+    print_arr($arr_top);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -18,43 +19,27 @@
     <body>
     <table class="nonogram_table" id="nonogram_table" oncontextmenu="return false;">
         <tbody>
-            <tr>
-         
+            <tr>         
                 <td style="background:#f0f0f0;cursor:default;" id="nmti">&nbsp;</td>
                 <td class="nmtt">
                     <table>
                         <tbody>
-                            <tr>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div></td>
-                                <td id="cnt4_0" onmousedown="crossNumderTop(event,4,0)" class="num nmt_td5">
-                                    <div>1</div>
-                                </td>
-                                <td id="cnt5_0" onmousedown="crossNumderTop(event,5,0)" class="num">
-                                    <div>1</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td class="num_empty">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
+                        <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
+                            echo "<tr>";
+                            foreach($item_top as $item_td_top){
+                                if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' nmt_td5';}else{$class_num_5 = '';}      
+                        ?>
+                              <td <?php if($item_td_top[0] == 'n'){echo 'class="num_empty"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="num'.$class_num_5.'"';} ?>>
+                                <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
+                              </td>
+                        <?php
+                                 $count_td_top++;              
+                            }
+                            echo "</tr>";
+                            $count_td_top = 0;
+                            $count_tr_top++;  
+                        }
+                        ?>
                             <tr>
                                 <td class="num_empty">
                                     <div>&nbsp;</div>
