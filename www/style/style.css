@@ -5,6 +5,12 @@
 
 img{border: none;}
 table{border-collapse: collapse;}
+td{background-position: 50%, 50%;}
+
+body {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 13px;
+}
 
 .cross_main{
     border: 2px solid black;

@@ -14,27 +14,13 @@
     }
 
 /**
- * Функция получения массива из базы данных для верхних чисел таблицы.
+ * Функция получения данных кроссворда из БД по ID.
  **/
 
-    function getArrayTop($id){
+    function getCrossData($id){
         global $db;
-        $sql = "SELECT arr_top FROM dk_cross WHERE id='$id'";
-        $res = mysqli_query($db, $sql);
-        if(mysqli_num_rows($res)){
-            $myr = mysqli_fetch_assoc($res);                
-        }
-        else{return false;}
-        return $myr;
-    }
-
-/**
- * Функция получения массива из базы данных для левой таблицы чисел.
- **/
-
-    function getArrayLeft($id){
-        global $db;
-        $sql = "SELECT arr_left FROM dk_cross WHERE id='$id'";
+        if(!abs((int)$id))return false;
+        $sql = "SELECT * FROM dk_cross WHERE id='$id' LIMIT 1";
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
             $myr = mysqli_fetch_assoc($res);                

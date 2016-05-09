@@ -1,22 +1,19 @@
 <?php
     include("inc/core.php");
     
-    $resTop = getArrayTop(1);
-    $resLeft = getArrayLeft(1);
-    $arr_top = strToArr($resTop[arr_top]);
-    $arr_left = strToArr($resLeft[arr_left]);
+    if(isset($_GET['id']))$id = $_GET['id'];
+    
+    if(getCrossData($id))$crossData = getCrossData($id);
+    $arr_top = strToArr($crossData[arr_top]);
+    $arr_left = strToArr($crossData[arr_left]);
 ?>
 <!DOCTYPE HTML>
 <html>
     <head>
     	<meta http-equiv="content-type" content="text/html" />
     	<meta name="author" content="kacevnik" />
-        <link rel="stylesheet" href="http://www.nonograms.ru/css/style.033.static.css" type="text/css">
         <link rel="stylesheet" href="style/style.css" type="text/css">
     	<title>Японик</title>
-        <style>
-            td{background-position: 50%, 50%;}
-        </style>
     </head>
     <body>
     <table class="cross_main" oncontextmenu="return false;">
@@ -68,326 +65,21 @@
                 <td>
                     <table>
                         <tbody>
-                            <tr>
-                                <td id="cma0_0" onmousedown="crossPic(event, 0, 0)" onmouseover="hoverCrossPic(event, 0, 0)">
+                            <?php 
+                                for($tr = 0; $tr < $crossData['cross_h']; $tr++){
+                                    if(($tr + 1)%5 == 0 && ($tr + 1) != $crossData['cross_h']){$class_num_5 = ' class="tr_str5"';}else{$class_num_5 = '';}
+                            ?>
+                            <tr<?php echo $class_num_5; ?>>
+                                <?php 
+                                    for($td = 0; $td < $crossData['cross_w']; $td++){ 
+                                        if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' class="td_str5"';}else{$class_num_5 = '';}    
+                                ?>
+                                <td id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php echo $class_num_5; ?>>
                                     <div>&nbsp;</div>
                                 </td>
-                                <td id="cma0_1" onmousedown="crossPic(event, 0, 1)" onmouseover="hoverCrossPic(event, 0, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_2" onmousedown="crossPic(event, 0, 2)" onmouseover="hoverCrossPic(event, 0, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_3" onmousedown="crossPic(event, 0, 3)" onmouseover="hoverCrossPic(event, 0, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_4" onmousedown="crossPic(event, 0, 4)" onmouseover="hoverCrossPic(event, 0, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_5" onmousedown="crossPic(event, 0, 5)" onmouseover="hoverCrossPic(event, 0, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_6" onmousedown="crossPic(event, 0, 6)" onmouseover="hoverCrossPic(event, 0, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_7" onmousedown="crossPic(event, 0, 7)" onmouseover="hoverCrossPic(event, 0, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_8" onmousedown="crossPic(event, 0, 8)" onmouseover="hoverCrossPic(event, 0, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma0_9" onmousedown="crossPic(event, 0, 9)" onmouseover="hoverCrossPic(event, 0, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
+                                <?php } ?>
                             </tr>
-                            <tr>
-                                <td id="cma1_0" onmousedown="crossPic(event, 1, 0)" onmouseover="hoverCrossPic(event, 1, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_1" onmousedown="crossPic(event, 1, 1)" onmouseover="hoverCrossPic(event, 1, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_2" onmousedown="crossPic(event, 1, 2)" onmouseover="hoverCrossPic(event, 1, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_3" onmousedown="crossPic(event, 1, 3)" onmouseover="hoverCrossPic(event, 1, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_4" onmousedown="crossPic(event, 1, 4)" onmouseover="hoverCrossPic(event, 1, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_5" onmousedown="crossPic(event, 1, 5)" onmouseover="hoverCrossPic(event, 1, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_6" onmousedown="crossPic(event, 1, 6)" onmouseover="hoverCrossPic(event, 1, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_7" onmousedown="crossPic(event, 1, 7)" onmouseover="hoverCrossPic(event, 1, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_8" onmousedown="crossPic(event, 1, 8)" onmouseover="hoverCrossPic(event, 1, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma1_9" onmousedown="crossPic(event, 1, 9)" onmouseover="hoverCrossPic(event, 1, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma2_0" onmousedown="crossPic(event, 2, 0)" onmouseover="hoverCrossPic(event, 2, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_1" onmousedown="crossPic(event, 2, 1)" onmouseover="hoverCrossPic(event, 2, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_2" onmousedown="crossPic(event, 2, 2)" onmouseover="hoverCrossPic(event, 2, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_3" onmousedown="crossPic(event, 2, 3)" onmouseover="hoverCrossPic(event, 2, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_4" onmousedown="crossPic(event, 2, 4)" onmouseover="hoverCrossPic(event, 2, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_5" onmousedown="crossPic(event, 2, 5)" onmouseover="hoverCrossPic(event, 2, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_6" onmousedown="crossPic(event, 2, 6)" onmouseover="hoverCrossPic(event, 2, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_7" onmousedown="crossPic(event, 2, 7)" onmouseover="hoverCrossPic(event, 2, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_8" onmousedown="crossPic(event, 2, 8)" onmouseover="hoverCrossPic(event, 2, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma2_9" onmousedown="crossPic(event, 2, 9)" onmouseover="hoverCrossPic(event, 2, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma3_0" onmousedown="crossPic(event, 3, 0)" onmouseover="hoverCrossPic(event, 3, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_1" onmousedown="crossPic(event, 3, 1)" onmouseover="hoverCrossPic(event, 3, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_2" onmousedown="crossPic(event, 3, 2)" onmouseover="hoverCrossPic(event, 3, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_3" onmousedown="crossPic(event, 3, 3)" onmouseover="hoverCrossPic(event, 3, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_4" onmousedown="crossPic(event, 3, 4)" onmouseover="hoverCrossPic(event, 3, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_5" onmousedown="crossPic(event, 3, 5)" onmouseover="hoverCrossPic(event, 3, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_6" onmousedown="crossPic(event, 3, 6)" onmouseover="hoverCrossPic(event, 3, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_7" onmousedown="crossPic(event, 3, 7)" onmouseover="hoverCrossPic(event, 3, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_8" onmousedown="crossPic(event, 3, 8)" onmouseover="hoverCrossPic(event, 3, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma3_9" onmousedown="crossPic(event, 3, 9)" onmouseover="hoverCrossPic(event, 3, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr class="tr_str5">
-                                <td id="cma4_0" onmousedown="crossPic(event, 4, 0)" onmouseover="hoverCrossPic(event, 4, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_1" onmousedown="crossPic(event, 4, 1)" onmouseover="hoverCrossPic(event, 4, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_2" onmousedown="crossPic(event, 4, 2)" onmouseover="hoverCrossPic(event, 4, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_3" onmousedown="crossPic(event, 4, 3)" onmouseover="hoverCrossPic(event, 4, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_4" onmousedown="crossPic(event, 4, 4)" onmouseover="hoverCrossPic(event, 4, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_5" onmousedown="crossPic(event, 4, 5)" onmouseover="hoverCrossPic(event, 4, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_6" onmousedown="crossPic(event, 4, 6)" onmouseover="hoverCrossPic(event, 4, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_7" onmousedown="crossPic(event, 4, 7)" onmouseover="hoverCrossPic(event, 4, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_8" onmousedown="crossPic(event, 4, 8)" onmouseover="hoverCrossPic(event, 4, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma4_9" onmousedown="crossPic(event, 4, 9)" onmouseover="hoverCrossPic(event, 4, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma5_0" onmousedown="crossPic(event, 5, 0)" onmouseover="hoverCrossPic(event, 5, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_1" onmousedown="crossPic(event, 5, 1)" onmouseover="hoverCrossPic(event, 5, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_2" onmousedown="crossPic(event, 5, 2)" onmouseover="hoverCrossPic(event, 5, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_3" onmousedown="crossPic(event, 5, 3)" onmouseover="hoverCrossPic(event, 5, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_4" onmousedown="crossPic(event, 5, 4)" onmouseover="hoverCrossPic(event, 5, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_5" onmousedown="crossPic(event, 5, 5)" onmouseover="hoverCrossPic(event, 5, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_6" onmousedown="crossPic(event, 5, 6)" onmouseover="hoverCrossPic(event, 5, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_7" onmousedown="crossPic(event, 5, 7)" onmouseover="hoverCrossPic(event, 5, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_8" onmousedown="crossPic(event, 5, 8)" onmouseover="hoverCrossPic(event, 5, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma5_9" onmousedown="crossPic(event, 5, 9)" onmouseover="hoverCrossPic(event, 5, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma6_0" onmousedown="crossPic(event, 6, 0)" onmouseover="hoverCrossPic(event, 6, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_1" onmousedown="crossPic(event, 6, 1)" onmouseover="hoverCrossPic(event, 6, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_2" onmousedown="crossPic(event, 6, 2)" onmouseover="hoverCrossPic(event, 6, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_3" onmousedown="crossPic(event, 6, 3)" onmouseover="hoverCrossPic(event, 6, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_4" onmousedown="crossPic(event, 6, 4)" onmouseover="hoverCrossPic(event, 6, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_5" onmousedown="crossPic(event, 6, 5)" onmouseover="hoverCrossPic(event, 6, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_6" onmousedown="crossPic(event, 6, 6)" onmouseover="hoverCrossPic(event, 6, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_7" onmousedown="crossPic(event, 6, 7)" onmouseover="hoverCrossPic(event, 6, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_8" onmousedown="crossPic(event, 6, 8)" onmouseover="hoverCrossPic(event, 6, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma6_9" onmousedown="crossPic(event, 6, 9)" onmouseover="hoverCrossPic(event, 6, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma7_0" onmousedown="crossPic(event, 7, 0)" onmouseover="hoverCrossPic(event, 7, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_1" onmousedown="crossPic(event, 7, 1)" onmouseover="hoverCrossPic(event, 7, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_2" onmousedown="crossPic(event, 7, 2)" onmouseover="hoverCrossPic(event, 7, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_3" onmousedown="crossPic(event, 7, 3)" onmouseover="hoverCrossPic(event, 7, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_4" onmousedown="crossPic(event, 7, 4)" onmouseover="hoverCrossPic(event, 7, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_5" onmousedown="crossPic(event, 7, 5)" onmouseover="hoverCrossPic(event, 7, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_6" onmousedown="crossPic(event, 7, 6)" onmouseover="hoverCrossPic(event, 7, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_7" onmousedown="crossPic(event, 7, 7)" onmouseover="hoverCrossPic(event, 7, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_8" onmousedown="crossPic(event, 7, 8)" onmouseover="hoverCrossPic(event, 7, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma7_9" onmousedown="crossPic(event, 7, 9)" onmouseover="hoverCrossPic(event, 7, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma8_0" onmousedown="crossPic(event, 8, 0)" onmouseover="hoverCrossPic(event, 8, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_1" onmousedown="crossPic(event, 8, 1)" onmouseover="hoverCrossPic(event, 8, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_2" onmousedown="crossPic(event, 8, 2)" onmouseover="hoverCrossPic(event, 8, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_3" onmousedown="crossPic(event, 8, 3)" onmouseover="hoverCrossPic(event, 8, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_4" onmousedown="crossPic(event, 8, 4)" onmouseover="hoverCrossPic(event, 8, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_5" onmousedown="crossPic(event, 8, 5)" onmouseover="hoverCrossPic(event, 8, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_6" onmousedown="crossPic(event, 8, 6)" onmouseover="hoverCrossPic(event, 8, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_7" onmousedown="crossPic(event, 8, 7)" onmouseover="hoverCrossPic(event, 8, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_8" onmousedown="crossPic(event, 8, 8)" onmouseover="hoverCrossPic(event, 8, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma8_9" onmousedown="crossPic(event, 8, 9)" onmouseover="hoverCrossPic(event, 8, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="cma9_0" onmousedown="crossPic(event, 9, 0)" onmouseover="hoverCrossPic(event, 9, 0)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_1" onmousedown="crossPic(event, 9, 1)" onmouseover="hoverCrossPic(event, 9, 1)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_2" onmousedown="crossPic(event, 9, 2)" onmouseover="hoverCrossPic(event, 9, 2)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_3" onmousedown="crossPic(event, 9, 3)" onmouseover="hoverCrossPic(event, 9, 3)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_4" onmousedown="crossPic(event, 9, 4)" onmouseover="hoverCrossPic(event, 9, 4)" class="td_str5">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_5" onmousedown="crossPic(event, 9, 5)" onmouseover="hoverCrossPic(event, 9, 5)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_6" onmousedown="crossPic(event, 9, 6)" onmouseover="hoverCrossPic(event, 9, 6)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_7" onmousedown="crossPic(event, 9, 7)" onmouseover="hoverCrossPic(event, 9, 7)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_8" onmousedown="crossPic(event, 9, 8)" onmouseover="hoverCrossPic(event, 9, 8)">
-                                    <div>&nbsp;</div>
-                                </td>
-                                <td id="cma9_9" onmousedown="crossPic(event, 9, 9)" onmouseover="hoverCrossPic(event, 9, 9)">
-                                    <div>&nbsp;</div>
-                                </td>
-                            </tr>
+                            <?php } ?>
                             </tr>
                         </tbody>
                     </table>
