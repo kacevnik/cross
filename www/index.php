@@ -16,6 +16,28 @@
     	<title>Японик</title>
     </head>
     <body>
+    <div class="top">
+        <div class="center">
+            <div class="top-left">06. 11. 1982 Вт.</div>
+                <ul class="login-top">
+                    <li><a href="">Вход</a></li>
+                    <li><a href="">Регистрация</a></li>
+                </ul>
+        </div>
+    </div>
+    <div class="header">
+        <div class="center">
+            <div class="header-logo">
+                <a href="index.php"><img src="images/logo.png"></a>            
+                <a href="index.php"><img src="images/logo-text.png"></a>            
+            </div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="center">
+        </div>
+    </div>
     <table class="cross_main" oncontextmenu="return false;">
         <tbody>
             <tr>         
