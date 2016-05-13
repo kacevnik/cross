@@ -9,7 +9,7 @@ td{background-position: 50%, 50%;}
 
 body {
     font-family: Verdana,Arial,sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     color: #000000;
     background: #DDDDDD url('../images/bg.png') repeat;
 }
@@ -68,6 +68,63 @@ body {
     background: #FFFFFF url('../images/g-line.gif') repeat-x;
     height: 2px;
     clear: both;    
+}
+
+.main-bg{
+    background: url('../images/l-line.gif') repeat-y top left;   
+}
+
+.left{
+    width: 200px;
+    float: left;    
+}
+
+.content{
+    padding: 0 0 0 220px;    
+}
+
+.cross_info ul{
+    list-style-type: none; 
+    float :left;
+    margin-right: 20px;  
+}
+
+.cross_info ul li{
+    margin:0 0 5px 0;  
+}
+
+.cross_info .cross_info_bold{
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+.cross_info ul li span{
+    color: #7B7B7B;
+    padding-right: 5px;
+    font-size: 15px  
+}
+
+.cross_info .c_orange{
+    color: #F5A222;  
+}
+
+.cross_info ul li a{
+    color: #000;
+    font-weight: bold;
+}
+
+.cross_info ul li a:hover{
+    text-decoration:  none;
+}
+
+.cross_info ul:last-child{
+    float :none;  
+}
+
+.content h1{
+    margin: 0 0 10px 0; 
+    font-size: 20px;   
 }
 
 .cross_main{
