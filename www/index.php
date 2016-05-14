@@ -128,6 +128,15 @@
                 
             </tbody>
         </table>
+                `   <div class="seting">
+                        <ul>
+                            <li><a href="">Отменить (7)</a></li>
+                            <li><a href="">Очистить</a></li>
+                            <li><a href="">Увеличить ячейки</a></li>
+                            <li><a href="">Уменьшить ячейки</a></li>
+                            <li><a href="">Мобильная версия</a></li>
+                        </ul>    
+                    </div>
                 </div>
             <div style="clear: both;"></div>
             </div>
