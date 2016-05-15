@@ -6,6 +6,7 @@
 img{border: none;}
 table{border-collapse: collapse;}
 td{background-position: 50%, 50%;}
+h3{margin: 0 0 10px 0;}
 
 body {
     font-family: Verdana,Arial,sans-serif;
@@ -71,7 +72,8 @@ body {
 }
 
 .main-bg{
-    background: url('../images/l-line.gif') repeat-y top left;   
+    background: url('../images/l-line.gif') repeat-y top left;
+    padding: 0 0 25px 0;   
 }
 
 .left{
@@ -189,16 +191,21 @@ body {
 	background: #eee;
 }
 
-.seting ul{
+.seting_but ul{
     list-style-type: none;
 }
 
-.seting ul li{
+.seting_but ul li{
     float: left;
     margin: 0 15px 0 0;    
 }
 
-.seting ul li a{
+.seting_but ul li:last-child{
+    float: none;
+    margin: 0px;   
+}
+
+.seting_but ul li a{
     border: 2px solid #fff;
     color: #000;
     padding: 5px 12px;
@@ -206,11 +213,60 @@ body {
     border-radius: 10px;   
 }
 
-.seting ul li a:hover{
+.seting_but ul li a:hover{
     background-color: #ffffff; 
     border-color: #BDBDBD;  
 }
 
+.seting_but:first-child{
+    margin: 20px 0 0 0;
+}
+
+.seting_but{
+    margin: 27px 0 0 0;
+}
+
 .seting{
     margin: 20px 0 0 0;
+}
+
+.commits{
+    margin: 20px 0 0 0;
+}
+
+.commits table{
+    font-size: 12px;
+    width: 800px;
+}
+
+.commits table tr td{
+    border: 1px solid #AAA;
+    padding: 5px;
+    vertical-align: top;
+    background-color: rgba(250,250,250,.2);
+}
+
+.commits table tr td:nth-child(1){
+    margin: 0;
+    padding: 2px;
+    width: 50px;
+    border-right: 0;
+}
+.commits table tr td:nth-child(2){
+    border-left: 0;
+    min-width: 150px;
+}
+
+.commits table tr td:nth-child(2) a{
+    display: block;
+    margin-bottom: -12px;
+    color: #000;
+    font-size: 16px;
+}
+
+.online{
+    font-size: 10px;
+    color: #1EAD49;
+    text-shadow: 0 0 29px #1DDC12;
+    text-align: center;
 }

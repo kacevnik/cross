@@ -128,21 +128,116 @@
                 
             </tbody>
         </table>
-                `   <div class="seting">
+                `   <div class="seting_but">
                         <ul>
-                            <li><a href="">Отменить (7)</a></li>
                             <li><a href="">Очистить</a></li>
                             <li><a href="">Увеличить ячейки</a></li>
                             <li><a href="">Уменьшить ячейки</a></li>
                             <li><a href="">Мобильная версия</a></li>
                         </ul>    
                     </div>
+                    <div class="seting_but">
+                        <ul>
+                            <li><a href="">Отменить (7)</a></li>
+                            <li><a href="">Сохранить</a></li>
+                            <li><a href="">Проверить решение</a></li>
+                        </ul>    
+                    </div>
+                    <div class="seting">
+                        <h3>Настройки для удобного решения.</h3>
+                        <form>
+                            <label><input type="checkbox" checked="checked"/> Подсветка цифр</label><br>
+                            <label><input type="checkbox" /> Подсвечивать клетку под курсором</label><br>
+                            <label><input type="checkbox" /> Последняя зачеркнутая цифра заполняет строку/столбец крестиками</label><br>
+                            <label><input type="checkbox" /> Отображать координаты клетки под курсором</label><br>
+                            <label><input type="checkbox" /> Перемещать верхнюю панель</label><br>
+                            <label><input type="checkbox" checked="checked"/> Автоматически зачеркивать цифры</label>
+                        </form>
+                    </div>
+                    <div class="commits">
+                        <h3>Коментарии</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425">
+                                            <img width="50" src="http://japonskie.ru/ufoto/small/19600425.jpg" alt="">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425"><b>Kacevnik</b></a> <br>
+                                            <img style="vertical-align:middle;" src="http://japonskie.ru/img/flags/ru.png" alt="Россия" title="Россия"> 
+                                            <small>06 ноя 1982 21:35:17</small>
+                                        </td>
+                                    <td>
+                                        <div>
+                                            Красиво!
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425">
+                                            <img width="50" src="http://japonskie.ru/ufoto/small/19600425.jpg" alt="">
+                                        </a>
+                                        <div class="online">Online</div>
+                                    </td>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425"><b>Kacevnik</b></a> <br>
+                                            <img style="vertical-align:middle;" src="http://japonskie.ru/img/flags/ru.png" alt="Россия" title="Россия"> 
+                                            <small>06 ноя 1982 21:35:17</small>
+                                        </td>
+                                    <td>
+                                        <div>
+                                            19600425, Jurist1948, domari16, SIMKA, спасибо!  Роза Роза Роза Это мой первый ЯК, нарисовала тогда, когда и компьютера дома не было))) Кстати, нарисовать оказалось легче, чем решить - никак он мне не поддается  :-o Возможно, мешает знание, как должно быть  :D
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425">
+                                            <img width="50" src="http://japonskie.ru/ufoto/small/19600425.jpg" alt="">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425"><b>Kacevnik</b></a> <br>
+                                            <img style="vertical-align:middle;" src="http://japonskie.ru/img/flags/by.png" alt="Россия" title="Россия"> 
+                                            <small>06 ноя 1982 21:35:17</small>
+                                        </td>
+                                    <td>
+                                        <div>
+                                            симпатичный
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425">
+                                            <img width="50" src="http://japonskie.ru/ufoto/small/19600425.jpg" alt="">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="http://japonskie.ru/user/19600425"><b>Kacevnik</b></a> <br>
+                                            <img style="vertical-align:middle;" src="http://japonskie.ru/img/flags/ru.png" alt="Россия" title="Россия"> 
+                                            <small>06 ноя 1982 21:35:17</small>
+                                        </td>
+                                    <td>
+                                        <div>
+                                            симпатичный
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             <div style="clear: both;"></div>
             </div>
         </div>
     </div>
-
+    <div class="footer">
+    
+    </div>
     <script src="js/script.js"></script>    
     </body>
 </html>
