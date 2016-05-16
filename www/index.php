@@ -81,7 +81,7 @@
                                 <li><span class="icon-target"></span>Решили: <span class="cross_info_bold">12</span> раз</li>
                             </ul>
                         </div>
-                        <table class="cross_main" oncontextmenu="return false;">
+                        <table class="cross_main"  id="work_file" oncontextmenu="return false;">
                 <tbody>
                     <tr>         
                         <td style="background: #f1f1f1; cursor: default;">&nbsp;</td>
@@ -118,7 +118,7 @@
                                     ?>
                                     <tr<?php echo $class_num_5; ?>>
                                         <?php foreach($item_left as $item_td_left){ ?>
-                                        <td <?php if($item_td_left[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnl'.$count_tr_left.'_'.$count_td_left.'" onmousedown="crossNumderLeft(event, '.$count_tr_left.', '.$count_td_left.')" class="kletka'.$class_num_5.'"';} ?>>
+                                        <td <?php if($item_td_left[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnl'.$count_tr_left.'_'.$count_td_left.'" onmousedown="crossNumderLeft(event, '.$count_tr_left.', '.$count_td_left.')" class="kletka"';} ?>>
                                             <div><?php if($item_td_left[0] == 'n'){echo '&nbsp;';}else{echo $item_td_left[0];} ?></div>
                                         </td>
                                         <?php $count_td_left++; } ?>
@@ -137,9 +137,9 @@
                                     <tr<?php echo $class_num_5; ?>>
                                         <?php 
                                             for($td = 0; $td < $crossData['cross_w']; $td++){ 
-                                                if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' class="td_str5"';}else{$class_num_5 = '';}    
+                                                if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}    
                                         ?>
-                                        <td id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php echo $class_num_5; ?>>
+                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)">
                                             <div>&nbsp;</div>
                                         </td>
                                         <?php } ?>
@@ -154,15 +154,14 @@
             </table>
                     `   <div class="seting_but">
                             <ul>
-                                <li><a href="">Очистить</a></li>
-                                <li><a href="">Увеличить ячейки</a></li>
+                                <li><a href="" onclick="biger(); return false;">Увеличить ячейки</a></li>
                                 <li><a href="">Уменьшить ячейки</a></li>
                                 <li><a href="">Мобильная версия</a></li>
                             </ul>    
                         </div>
                         <div class="seting_but">
                             <ul>
-                                <li><a href="">Отменить (7)</a></li>
+                                <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
                                 <li><a href="">Сохранить</a></li>
                                 <li><a href="">Проверить решение</a></li>
                             </ul>    

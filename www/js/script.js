@@ -2,11 +2,15 @@
     
     var cnl = [[['n', 1], ['n', 1], [7, 0]], [['n', 1], [3, 0], [1, 0]], [[2, 0], [1, 0], [2, 0]], [['n', 1], [1, 0], [3, 0]], [['n', 1], [1, 0], [4, 0]], [['n', 1], [1, 0], [6, 0]], [['n', 1], [1, 0], [7, 0]], [[1, 0], [2, 0], [3, 0]], [['n', 1], [2, 0], [5, 0]], [['n', 1], ['n', 1], [7, 0]]];
     
-    var cma = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
-    var bgColor = '';   
-    var bgImg = '';   
-    var bgStatus = 0; 
-      
+    var SetObj = {
+        backgroundColor: '',   
+        backgroundImages: '',   
+        backgroundStatus: 0,
+        nabor:document.querySelectorAll('.cma'),        
+        historyFirst:[document.querySelector('#work_file').innerHTML],  
+        history:[document.querySelector('#work_file').innerHTML]   
+    } 
+
     function crossPic(a, tr, td){
         a.preventDefault();
         var id = 'cma'+tr+'_'+td;
@@ -14,35 +18,32 @@
         if(a.which == 1){
             if(ed.style.backgroundColor == 'black'){
                 ed.style.backgroundColor = 'white';
-                bgColor = 'white';
+                SetObj.backgroundColor = 'white';
                 ed.style.backgroundImage = '';
-                cma[tr][td] = 0; 
-                bgStatus = 0;  
+                SetObj.backgroundStatus = 0;  
             }
             else{
                ed.style.backgroundColor = 'black';
-               bgColor = 'black';
+               SetObj.backgroundColor = 'black';
                ed.style.backgroundImage = '';
-               bgStatus = 1;
-               cma[td][tr] = 1;
+               SetObj.backgroundStatus = 1;
             }    
         }
         if(a.which == 3){
             if(ed.style.backgroundImage == '' || ed.style.backgroundColor == 'black'){
                 ed.style.backgroundColor = 'white';
                 ed.style.backgroundImage = 'url("images/slim_cross.gif")';
-                bgImg = 'url("images/slim_cross.gif")'; 
-                bgStatus = 2;
-                cma[tr][td] = 2;     
+                SetObj.backgroundImages = 'url("images/slim_cross.gif")'; 
+                SetObj.backgroundStatus = 2;    
             }
             else{
                 ed.style.backgroundImage = '';
-                bgimg = '';
-                bgStatus = 0;
-                cma[tr][td] = 0;
+                SetObj.backgroundImages = '';
+                SetObj.backgroundStatus = 0;
             } 
         }
     }
+    
     function hoverCrossPic(a,tr, td){
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
@@ -83,18 +84,13 @@
         }
              
         if(a.which == 1){
-            ed.style.backgroundColor = bgColor;
-            ed.style.backgroundImage = '';
-            cma[tr][td] = bgStatus;    
+            ed.style.backgroundColor = SetObj.backgroundColor;
+            ed.style.backgroundImage = '';   
         }
         else if(a.which == 3){
             ed.style.backgroundColor = 'white';
-            ed.style.backgroundImage = bgImg;
-            cma[tr][td] = bgStatus;   
+            ed.style.backgroundImage = SetObj.backgroundImages;   
         }
-        console.log(bgColor);
-        console.log(bgImg);
-        console.log(bgStatus);
     }
     
     function crossNumderTop(e, td, tr){
@@ -120,17 +116,17 @@
         for(var i = 0; i < cnt.length; i++){
             sum += cnt[i][td][1];        
         }
-        if(i == sum){
-            for(var j = 0; j < cma.length; j++){
-                if(cma[j][td] != 1 && cma[j][td] != 2){
-                   cma[j][td] = 0;
-                   var id = 'cma'+j+'_'+td;
-                   var ed = document.querySelector('#'+id);
-                   ed.style.backgroundImage = 'url("images/slim_cross.gif")'; 
-                }
-            }    
-        }               
-    }
+        if(i == sum){            
+            for(var j = 0; j < SetObj.nabor.length; j++){
+                var numberTD = SetObj.nabor[j].id.slice(3).split('_');
+                if(numberTD[1] == td){
+                    if(SetObj.nabor[j].style.backgroundColor != 'black' && SetObj.nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
+                        SetObj.nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+                }                    
+            }
+        }    
+    }               
+
     
     function crossLineGorizontal(tr, td){
         var sum = 0;
@@ -138,12 +134,12 @@
             sum += cnl[tr][i][1];        
         }
         if(i == sum){
-            for(var j = 0; j < cma[tr].length; j++){
-                if(cma[tr][j] != 1 && cma[tr][j] != 2){
-                   cma[tr][j] = 0;
-                   var id = 'cma'+tr+'_'+j;
-                   var ed = document.querySelector('#'+id);
-                   ed.style.backgroundImage = 'url("images/slim_cross.gif")'; 
+            for(var j = 0; j < SetObj.nabor.length; j++){
+                var numberTR = SetObj.nabor[j].id.slice(3).split('_');
+                if(numberTR[0] == tr){                                
+                    if(SetObj.nabor[j].style.backgroundColor != 'black' && SetObj.nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")'){
+                        SetObj.nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+                    }                        
                 }
             }    
         }              
@@ -165,4 +161,29 @@
                crossLineGorizontal(tr, td);
             }    
         }   
+    }
+    
+    document.querySelector('body').onmouseup = function(e){
+        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML){; 
+            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, ''));
+            if(SetObj.history.length > 1){
+                document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
+                console.log(SetObj.history[SetObj.history.length - 1]);
+            }       
+        }   
+    }
+    
+    function rewerse(e){
+        if(SetObj.history.length > 1){
+            SetObj.history.pop();
+            document.querySelector('#work_file').innerHTML = SetObj.history[SetObj.history.length -1];
+            SetObj.nabor = document.querySelectorAll('.cma') 
+            console.log(SetObj.history.length);  
+        }
+        if(SetObj.history.length == 1){
+            document.querySelector('#rew').innerText = '';   
+        }
+        else{
+            document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';     
+        }          
     }
