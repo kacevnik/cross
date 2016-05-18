@@ -166,9 +166,54 @@ list-style-type: none;
 
 .cross_main{
     border: 2px solid black;
+    margin: 25px 0 0 0;
+}
+
+.cross_main_20{
+    border: 2px solid black;
+    margin: 25px 0 0 0;
+}
+
+.cross_main_22{
+    border: 2px solid black;
+    margin: 25px 0 0 0;
+}
+
+.cross_main_24{
+    border: 2px solid black;
+    margin: 25px 0 0 0;
+}
+
+.cross_main_26{
+    border: 2px solid black;
+    margin: 25px 0 0 0;
 }
 
 .cross_main td {
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.cross_main_20 td {
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.cross_main_22 td {
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.cross_main_24 td {
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.cross_main_26 td {
     border: 1px solid black;
     background-color: #FFFFFF;
     cursor: pointer;
@@ -178,7 +223,67 @@ list-style-type: none;
     border: 0;
 }
 
+.cross_main_20 td table{
+    border: 0;
+}
+
+.cross_main_22 td table{
+    border: 0;
+}
+
+.cross_main_24 td table{
+    border: 0;
+}
+
+.cross_main_26 td table{
+    border: 0;
+}
+
 .cross_main td table td {
+    width: 18px;
+    height: 17px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid #8E8E8E;
+    vertical-align: middle;
+}
+
+.cross_main_20 td table td {
+    width: 18px;
+    height: 17px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid #8E8E8E;
+    vertical-align: middle;
+}
+
+.cross_main_22 td table td {
+    width: 18px;
+    height: 17px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid #8E8E8E;
+    vertical-align: middle;
+}
+
+.cross_main_24 td table td {
+    width: 18px;
+    height: 17px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid #8E8E8E;
+    vertical-align: middle;
+}
+
+.cross_main_26 td table td {
     width: 18px;
     height: 17px;
     text-align: center;
@@ -194,7 +299,42 @@ list-style-type: none;
     height: 17px;
     text-align: center;
     font-size: 11px;
-    line-height: 15px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.cross_main_20 td div {
+    width: 20px;
+    height: 19px;
+    text-align: center;
+    font-size: 13px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.cross_main_22 td div {
+    width: 22px;
+    height: 21px;
+    text-align: center;
+    font-size: 15px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.cross_main_24 td div {
+    width: 24px;
+    height: 23px;
+    text-align: center;
+    font-size: 17px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.cross_main_26 td div {
+    width: 26px;
+    height: 25px;
+    text-align: center;
+    font-size: 19px;
     padding: 0px;
     vertical-align: top;
 }
@@ -205,11 +345,67 @@ list-style-type: none;
     cursor: default;
 }
 
+.cross_main_20 td.td_null {
+    background: #dadada;
+    border-color: #808080;
+    cursor: default;
+}
+
+.cross_main_22 td.td_null {
+    background: #dadada;
+    border-color: #808080;
+    cursor: default;
+}
+
+.cross_main_24 td.td_null {
+    background: #dadada;
+    border-color: #808080;
+    cursor: default;
+}
+
+.cross_main_26 td.td_null {
+    background: #dadada;
+    border-color: #808080;
+    cursor: default;
+}
+
 .cross_main td table td.td_str5 {
     border-right: 2px solid #8F8F8F;
 }
 
+.cross_main_20 td table td.td_str5 {
+    border-right: 2px solid #8F8F8F;
+}
+
+.cross_main_22 td table td.td_str5 {
+    border-right: 2px solid #8F8F8F;
+}
+
+.cross_main_24 td table td.td_str5 {
+    border-right: 2px solid #8F8F8F;
+}
+
+.cross_main_26 td table td.td_str5 {
+    border-right: 2px solid #8F8F8F;
+}
+
 .cross_main td table .tr_str5 td {
+    border-bottom: 2px solid #8F8F8F;
+}
+
+.cross_main_20 td table .tr_str5 td {
+    border-bottom: 2px solid #8F8F8F;
+}
+
+.cross_main_22 td table .tr_str5 td {
+    border-bottom: 2px solid #8F8F8F;
+}
+
+.cross_main_24 td table .tr_str5 td {
+    border-bottom: 2px solid #8F8F8F;
+}
+
+.cross_main_26 td table .tr_str5 td {
     border-bottom: 2px solid #8F8F8F;
 }
 
@@ -218,7 +414,43 @@ list-style-type: none;
     border-color: #818181;
 }
 
+.cross_main_20 td.kletka {
+    background: #CACACA;
+    border-color: #818181;
+}
+
+.cross_main_22 td.kletka {
+    background: #CACACA;
+    border-color: #818181;
+}
+
+.cross_main_24 td.kletka {
+    background: #CACACA;
+    border-color: #818181;
+}
+
+.cross_main_26 td.kletka {
+    background: #CACACA;
+    border-color: #818181;
+}
+
 .cross_main td.kletka_light {
+	background: #eee;
+}
+
+.cross_main_20 td.kletka_light {
+	background: #eee;
+}
+
+.cross_main_22 td.kletka_light {
+	background: #eee;
+}
+
+.cross_main_24 td.kletka_light {
+	background: #eee;
+}
+
+.cross_main_26 td.kletka_light {
 	background: #eee;
 }
 
@@ -259,6 +491,10 @@ list-style-type: none;
 
 .seting{
     margin: 20px 0 0 0;
+}
+
+.seting label{
+    cursor: pointer;
 }
 
 .commits{

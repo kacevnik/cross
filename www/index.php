@@ -81,7 +81,21 @@
                                 <li><span class="icon-target"></span>Решили: <span class="cross_info_bold">12</span> раз</li>
                             </ul>
                         </div>
-                        <table class="cross_main"  id="work_file" oncontextmenu="return false;">
+                        <div class="seting_but">
+                            <ul>
+                                <li><a href="" id="bigger" onclick="biger(); return false;">Увеличить ячейки</a></li>
+                                <li><a href="" id="bigger" onclick="smally(); return false;">Уменьшить ячейки</a></li>
+                                <li><a href="">Мобильная версия</a></li>
+                            </ul>    
+                        </div>
+                        <div class="seting_but">
+                            <ul>
+                                <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
+                                <li><a href="">Сохранить</a></li>
+                                <li><a href="">Проверить решение</a></li>
+                            </ul>    
+                        </div>
+                        <table class="cross_main" id="work_file" oncontextmenu="return false;">
                 <tbody>
                     <tr>         
                         <td style="background: #f1f1f1; cursor: default;">&nbsp;</td>
@@ -152,24 +166,10 @@
                     
                 </tbody>
             </table>
-                    `   <div class="seting_but">
-                            <ul>
-                                <li><a href="" onclick="biger(); return false;">Увеличить ячейки</a></li>
-                                <li><a href="">Уменьшить ячейки</a></li>
-                                <li><a href="">Мобильная версия</a></li>
-                            </ul>    
-                        </div>
-                        <div class="seting_but">
-                            <ul>
-                                <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
-                                <li><a href="">Сохранить</a></li>
-                                <li><a href="">Проверить решение</a></li>
-                            </ul>    
-                        </div>
                         <div class="seting">
                             <h3>Настройки для удобного решения.</h3>
                             <form>
-                                <label><input type="checkbox" checked="checked"/> Подсветка цифр</label><br>
+                                <label><input type="checkbox" checked="" name="num_light" id="num_ligth" onchange="numLight();"/> Подсветка цифр</label><br>
                                 <label><input type="checkbox" /> Подсвечивать клетку под курсором</label><br>
                                 <label><input type="checkbox" /> Последняя зачеркнутая цифра заполняет строку/столбец крестиками</label><br>
                                 <label><input type="checkbox" /> Отображать координаты клетки под курсором</label><br>

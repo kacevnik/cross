@@ -8,7 +8,9 @@
         backgroundStatus: 0,
         nabor:document.querySelectorAll('.cma'),        
         historyFirst:[document.querySelector('#work_file').innerHTML],  
-        history:[document.querySelector('#work_file').innerHTML]   
+        history:[document.querySelector('#work_file').innerHTML],
+        size: 'cross_main',
+        numlight: 1
     } 
 
     function crossPic(a, tr, td){
@@ -48,37 +50,39 @@
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
         var bCol = ed.style.backgroundColor;
-        
-        for(var i = 0; i < cnt.length; i++){
-            if(cnt[i][td][0] != 'n'){
-                var sId = 'cnt'+td+'_'+i;
-                var s = document.querySelector('#'+sId);
-                s.classList.add('kletka_light');
-            }
-        }
-        
-        for(var k = 0; k < cnl[tr].length; k++){
-            if(cnl[tr][k][0] != 'n'){
-                var lId = 'cnl'+tr+'_'+k; 
-                var l = document.querySelector('#'+lId);
-                l.classList.add('kletka_light');   
-            }
-        }
-        ed.onmouseout = function(e){
-            for(var j = 0; j < cnt.length; j++){
-                if(cnt[j][td][0] != 'n'){
-                    var sId = 'cnt'+td+'_'+j;
+        if(SetObj.numlight){
+            for(var i = 0; i < cnt.length; i++){
+                if(cnt[i][td][0] != 'n'){
+                    var sId = 'cnt'+td+'_'+i;
                     var s = document.querySelector('#'+sId);
-                    s.classList.remove('kletka_light');
-                    s.classList.add('kletka');
+                    s.classList.add('kletka_light');
                 }
             }
-            for(var m = 0; m < cnl[tr].length; m++){
-                if(cnl[tr][m][0] != 'n'){
-                    var uId = 'cnl'+tr+'_'+m;
-                    var u = document.querySelector('#'+uId);
-                    u.classList.remove('kletka_light');
-                    u.classList.add('kletka');
+            
+            
+            for(var k = 0; k < cnl[tr].length; k++){
+                if(cnl[tr][k][0] != 'n'){
+                    var lId = 'cnl'+tr+'_'+k; 
+                    var l = document.querySelector('#'+lId);
+                    l.classList.add('kletka_light');   
+                }
+            }
+            ed.onmouseout = function(e){
+                for(var j = 0; j < cnt.length; j++){
+                    if(cnt[j][td][0] != 'n'){
+                        var sId = 'cnt'+td+'_'+j;
+                        var s = document.querySelector('#'+sId);
+                        s.classList.remove('kletka_light');
+                        s.classList.add('kletka');
+                    }
+                }
+                for(var m = 0; m < cnl[tr].length; m++){
+                    if(cnl[tr][m][0] != 'n'){
+                        var uId = 'cnl'+tr+'_'+m;
+                        var u = document.querySelector('#'+uId);
+                        u.classList.remove('kletka_light');
+                        u.classList.add('kletka');
+                    }
                 }
             }    
         }
@@ -116,12 +120,13 @@
         for(var i = 0; i < cnt.length; i++){
             sum += cnt[i][td][1];        
         }
-        if(i == sum){            
-            for(var j = 0; j < SetObj.nabor.length; j++){
-                var numberTD = SetObj.nabor[j].id.slice(3).split('_');
+        if(i == sum){
+            var nabor = document.querySelectorAll('.cma');
+            for(var j = 0; j < nabor.length; j++){
+                var numberTD = nabor[j].id.slice(3).split('_');
                 if(numberTD[1] == td){
-                    if(SetObj.nabor[j].style.backgroundColor != 'black' && SetObj.nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
-                        SetObj.nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+                    if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
+                        nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
                 }                    
             }
         }    
@@ -134,11 +139,12 @@
             sum += cnl[tr][i][1];        
         }
         if(i == sum){
-            for(var j = 0; j < SetObj.nabor.length; j++){
-                var numberTR = SetObj.nabor[j].id.slice(3).split('_');
-                if(numberTR[0] == tr){                                
-                    if(SetObj.nabor[j].style.backgroundColor != 'black' && SetObj.nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")'){
-                        SetObj.nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+            var nabor = document.querySelectorAll('.cma');
+            for(var j = 0; j < nabor.length; j++){
+                var numberTR = nabor[j].id.slice(3).split('_');
+                if(numberTR[0] == tr){                                   
+                    if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")'){
+                        nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
                     }                        
                 }
             }    
@@ -168,17 +174,14 @@
             SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, ''));
             if(SetObj.history.length > 1){
                 document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
-                console.log(SetObj.history[SetObj.history.length - 1]);
             }       
-        }   
+        } 
     }
     
     function rewerse(e){
         if(SetObj.history.length > 1){
             SetObj.history.pop();
-            document.querySelector('#work_file').innerHTML = SetObj.history[SetObj.history.length -1];
-            SetObj.nabor = document.querySelectorAll('.cma') 
-            console.log(SetObj.history.length);  
+            document.querySelector('#work_file').innerHTML = SetObj.history[SetObj.history.length -1]; 
         }
         if(SetObj.history.length == 1){
             document.querySelector('#rew').innerText = '';   
@@ -187,3 +190,40 @@
             document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';     
         }          
     }
+    
+    function biger(){
+        var a = document.getElementById('work_file');
+        var b = a.getElementsByTagName('DIV');
+            if(parseInt(getComputedStyle(b[0]).width) >= 18 && parseInt(getComputedStyle(b[0]).width) <= 24){
+                w = parseInt(getComputedStyle(b[0]).width) + 2;
+                a.classList.remove(a.className);
+                a.classList.add('cross_main_' + w);
+                SetObj.size = 'cross_main_' + w;
+            }       
+    }  
+    
+    function smally(){
+        var a = document.getElementById('work_file');
+        var b = a.getElementsByTagName('DIV');
+            if(parseInt(getComputedStyle(b[0]).width) >= 20 && parseInt(getComputedStyle(b[0]).width) <= 26){
+                w = parseInt(getComputedStyle(b[0]).width) - 2;
+                a.classList.remove(a.className);
+                if(w == 20){
+                    a.classList.add('cross_main');
+                    SetObj.size = 'cross_main';
+                }else{
+                    a.classList.add('cross_main_' + w);
+                    SetObj.size = 'cross_main_' + w;
+                }
+            }       
+    } 
+    
+    function numLight(){
+        var a = document.getElementById('num_ligth');
+        if(a.checked){
+            SetObj.numlight = 1;    
+        }else{
+            SetObj.numlight = 0;
+        }
+    }
+    
