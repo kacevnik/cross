@@ -6,6 +6,13 @@
     if(getCrossData($id))$crossData = getCrossData($id);
     $arr_top = strToArr($crossData[arr_top]);
     $arr_left = strToArr($crossData[arr_left]);
+       
+    if($_COOKIE['size']){$sess_size = $_COOKIE['size'];}else{$sess_size = 'cross_main';}
+    if($_COOKIE['numligth']){$sess_numligth = 'checked=""';}else{$sess_numligth = '';}
+    if($_COOKIE['frame']){$sess_frame = 'checked=""';}else{$sess_frame = '';}
+    if($_COOKIE['lastnum']){$sess_lastnum = 'checked=""';}else{$sess_lastnum = '';}
+    if($_COOKIE['showxy']){$sess_showxy = 'checked=""';}else{$sess_showxy = '';}
+    if($_COOKIE['scrolltop']){$sess_scrolltop = 'checked=""';}else{$sess_scrolltop = '';}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -84,7 +91,7 @@
                         <div class="seting_but">
                             <ul>
                                 <li><a href="" id="bigger" onclick="biger(); return false;">Увеличить ячейки</a></li>
-                                <li><a href="" id="bigger" onclick="smally(); return false;">Уменьшить ячейки</a></li>
+                                <li><a href="" id="smally" onclick="smally(); return false;">Уменьшить ячейки</a></li>
                                 <li><a href="">Мобильная версия</a></li>
                             </ul>    
                         </div>
@@ -95,11 +102,12 @@
                                 <li><a href="">Проверить решение</a></li>
                             </ul>    
                         </div>
-                        <table class="cross_main" id="work_file" oncontextmenu="return false;">
+                        <div id="frame">
+                        <table class="<?=$sess_size?>" id="work_file" oncontextmenu="return false;">
                 <tbody>
-                    <tr>         
-                        <td style="background: #f1f1f1; cursor: default;">&nbsp;</td>
-                        <td>
+                    <tr id="scroll_tr">         
+                        <td style="cursor: default; background: rgb(241, 241, 241); display: table-cell;" id="scroll_td1">&nbsp;</td>
+                        <td id="scroll_td">
                             <table>
                                 <tbody>
                                 <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
@@ -153,7 +161,7 @@
                                             for($td = 0; $td < $crossData['cross_w']; $td++){ 
                                                 if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}    
                                         ?>
-                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)">
+                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php if($sess_showxy){echo ' title="('.$tr.' - '.$td.')"';}?>>
                                             <div>&nbsp;</div>
                                         </td>
                                         <?php } ?>
@@ -166,15 +174,15 @@
                     
                 </tbody>
             </table>
+                        </div>
                         <div class="seting">
                             <h3>Настройки для удобного решения.</h3>
                             <form>
-                                <label><input type="checkbox" checked="" name="num_light" id="num_ligth" onchange="numLight();"/> Подсветка цифр</label><br>
-                                <label><input type="checkbox" /> Подсвечивать клетку под курсором</label><br>
-                                <label><input type="checkbox" /> Последняя зачеркнутая цифра заполняет строку/столбец крестиками</label><br>
-                                <label><input type="checkbox" /> Отображать координаты клетки под курсором</label><br>
-                                <label><input type="checkbox" /> Перемещать верхнюю панель</label><br>
-                                <label><input type="checkbox" checked="checked"/> Автоматически зачеркивать цифры</label>
+                                <label><input type="checkbox" <?=$sess_numligth?> name="num_light" id="num_ligth" onchange="numLight();"/> Подсветка цифр</label><br>
+                                <label><input type="checkbox" <?=$sess_frame?> name="show_frame" id="show_frame" onchange="showFrame();"/> Подсвечивать клетку под курсором</label><br>
+                                <label><input type="checkbox" <?=$sess_lastnum?> name="last_num" id="last_num" onchange="lastNum();"/> Последняя зачеркнутая цифра заполняет строку/столбец крестиками</label><br>
+                                <label><input type="checkbox" <?=$sess_showxy?> name="show_xy" id="show_xy" onchange="showXY();"/> Отображать координаты клетки под курсором</label><br>
+                                <label><input type="checkbox" <?=$sess_scrolltop?> name="scroll_top" id="scroll_top" onchange="scrollTopPanell();"/> Перемещать верхнюю панель</label><br>
                             </form>
                         </div>
                         <div class="commits">

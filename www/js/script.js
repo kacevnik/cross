@@ -8,11 +8,15 @@
         backgroundStatus: 0,
         nabor:document.querySelectorAll('.cma'),        
         historyFirst:[document.querySelector('#work_file').innerHTML],  
-        history:[document.querySelector('#work_file').innerHTML],
+        history:[document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')],
         size: 'cross_main',
-        numlight: 1
-    } 
-
+        numlight: 0,
+        showframe: 0,
+        lastnum: 0,
+        showxy: 0,
+        scrolltop: document.cookie.split('scrolltop=')[1].charAt(0)
+    }
+    
     function crossPic(a, tr, td){
         a.preventDefault();
         var id = 'cma'+tr+'_'+td;
@@ -100,55 +104,74 @@
     function crossNumderTop(e, td, tr){
         var id = 'cnt'+td+'_'+tr;
         var ed = document.querySelector('#'+id);
-        if(e.which == 1){
-            if(ed.style.backgroundImage == ''){
-                cnt[tr][td][1]=1;
-                crossLineVertical(td, tr);               
-                ed.style.backgroundImage = 'url("images/strong_cross.gif")';
-                ed.style.backgroundPosition = '50%, 50%'    
+        if(e != 0){
+            if(e.which == 1){
+                if(ed.style.backgroundImage == ''){
+                    cnt[tr][td][1]=1;
+                    crossLineVertical(td, tr);               
+                    ed.style.backgroundImage = 'url("images/strong_cross.gif")';
+                    ed.style.backgroundPosition = '50%, 50%'    
+                }
+                else{
+                   ed.style.backgroundImage = '';
+                   cnt[tr][td][1]=0;
+                   crossLineVertical(td, tr);
+                }    
             }
-            else{
-               ed.style.backgroundImage = '';
-               cnt[tr][td][1]=0;
-               crossLineVertical(td, tr);
-            }    
+        }
+        else{
+        if(ed.style.backgroundImage == ''){
+                    cnt[tr][td][1]=1;
+                    crossLineVertical(td, tr);               
+                    ed.style.backgroundImage = 'url("images/strong_cross.gif")';
+                    ed.style.backgroundPosition = '50%, 50%'    
+                }
+                else{
+                   ed.style.backgroundImage = '';
+                   cnt[tr][td][1]=0;
+                   crossLineVertical(td, tr);
+                }    
         }   
     }
     
     function crossLineVertical(td, tr){
-        var sum = 0;
-        for(var i = 0; i < cnt.length; i++){
-            sum += cnt[i][td][1];        
-        }
-        if(i == sum){
-            var nabor = document.querySelectorAll('.cma');
-            for(var j = 0; j < nabor.length; j++){
-                var numberTD = nabor[j].id.slice(3).split('_');
-                if(numberTD[1] == td){
-                    if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
-                        nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
-                }                    
+        if(SetObj.lastnum == 1 || getCookie('lastnum') == 1){
+            var sum = 0;
+            for(var i = 0; i < cnt.length; i++){
+                sum += cnt[i][td][1];        
             }
-        }    
+            if(i == sum){
+                var nabor = document.querySelectorAll('.cma');
+                for(var j = 0; j < nabor.length; j++){
+                    var numberTD = nabor[j].id.slice(3).split('_');
+                    if(numberTD[1] == td){
+                        if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
+                            nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+                    }                    
+                }
+            }
+        }   
     }               
 
     
     function crossLineGorizontal(tr, td){
-        var sum = 0;
-        for(var i = 0; i < cnl[tr].length; i++){
-            sum += cnl[tr][i][1];        
-        }
-        if(i == sum){
-            var nabor = document.querySelectorAll('.cma');
-            for(var j = 0; j < nabor.length; j++){
-                var numberTR = nabor[j].id.slice(3).split('_');
-                if(numberTR[0] == tr){                                   
-                    if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")'){
-                        nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
-                    }                        
-                }
-            }    
-        }              
+        if(SetObj.lastnum == 1 || getCookie('lastnum') == 1){
+            var sum = 0;
+            for(var i = 0; i < cnl[tr].length; i++){
+                sum += cnl[tr][i][1];        
+            }
+            if(i == sum){
+                var nabor = document.querySelectorAll('.cma');
+                for(var j = 0; j < nabor.length; j++){
+                    var numberTR = nabor[j].id.slice(3).split('_');
+                    if(numberTR[0] == tr){                                   
+                        if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")'){
+                            nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
+                        }                        
+                    }
+                }    
+            } 
+        }             
     }
     
     function crossNumderLeft(e, tr, td){
@@ -170,12 +193,12 @@
     }
     
     document.querySelector('body').onmouseup = function(e){
-        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML){; 
-            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, ''));
+        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')){; 
+            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"'));
             if(SetObj.history.length > 1){
                 document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
             }       
-        } 
+        }
     }
     
     function rewerse(e){
@@ -199,6 +222,7 @@
                 a.classList.remove(a.className);
                 a.classList.add('cross_main_' + w);
                 SetObj.size = 'cross_main_' + w;
+                setCookie('size', 'cross_main_' + w, {expires: 31536000});
             }       
     }  
     
@@ -208,12 +232,14 @@
             if(parseInt(getComputedStyle(b[0]).width) >= 20 && parseInt(getComputedStyle(b[0]).width) <= 26){
                 w = parseInt(getComputedStyle(b[0]).width) - 2;
                 a.classList.remove(a.className);
-                if(w == 20){
+                if(w <= 20){
                     a.classList.add('cross_main');
                     SetObj.size = 'cross_main';
+                    setCookie('size', 'cross_main', {expires: 31536000});
                 }else{
                     a.classList.add('cross_main_' + w);
                     SetObj.size = 'cross_main_' + w;
+                    setCookie('size', 'cross_main_' + w, {expires: 31536000});
                 }
             }       
     } 
@@ -221,9 +247,156 @@
     function numLight(){
         var a = document.getElementById('num_ligth');
         if(a.checked){
-            SetObj.numlight = 1;    
+            SetObj.numlight = 1;
+            setCookie('numligth', '1', {expires: 31536000});    
         }else{
             SetObj.numlight = 0;
+            setCookie('numligth', '0', {expires: 31536000});
         }
     }
     
+    function showFrame(){
+        var a = document.getElementById('show_frame');
+        var b = document.getElementById('frame');
+        if(a.checked){
+            SetObj.showframe = 1;
+            b.classList.add('frame');
+            setCookie('frame', '1', {expires: 31536000});   
+        }else{
+            SetObj.showframe = 0;
+            b.classList.remove(b.className);
+            setCookie('frame', '0', {expires: 31536000})
+        }
+    }
+    
+    function lastNum(){
+        var a = document.getElementById('last_num');
+        if(a.checked){
+            SetObj.lastnum = 1;
+            setCookie('lastnum', '1', {expires: 31536000});    
+        }else{
+            SetObj.lastnum = 0;
+            setCookie('lastnum', '0', {expires: 31536000});
+        }
+    }
+    
+    function showXY(){
+        var a = document.getElementById('show_xy');
+        var b = document.querySelectorAll('.cma');
+        var id = '';
+        if(a.checked){
+            for(var i = 0; i < b.length; i++){
+                if(b[i].hasAttribute('title'))break; 
+                c = b[i].id.slice(3).split('_');
+                var x = parseInt(c[0]) + 1; var y = parseInt(c[1]) + 1;
+                b[i].setAttribute('title', '(' + x + ' - ' + y + ')');   
+            }
+            SetObj.showxy = 1;
+            setCookie('showxy', '1', {expires: 31536000});              
+        }else{
+            for(var i = 0; i < b.length; i++){
+                if(b[i].hasAttribute('title')){
+                    b[i].removeAttribute('title');    
+                }  
+            }
+            SetObj.showxy = 0;
+            setCookie('showxy', '0', {expires: 31536000}); 
+        }        
+    }
+    
+    function scrollTopPanell(){
+        var a = document.getElementById('scroll_top');
+        if(a.checked){
+            SetObj.scrolltop = 1;
+            setCookie('scrolltop', '1', {expires: 31536000});    
+        }else{
+            SetObj.scrolltop = 0;
+            setCookie('scrolltop', '0', {expires: 31536000});
+            var f = document.getElementById('scroll_tr'); //шапка
+            var w = document.getElementById('scroll_td1');
+            //стили по умолчанию
+            f.style.position = '';
+            f.style.top = '';
+            f.style.left = '';
+            w.style.display = 'table-cell';
+        }
+    }
+    
+    var u = 0;
+    
+    window.onscroll = function() {
+        if(SetObj.scrolltop == 1){
+            var f = document.getElementById('scroll_tr'); //шапка
+            var v = document.getElementById('scroll_td'); //первый столбец
+            var w = document.getElementById('scroll_td1');
+            //стили по умолчанию
+            f.style.position = '';
+            f.style.top = '';
+            f.style.left = '';
+            w.style.display = 'table-cell';
+            var g = document.getElementById('work_file');//кроссворд
+            var h = v.getBoundingClientRect().left; //отступ с левого края столбца один
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;//размер прокрутки страницы
+            var scrollHeightg = Math.max(g.scrollHeight, g.offsetHeight, g.clientHeight);//высота кроссворда
+            var scrollHeightf = Math.max(f.scrollHeight, f.offsetHeight, f.clientHeight);//высота шапки
+            
+            if(document.documentElement.clientHeight < scrollHeightg){
+                if(f.getBoundingClientRect().top < 0){
+                    if((scrollHeightg + f.getBoundingClientRect().top - scrollHeightf * 2) >= 100){
+                        f.style.position = 'absolute';
+                        f.style.top = scrollTop + 'px';
+                        f.style.left = h  + 'px';
+                        w.style.display = 'none';
+                        u = 0;    
+                    }else{
+                        if(u == 0){u = scrollTop;}
+                        f.style.position = 'absolute';
+                        f.style.top = u + 'px';
+                        f.style.left = h  + 'px';
+                        w.style.display = 'none';                
+                    }
+                } 
+            }
+        }
+    }
+
+/**
+ * Функции COOCIE ---------------------------------------------------
+ */
+     
+    function setCookie(name, value, options){
+        options = options || {};
+
+        var expires = options.expires;
+
+        if(typeof expires == "number" && expires){
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if(expires && expires.toUTCString){
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        for(var propName in options){
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if(propValue !== true){
+                updatedCookie += "=" + propValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
+    }
+    
+    function getCookie(name){
+        var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+/**
+ * ---------------------------------------------------------------------------------
+ */    

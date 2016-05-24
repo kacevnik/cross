@@ -164,6 +164,10 @@ list-style-type: none;
     font-size: 20px;   
 }
 
+.frame table div:hover{
+    box-shadow: inset 0 0 0px 1px #8F8F8F;    
+}
+
 .cross_main{
     border: 2px solid black;
     margin: 25px 0 0 0;

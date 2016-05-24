@@ -18,5 +18,7 @@
     $db = mysqli_connect(HOST,ADMIN_DB,PASS_DB);
     mysqli_query($db, "SET NAMES 'utf8'");         //Установка кодировки данных из базы.
     mysqli_select_db($db, NAME_DB) or die("Ощибка соединения с базой!");
+    
+    session_start();
 
 ?>
