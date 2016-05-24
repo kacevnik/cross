@@ -78,7 +78,7 @@
                             <ul>
                                 <li title="Этот японский кроссворд добавил Kacevnik"><span class="icon-user"></span>Добавил: <a href="">Kacevnik</a></li>
                                 <li><span class="icon-calendar"></span>Добавлен: <span class="cross_info_bold">06 ноя 1982</span></li>
-                                <li><span class="icon-power"></span>Рекорд: <a href="">Kacevnik</a> 1ч. 20 мин.</li>
+                                <li><span class="icon-target"></span>Решили: <span class="cross_info_bold">12</span> раз</li>
                             </ul>
                             <ul>
                                 <li><span class="icon-star-full"></span>Рейтинг: <span class="icon-star-full c_orange"></span><span class="icon-star-full c_orange"></span><span class="icon-star-full c_orange"></span><span class="icon-star-half c_orange"></span><span class="icon-star-empty c_orange"></span></li>                                            
@@ -86,10 +86,10 @@
                             </ul>
                             <ul>
                                 <li><span class="icon-hour-glass"></span>Ср. скорость: <span class="cross_info_bold">1ч. 20 мин.</span></li>
-                                <li><span class="icon-target"></span>Решили: <span class="cross_info_bold">12</span> раз</li>
+                                <li><span class="icon-power" title="1ч. 20 мин."></span>Рекорд: <a href="">Kacevnik</a> за 1ч. 20 мин. 34 сек</li>
                             </ul>
                             <ul>
-                                <li><span id="timer">00:20:55</span></li>
+                                <li><span id="timer">00:00:00</span></li>
                             </ul>
                         </div>
                         <div class="seting_but">

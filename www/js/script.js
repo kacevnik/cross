@@ -359,6 +359,27 @@
             }
         }
     }
+    
+    function timer(){
+        var count = 0;
+        var s = 0;
+        var m = 0;
+        var h = 0;
+        var a = document.getElementById('timer');
+        setInterval(function(){
+            count++;
+            s = count%60;
+            s = (s<10)?'0' + s:s;
+            m = Math.floor(count/60)%60;
+            m = (m<10)?'0' + m:m;
+            h = Math.floor(count/60/60);
+            if(h == 24){count = 0;}
+            h = (h<10)?'0' + h:h;
+            a.innerHTML = h + ':' + m + ':' + s;   
+        }, 1);  
+    }
+    
+    timer();
 
 /**
  * Функции COOCIE ---------------------------------------------------
