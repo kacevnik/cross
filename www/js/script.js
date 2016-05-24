@@ -255,6 +255,16 @@
         }
     }
     
+    function showTimer(){
+        var a = document.getElementById('show_timer');
+        var b = document.getElementById('timer');
+        if(a.checked){
+            b.style.display = 'none';
+        }else{
+            b.style.display = 'list-item';
+        }
+    }
+    
     function showFrame(){
         var a = document.getElementById('show_frame');
         var b = document.getElementById('frame');
@@ -376,7 +386,7 @@
             if(h == 24){count = 0;}
             h = (h<10)?'0' + h:h;
             a.innerHTML = h + ':' + m + ':' + s;   
-        }, 1);  
+        }, 1000);  
     }
     
     timer();
