@@ -548,6 +548,43 @@ list-style-type: none;
     text-align: center;
 }
 
+.registr{}
+
+.registr tr td:first-child{
+    padding: 0 7px 0 0;
+}
+
+.registr tr td:last-child{
+    padding: 3px 0;
+}
+
+.registr_in_text{
+    border-radius: 5px;
+    padding: 5px 7px;
+    border: 1px solid #BDBDBD;
+}
+
+.registr_in_text:focus{
+    border-color: #868686; 
+    outline: none 
+}
+
+.registr_in_sub{
+    padding: 5px 5px;
+    border-radius: 5px;
+    background-color: #ccc;
+    border: 1px solid #868686;
+    width: 180px;
+    margin-top: 10px;
+    color: #353535;
+}
+
+.registr_in_sub:hover{
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #868686;   
+}
+
 .footer{
     height: 50px;
     background-color: #3f3f3f;
