@@ -38,3 +38,6 @@
 /**
  * ---------------------------------------------------------------------------------
  */ 
+    function reload_capcha(){
+        document.getElementById('capcha').src = 'capcha.php?' + Math.random();
+    }
