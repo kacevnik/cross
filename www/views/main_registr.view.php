@@ -4,23 +4,23 @@
                             <form method="post" action="">
                             <tr>
                                 <td>Логин *</td>
-                                <td><input class="registr_in_text" type="text" /></td>
+                                <td><input class="registr_in_text" name="login" type="text" /></td>
                             </tr>
                             <tr>
                                 <td>E-mail адрес *</td>
-                                <td><input class="registr_in_text" type="text" /></td>
+                                <td><input class="registr_in_text" name="email" type="text" /></td>
                             </tr>
                             <tr>
                                 <td>Пароль *</td>
-                                <td><input class="registr_in_text" type="text" /></td>
+                                <td><input class="registr_in_text" name="pass" type="text" /></td>
                             </tr>
                             <tr>
                                 <td>Ещё раз пароль *</td>
-                                <td><input class="registr_in_text" type="text" /></td>
+                                <td><input class="registr_in_text" name="pass2" type="text" /></td>
                             </tr>
-                            <tr>
-                                <td>Введите символы с картинки *<img src="capcha.php" class="img_capcha" onclick="reload_capcha()"></td>
-                                <td><input class="registr_in_text" type="text" /></td>
+                            <tr class="r_capcha">
+                                <td><span>Введите символы<br> с картинки *</span><img src="capcha.php" onclick="reload_capcha()" title="обновить"></td>
+                                <td><input class="registr_in_text" name="capcha" type="text" /></td>
                             </tr>
                             <tr>
                                 <td></td>

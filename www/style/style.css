@@ -552,6 +552,29 @@ list-style-type: none;
 
 .registr tr td:first-child{
     padding: 0 7px 0 0;
+    width:  210px;
+}
+
+.r_capcha td span{
+    float: left;
+    margin-right: 18px;
+    font-size: 10px;
+}
+
+.r_capcha td{
+    vertical-align: top;    
+}
+
+.r_capcha td img{
+    border: 1px solid #ccc;    
+}
+
+.r_capcha td img:hover{
+    cursor: pointer;   
+}
+
+.r_capcha td:last-child{
+    height: 65px;   
 }
 
 .registr tr td:last-child{
