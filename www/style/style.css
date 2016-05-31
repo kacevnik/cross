@@ -550,6 +550,13 @@ list-style-type: none;
 
 .registr{}
 
+.reg_error{
+    color: #C73030;
+    text-align: center;
+    padding-top: 15px!important;
+    height: 17px;
+}
+
 .registr tr td:first-child{
     padding: 0 7px 0 0;
     width:  210px;

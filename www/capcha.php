@@ -4,6 +4,7 @@
  * @author kacevnik
  * @copyright 2016
  */
+include("inc/core.php");
 
 $width = 100;			//Ширина изображения
 $height = 60;				//Высота изображения
