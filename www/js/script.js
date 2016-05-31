@@ -18,7 +18,16 @@
         scrolltop: document.cookie.split('scrolltop=')[1].charAt(0)
     }
     
+    function fixWhich(e) {
+        if (!e.which && e.button) { // если which нет, но есть button... (IE8-)
+            if (e.button & 1) e.which = 1; // левая кнопка
+            else if (e.button & 4) e.which = 2; // средняя кнопка
+            else if (e.button & 2) e.which = 3; // правая кнопка
+         }
+    }
+    
     function crossPic(a, tr, td){
+        fixWhich(a);
         a.preventDefault();
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
@@ -52,6 +61,7 @@
     }
     
     function hoverCrossPic(a,tr, td){
+        fixWhich(a);
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
         var bCol = ed.style.backgroundColor;
@@ -183,6 +193,7 @@
     }
     
     function crossNumderLeft(e, tr, td){
+        fixWhich(e);
         var id = 'cnl'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
         if(e.which == 1){
