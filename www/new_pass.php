@@ -1,9 +1,6 @@
 <?php
     include("inc/core.php");
-    include("inc/mes_constructor.php");
-    
-    if(isset($_GET['id']))$id = $_GET['id'];
-    
+    include("inc/new_pass_constructor.php");    
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,13 +9,14 @@
     	<meta name="author" content="kacevnik" />
         <link rel="stylesheet" href="style/style.css" type="text/css">
         <link rel="stylesheet" href="style/font.css" type="text/css">
-    	<title>Подтверждение регистрации</title>
+    	<title>Восстановление пароля</title>
     </head>
     <body>
 <?php include("views/top.view.php") ?>
 <?php include("views/header.view.php") ?>
 <?php include("views/left.view.php") ?>
-<?php include("views/mes.view.php") ?>
-<?php include("views/footer.view.php") ?>   
+<?php include("views/new_pass.view.php") ?>
+<?php include("views/footer.view.php") ?> 
+    <script src="js/lib.js"></script>     
     </body>
 </html>

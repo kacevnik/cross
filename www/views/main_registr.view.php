@@ -24,7 +24,7 @@
                             </tr>
                             <tr class="r_capcha">
                                 <td><span>Введите символы<br> с картинки *</span><img id="capcha" src="capcha.php" onclick="reload_capcha()" title="Обновить"></td>
-                                <td><input id="form_capcha" class="registr_in_text" name="capcha" type="text" onfocus="clear_in(this)"/></td>
+                                <td><input id="form_capcha" class="registr_in_text" name="capcha" type="text" onfocus="clear_in(this)" autocomplete="off"/></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -35,6 +35,15 @@
                                 <td></td>
                             </tr>
                             </form>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><a href="login.php">Вход в Личный кабинет</a></li>
+                                        <li><a href="new_pass.php">Забыли пароль?</a></li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
                         </table>
                     </div>
                 </div>

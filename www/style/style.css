@@ -559,7 +559,7 @@ list-style-type: none;
 
 .registr tr td:first-child{
     padding: 0 7px 0 0;
-    width:  210px;
+    width:  215px;
 }
 
 .r_capcha td span{
@@ -613,6 +613,20 @@ list-style-type: none;
     cursor: pointer;
     color: #FFFFFF;
     background-color: #868686;   
+}
+
+.registr ul{
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.registr ul li a{
+    color: #000;
+    text-decoration: none;  
+}
+
+.registr ul li a:hover{
+    text-decoration: underline;  
 }
 
 .error {

@@ -2,8 +2,6 @@
     include("inc/core.php");
     include("inc/registr_constructor.php");
     
-    if(isset($_GET['id']))$id = $_GET['id'];
-    
 ?>
 <!DOCTYPE HTML>
 <html>
