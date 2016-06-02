@@ -1,5 +1,6 @@
 <?php
-
+    if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();}
+    
     if($_SESSION["admin"]){header("Location: lk.php"); exit();}
     
     if (isset($_POST['submit']))    {$submit = $_POST['submit'];   $submit = trim(stripslashes(htmlspecialchars($submit)));}
@@ -12,8 +13,8 @@
     if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i",$email)){unset($email);}else{$email = strtolower($email);}
     if (!preg_match("/^[a-z0-9]+[a-z0-9_-]{2,30}[a-z0-9]+$/i",$login)){unset($login);}else{$login_view = $login; $login = strtolower($login);}
 
-    if (preg_match("/^[a-z0-9]{4,20}$/",$pass)){$pass = $pass;}else{unset($pass);}
-    if (preg_match("/^[a-z0-9]{4,20}$/",$pass2)){$pass2 = $pass2;}else{unset($pass2);}    
+    if (preg_match("/^[a-z0-9]{4,20}$/i",$pass)){$pass = $pass;}else{unset($pass);}
+    if (preg_match("/^[a-z0-9]{4,20}$/i",$pass2)){$pass2 = $pass2;}else{unset($pass2);}    
     if (preg_match("/^[a-z0-9]{4}$/i",$capcha)){$capcha = strtolower($capcha);}else{unset($capcha);}    
 
     if($submit){

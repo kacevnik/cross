@@ -14,6 +14,7 @@
     define(ADMIN_EMAIL,"kacevnik@yandex.ru");
     define(DOMEN,"http://cross");
     define(TIMES,time());
+    define(ENTER, '1');
     define(URLKA, $_SERVER['HTTP_REFERER']);
     define(IP_USER, $_SERVER['REMOTE_ADDR']);
     
@@ -24,5 +25,12 @@
     mysqli_select_db($db, NAME_DB) or die("Ощибка соединения с базой!");
     
     session_start();
-
+    
+    if(!$_SESSION['admin']){
+        if($_COOKIE['LoginCookie']){
+            $_SESSION['admin'] = $_COOKIE['LoginCookie'];
+            header("Location: ".URLKA);
+            exit();
+        }
+    }
 ?>

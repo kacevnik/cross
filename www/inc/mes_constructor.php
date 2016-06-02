@@ -1,4 +1,5 @@
 <?php
+    if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();}
     if (isset($_GET['u']))    {$u = $_GET['u'];   $u = trim(stripslashes(htmlspecialchars($u)));}
     if (preg_match("/^[a-z0-9]{64,64}$/i",$u)){$u = $u;}else{unset($u);}
     

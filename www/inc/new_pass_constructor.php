@@ -1,4 +1,7 @@
 <?php 
+    if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();}
+    
+    if($_SESSION["admin"]){header("Location: lk.php"); exit();}
         
     if (isset($_GET['np']))       {$np = $_GET['np'];            $np = trim(stripslashes(htmlspecialchars($np)));}
     if (preg_match("/^[a-z0-9]{64,64}$/i",$np)){$np = $np;}else{unset($np);}
