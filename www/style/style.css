@@ -615,6 +615,36 @@ list-style-type: none;
     background-color: #868686;   
 }
 
+.error {
+    border-top: 3px solid #de7a7b;
+    border-bottom: 3px solid #de7a7b;
+    background: #E6C0C0;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #CC0048;
+    font-weight: 500;
+    text-decoration: none;
+    text-shadow: none;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.error_plus {
+    border-top: 3px solid #75923C;
+    border-bottom: 3px solid #75923C;
+    background: #C2D69A;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #75923C;
+    font-weight: 500;
+    text-decoration: none;
+    text-shadow: none;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
 .footer{
     height: 50px;
     background-color: #3f3f3f;

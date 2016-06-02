@@ -1,5 +1,9 @@
                     <div class="content">
                         <h1>Регистрация</h1>
+<?php
+ echo $_SESSION['error'];
+ unset($_SESSION['error']); 
+?>
                         <table class="registr">
                             <form method="post" action="" onsubmit="return sub()">
                             <tr>
@@ -24,7 +28,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input class="registr_in_sub" value="Регистрация" type="submit" /></td>
+                                <td><input class="registr_in_sub" name="submit" value="Регистрация" type="submit" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" id="reg_error" class="reg_error"></td>

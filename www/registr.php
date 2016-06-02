@@ -1,11 +1,9 @@
 <?php
     include("inc/core.php");
+    include("inc/registr_constructor.php");
     
     if(isset($_GET['id']))$id = $_GET['id'];
     
-    if(getCrossData($id))$crossData = getCrossData($id);
-    $arr_top = strToArr($crossData[arr_top]);
-    $arr_left = strToArr($crossData[arr_left]);
 ?>
 <!DOCTYPE HTML>
 <html>

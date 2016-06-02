@@ -9,9 +9,13 @@
     define(ADMIN_DB,"joomlamix_novo");
     define(PASS_DB,"9564665");
     define(NAME_DB,"cross");
+    define(NAME_SITE,"Японские кроссворды");
+    define(TITLE_SITE,"Samurai-ka.ru");
+    define(ADMIN_EMAIL,"kacevnik@yandex.ru");
+    define(DOMEN,"http://cross");
     define(TIMES,time());
     define(URLKA, $_SERVER['HTTP_REFERER']);
-    define(IPUSER, $_SERVER['REMOTE_ADDR']);
+    define(IP_USER, $_SERVER['REMOTE_ADDR']);
     
     //Соединение с базой данных.
     
