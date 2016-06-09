@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src:    url('fonts/icomoon.eot?fi6f58');
-    src:    url('fonts/icomoon.eot?fi6f58#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.ttf?fi6f58') format('truetype'),
-        url('fonts/icomoon.woff?fi6f58') format('woff'),
-        url('fonts/icomoon.svg?fi6f58#icomoon') format('svg');
+    src:    url('fonts/icomoon.eot?3eq66d');
+    src:    url('fonts/icomoon.eot?3eq66d#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?3eq66d') format('truetype'),
+        url('fonts/icomoon.woff?3eq66d') format('woff'),
+        url('fonts/icomoon.svg?3eq66d#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -25,8 +25,9 @@
     -moz-font-feature-settings: "liga=1";
     -moz-font-feature-settings: "liga";
     -ms-font-feature-settings: "liga" 1;
-    -o-font-feature-settings: "liga";
     font-feature-settings: "liga";
+    -webkit-font-variant-ligatures: discretionary-ligatures;
+    font-variant-ligatures: discretionary-ligatures;
 
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
@@ -47,6 +48,9 @@
 }
 .icon-hour-glass:before {
     content: "\e904";
+}
+.icon-enlarge:before {
+    content: "\e910";
 }
 .icon-wrench:before {
     content: "\e905";
@@ -81,3 +85,4 @@
 .icon-checkmark:before {
     content: "\e90e";
 }
+

@@ -14,6 +14,25 @@
     }
 
 /**
+ * Функция выборки данных кроссвордов для главной страницы.
+ **/
+
+    function getListCross($limit){
+        global $db;
+        $arr = array();
+        $sql = "SELECT * FROM dk_cross WHERE type='1' LIMIT ".$limit;
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res)){
+            $myr = mysqli_fetch_assoc($res);
+            do{
+                $arr[] = $myr;    
+            }while($myr = mysqli_fetch_assoc($res));
+        }
+        else{return false;}
+        return $arr;
+    }
+    
+/**
  * Функция получения данных кроссворда из БД по ID.
  **/
 

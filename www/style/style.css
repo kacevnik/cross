@@ -764,3 +764,47 @@ body {
 .footer_right a:hover{
     text-decoration: underline;
 }
+
+.list_class_item ul{
+    list-style-type: none;
+}
+
+.list_class_item ul li{
+    background: url('../images/g-line.gif') repeat-x bottom;
+    margin-bottom: 7px;
+    display: table-row;
+}
+
+.list_class_item ul li table img{
+    width: 100px;
+    height: 100px;
+}
+
+.list_class_item ul li table a{
+    color: #000;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+.list_class_item ul li table span{
+    color: #7B7B7B;
+    padding-right: 5px;
+    font-size: 15px;
+}
+
+.list_class_item ul li table span.c_orange{
+    color: #F5A222;
+}
+
+.list_class_item ul li table{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.list_class_item ul li table tr td:nth-child(2){
+    padding: 0 0 0 7px;
+}
+
+.list_class_item ul li table tr td:nth-child(3){
+    padding: 0 0 0 10px;
+}
