@@ -1,6 +1,6 @@
 <?php
     include("inc/core.php");
-    include("inc/lk_constructor.php");
+    include("inc/user_constructor.php");
     
 ?>
 <!DOCTYPE HTML>
@@ -16,7 +16,7 @@
 <?php include("views/top.view.php") ?>
 <?php include("views/header.view.php") ?>
 <?php include("views/left.view.php") ?>
-<?php include("views/lk.view.php") ?>
+<?php include("views/user.view.php") ?>
 <?php include("views/footer.view.php") ?>     
     </body>
 </html>

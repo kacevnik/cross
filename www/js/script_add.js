@@ -1,4 +1,4 @@
-  
+
     var SetObj = {
         backgroundColor: '',   
         backgroundImages: '',   
@@ -7,17 +7,14 @@
         historyFirst:[document.querySelector('#work_file').innerHTML],  
         history:[document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')],
         size: 'cross_main',
-        numlight: document.cookie.split('numligth=')[1].charAt(0),
-        showframe: document.cookie.split('frame=')[1].charAt(0),
+        numlight: 0,
+        showframe: 0,
         lastnum: 0,
         showxy: 0,
         timer: 0,
-        countTimer: 0,
         scrolltop: document.cookie.split('scrolltop=')[1].charAt(0)
     }
     
-    var idTimer = '';
-
     function fixWhich(e) {
         if (!e.which && e.button) { // если which нет, но есть button... (IE8-)
             if (e.button & 1) e.which = 1; // левая кнопка
@@ -65,7 +62,7 @@
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
         var bCol = ed.style.backgroundColor;
-        if(SetObj.numlight == '1'){
+        if(SetObj.numlight){
             for(var i = 0; i < cnt.length; i++){
                 if(cnt[i][td][0] != 'n'){
                     var sId = 'cnt'+td+'_'+i;
@@ -100,16 +97,6 @@
                     }
                 }
             }    
-        }
-        
-        document.getElementById('work_file').onclick = function(){
-           if(SetObj.timer){return;}else{
-           idTimer = setInterval(function(){
-                SetObj.countTimer++; 
-                seeTimer(SetObj.countTimer);
-            }, 1000); 
-            SetObj.timer = 1;
-           } 
         }
              
         if(a.which == 1){
@@ -214,15 +201,6 @@
         }   
     }
     
-    document.querySelector('body').onmouseup = function(e){
-        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')){; 
-            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"'));
-            if(SetObj.history.length > 1){
-                document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
-            }       
-        }
-    }
-    
     function rewerse(e){
         if(SetObj.history.length > 1){
             SetObj.history.pop();
@@ -287,19 +265,15 @@
         }
     }
     
-    if(SetObj.showframe == '1'){
-        document.getElementById('frame').classList.add('frame');
-    }
-    
     function showFrame(){
         var a = document.getElementById('show_frame');
         var b = document.getElementById('frame');
         if(a.checked){
-            SetObj.showframe = '1';
+            SetObj.showframe = 1;
             b.classList.add('frame');
             setCookie('frame', '1', {expires: 31536000});   
         }else{
-            SetObj.showframe = '0';
+            SetObj.showframe = 0;
             b.classList.remove(b.className);
             setCookie('frame', '0', {expires: 31536000})
         }
@@ -338,79 +312,81 @@
             SetObj.showxy = 0;
             setCookie('showxy', '0', {expires: 31536000}); 
         }        
-    }
+    }  
     
-    function scrollTopPanell(){
-        var a = document.getElementById('scroll_top');
-        if(a.checked){
-            SetObj.scrolltop = 1;
-            setCookie('scrolltop', '1', {expires: 31536000});    
-        }else{
-            SetObj.scrolltop = 0;
-            setCookie('scrolltop', '0', {expires: 31536000});
-            var f = document.getElementById('scroll_tr'); //шапка
-            var w = document.getElementById('scroll_td1');
-            //стили по умолчанию
-            f.style.position = '';
-            f.style.top = '';
-            f.style.left = '';
-            w.style.display = 'table-cell';
-        }
-    }
-    
-    var u = 0;
-    
-    window.onscroll = function() {
-        if(SetObj.scrolltop == 1){
-            var f = document.getElementById('scroll_tr'); //шапка
-            var v = document.getElementById('scroll_td'); //первый столбец
-            var w = document.getElementById('scroll_td1');
-            //стили по умолчанию
-            f.style.position = '';
-            f.style.top = '';
-            f.style.left = '';
-            w.style.display = 'table-cell';
-            var g = document.getElementById('work_file');//кроссворд
-            var h = v.getBoundingClientRect().left; //отступ с левого края столбца один
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;//размер прокрутки страницы
-            var scrollHeightg = Math.max(g.scrollHeight, g.offsetHeight, g.clientHeight);//высота кроссворда
-            var scrollHeightf = Math.max(f.scrollHeight, f.offsetHeight, f.clientHeight);//высота шапки
-            
-            if(document.documentElement.clientHeight < scrollHeightg){
-                if(f.getBoundingClientRect().top < 0){
-                    if((scrollHeightg + f.getBoundingClientRect().top - scrollHeightf * 2) >= 100){
-                        f.style.position = 'absolute';
-                        f.style.top = scrollTop + 'px';
-                        f.style.left = h  + 'px';
-                        w.style.display = 'none';
-                        u = 0;    
-                    }else{
-                        if(u == 0){u = scrollTop;}
-                        f.style.position = 'absolute';
-                        f.style.top = u + 'px';
-                        f.style.left = h  + 'px';
-                        w.style.display = 'none';                
-                    }
-                } 
+    function clickBut(num){
+        if(num == 1 || num == 2){
+            var h = document.getElementById('height_cross'); 
+            var a = parseInt(h.value.trim());
+            if(!a){a = 1;} 
+            if(num == 1 && a >= 2){
+                a = a - 1; 
+                h.value = a;
             }
+            if(num == 2){
+                a = a + 1; 
+                h.value = a;    
+            }   
         }
-    }
-    
-    function seeTimer(count){
-        var a = document.getElementById('timer');
-        s = count%60;
-        s = (s<10)?'0' + s:s;
-        m = Math.floor(count/60)%60;
-        m = (m<10)?'0' + m:m;
-        h = Math.floor(count/60/60);
-        if(h == 24){count = 0;}
-        h = (h<10)?'0' + h:h;
-        a.innerHTML = h + ':' + m + ':' + s;
+        if(num == 3 || num == 4){
+            var w = document.getElementById('width_cross'); 
+            var b = parseInt(w.value.trim());
+            if(!b){b = 1;} 
+            if(num == 3 && b >= 2){
+                b = b - 1; 
+                w.value = b;
+            }
+            if(num == 4){
+                b = b + 1; 
+                w.value = b;    
+            }   
+        }
+        reSize();
     } 
     
-    function solution(){
+    function showLink(){
+        document.getElementById('show_link').style.display = 'table';
+    } 
+    
+    function reSize(){
+        var h = document.getElementById('height_cross'); 
+        var a = parseInt(h.value.trim());
+        var w = document.getElementById('width_cross'); 
+        var b = parseInt(w.value.trim());
+        var class_td = '';
+        var class_tr = '';
+        if(!a){a = 1;} 
+        if(!b){b = 1;}
+        var text = '<tbody><tr><td style="cursor: default; background: rgb(241, 241, 241); display: table-cell;" id="scroll_td1">&nbsp;</td><td id="scroll_td"><table><tbody><tr>';
+        for(var i = 0; i < b; i++){
+            if((i+1)%5 == 0 && (i+1)!= b){class_td = ' td_str5';}else{class_td = '';}
+            text = text + '<td class="td_null'+class_td+'"></td>';
+        }
+        text = text + '</tr></tbody></table></td></tr><tr><td><table><tbody>';
+        for(var j = 0; j < a; j++){
+            if((j+1)%5 == 0 && (j+1)!=a){class_tr = ' class="tr_str5"';}else{class_tr = '';}
+            text = text + '<tr'+class_tr+'><td class="td_null"></td></tr>';
+        }
+        text = text + '</tbody></table></td><td><table><tbody>';
+        for(var k = 0; k < a; k++){
+            if((k+1)%5 == 0 && (k+1)!=a){class_tr = ' class="tr_str5"';}else{class_tr = '';}
+            text = text+ '<tr'+class_tr+'>';
+            for(var u = 0; u < b; u++){
+                if((u+1)%5 == 0 && (u+1)!= b){class_td = ' td_str5';}else{class_td = '';} 
+                text = text + '<td class="cma'+class_td+'" id="cma'+k+'_'+u+'" onmousedown="crossPic(event, '+k+', '+u+')" onmouseover="hoverCrossPic(event, '+k+', '+u+')"><div>&nbsp;</div></td>';   
+            }
+            text = text + '<tr>';  
+        }
+        text = text + '</tr></tbody></table></td></tbody>';
+        document.getElementById('work_file').innerHTML = text;
+    } 
+    
+    function postSolution(){
+        var h = parseInt(document.getElementById('height_cross').value.trim())||1;
+        var w = parseInt(document.getElementById('width_cross').value.trim())||1;
         var nabor = document.querySelectorAll('.cma');
         var cma = '';
+        var top = [];
         for(var i = 0; i < nabor.length; i++){
             if(nabor[i].style.backgroundColor == 'black'){
                 cma += '1'; 
@@ -418,16 +394,94 @@
                 cma += '0';
             }   
         }
-
-        var cross = parseInt(location.href.split('?cross=')[1]);
-
         
-        $.post( "../inc/solution_constructor.php", {solution: cma, cross:cross,sec:SetObj.countTimer}, function(data){
-            if(data.search(/Поздравляем!/) >= 0){
-                clearInterval(idTimer);    
+        for(var t = 0; t < w; t++){
+            top[t] = [];               
+            var sum = 0;
+            for(var k = 0; k < h; k++){
+                var el = document.getElementById('cma'+k+'_'+t);
+                if(el.style.backgroundColor == 'black'){
+                    sum += 1; 
+                }else{
+                    if(sum > 0){top[t].push(sum);}
+                    sum = 0;
+                }
             }
-           document.getElementById('message').innerHTML = data;
-             
+            if(sum > 0){top[t].push(sum);}
+            sum = 0;
+            top[t].reverse();
+        }
+        
+        var msize = maxSize(top);
+        var left = returnLeft();
+        var msizeL = maxSize(left);
+        var topNew = replaceTop(top, msize);
+        var topLeft = replaceLeft(left, msizeL);
+        
+        function maxSize(arr){
+            var count = 0;
+            for(var i = 0; i < arr.length; i++){
+                if(count < arr[i].length){count = arr[i].length;}
+            }
+            return count;   
+        }
+        //
+        function replaceTop(arr, size){
+            var topString = '+';
+            for(var i = 0; i < size; i++){
+                topString = topString + '+';
+                for(var j = 0; j < arr.length; j++){
+                    if(arr[j][size-i-1]){topString = topString + '+' + arr[j][size-i-1] + ', 0-, ';}
+                    else{topString = topString + '+n, 1-, ';}
+                }
+                topString = topString.replace(/, $/g, '');
+                topString = topString + '-, ';
+            }
+            topString = topString.replace(/, $/g, '');
+            topString = topString + '-';
+            return topString;
+        }
+        
+        function replaceLeft(arr, size){
+            var topString = '+';
+            for(var i = 0; i < arr.length; i++){
+                topString = topString + '+';
+                for(var j = size; j > 0; j--){
+                    if(arr[i][j-1]){topString = topString + '+' + arr[i][j-1] + ', 0-, ';}
+                    else{topString = topString + '+n, 1-, ';}
+                }
+                topString = topString.replace(/, $/g, '');
+                topString = topString + '-, ';
+            }
+            topString = topString.replace(/, $/g, '');
+            topString = topString + '-';
+            return topString;
+        }
+        
+        function returnLeft(){
+            var left = [];
+            for(var i = 0; i < h; i++){
+                left[i] = [];               
+                var s = 0;
+                for(var j = 0; j < w; j++){
+                    var e = document.getElementById('cma'+i+'_'+j);
+                    if(e.style.backgroundColor == 'black'){
+                        s += 1; 
+                    }else{
+                        if(s > 0){left[i].push(s);}
+                        s = 0;
+                    }
+                }
+                if(s > 0){left[i].push(s);}
+                s = 0;
+                left[i].reverse();
+            }
+            return left;    
+        }
+        
+        var name = $('#add_name').val();
+        
+        $.post( "../inc/add_cross_constructor.php", {solution: cma, top: topNew, left: topLeft, name: name, h: h, w: w},function(data){
+           document.getElementById('message').innerHTML = data;   
         });
-        console.log(idTimer);
-    }  
+    }

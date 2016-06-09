@@ -1,9 +1,9 @@
 <?php
     include("inc/core.php");
     
-    if(isset($_GET['id']))$id = $_GET['id'];
+    if(isset($_GET['cross']))$cross = $_GET['cross'];
     
-    if(getCrossData($id))$crossData = getCrossData($id);
+    if(getCrossData($cross))$crossData = getCrossData($cross);
     $arr_top = strToArr($crossData[arr_top]);
     $arr_left = strToArr($crossData[arr_left]);
        

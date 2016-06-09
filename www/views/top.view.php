@@ -6,7 +6,7 @@
                     <li><a href="login.php">Вход</a></li>
                     <li><a href="registr.php">Регистрация</a></li>                    
                     <?php }else{ ?>
-                    <li><a href="lk.php">Кабинет</a></li>
+                    <li><a href="user.php?id=<?php echo getIdFromSes($_SESSION['admin']);?>">Кабинет</a></li>
                     <li><a href="logout.php">Выход</a></li>
                     <?php } ?>
                 </ul>

@@ -1,35 +1,35 @@
                     <div class="content">
                         <h1>Японский кроссворд № <?=$crossData['id'].$showType?></h1>
-                        <div class="cross_info">
-                            <ul>
-                                <li title="Этот японский кроссворд добавил <?=getLoginName($crossData['user_add_id'])?>"><span class="icon-user"></span>Добавил: <a href="user.php?id=<?=$crossData['user_add_id']?>"><?=getLoginName($crossData['user_add_id'])?></a></li>
-                                <li><span class="icon-calendar"></span>Добавлен: <span class="cross_info_bold"><?=getShotDate($crossData['time_add'])?></span></li>
-                                <li><span class="icon-target"></span>Решили: <span class="cross_info_bold"><?=getCountSolution($cross)?></span> р<?php echo numberEnd(getCountSolution($cross), array('аз','аза','аз')); ?></li>
-                            </ul>
-                            <ul>
-                                <li><span class="icon-star-full"></span>Рейтинг: <?=showStars($crossData['count_star'])?></li>                                            
-                                <li><span class="icon-trophy"></span>Сложность: <?=showStars($crossData['power'])?></li>
-                            </ul>
-                            <ul>
-                                <li><span class="icon-hour-glass"></span>Ср. скорость: <span class="cross_info_bold"><?=getCountSec($crossData['s_time']);?></span></li>
-                                <li><?php if(bestTime($cross)){$bestTime = bestTime($cross); ?><span class="icon-power" title="<?=getCountSec($bestTime[1])?>"></span>Рекорд: <a href="user.php?id=<?=$bestTime[0]?>"><?=getLoginName($bestTime[0])?></a> <?=getCountSec($bestTime[1])?><?php } ?></li>
-                            </ul>
-                            <ul>
-                                <li><span id="timer">00:00:00</span></li>
-                            </ul>
-                        </div>
+                            <table class="add_size">
+                                <tbody>
+                                <tr>
+                                    <td>Код:</td>
+                                    <td><input id="report_pass" class="add_name" name="pass" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Название:</td>
+                                    <td><input id="add_name" class="add_name" name="name" value="<?=$crossData['name']?>" autocomplete="off"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Высота:</td>
+                                    <td><span onclick="clickBut(1)" onselectstart="return false" onmousedown="return false">-</span><input name="height" id="height_cross" value="<?=$crossData['cross_h']?>"" type="text" autocomplete="off" onfocus="showLink()"/><span onclick="clickBut(2)" onselectstart="return false" onmousedown="return false">+</span></td>
+                                </tr> 
+                                <tr>
+                                    <td>Ширина:</td>
+                                    <td><span onclick="clickBut(3)" onselectstart="return false" onmousedown="return false">-</span><input name="width" id="width_cross" value="<?=$crossData['cross_w']?>"" autocomplete="off" type="text" onfocus="showLink()"/><span onclick="clickBut(4)" onselectstart="return false" onmousedown="return false">+</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><a onclick="reSize()" id="show_link" style="display: none;">Приминить размеры</a></td>
+                                    <td></td>
+                                </tr> 
+                                </tbody>
+                            </table>
                         <div class="seting_but">
                             <ul>
                                 <li><a href="" id="bigger" onclick="biger(); return false;">Увеличить ячейки</a></li>
                                 <li><a href="" id="smally" onclick="smally(); return false;">Уменьшить ячейки</a></li>
-                                <!--<li><a href="">Мобильная версия</a></li>-->
-                            </ul>    
-                        </div>
-                        <div class="seting_but">
-                            <ul>
-                                <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
-                                <!--<li><a href="">Сохранить</a></li>-->
-                                <li><a href="" onclick="solution(); return false;">Проверить решение</a></li>
+                                <li><a href="" id="postSolution" onclick="postSolution(<?=$crossData['id']?>); return false;">Принять</a></li>
+                                <li><a href="" onclick="delCross(<?=$crossData['id']?>); return false;">Удалить</a></li>
                             </ul>    
                         </div>
                         <div id="message"></div>
@@ -84,18 +84,20 @@
                             <table>
                                 <tbody>
                                     <?php 
+                                        $countSolution = 0;
                                         for($tr = 0; $tr < $crossData['cross_h']; $tr++){
                                             if(($tr + 1)%5 == 0 && ($tr + 1) != $crossData['cross_h']){$class_num_5 = ' class="tr_str5"';}else{$class_num_5 = '';}
                                     ?>
                                     <tr<?php echo $class_num_5; ?>>
                                         <?php 
                                             for($td = 0; $td < $crossData['cross_w']; $td++){ 
-                                                if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}    
+                                                if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}
+                                                if($solution[$countSolution] == 1){$black = ' style="background-color: black;"';}else{$black = '';}    
                                         ?>
-                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php if($sess_showxy){echo ' title="('.$tr.' - '.$td.')"';}?>>
+                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php if($sess_showxy){echo ' title="('.$tr.' - '.$td.')"';} echo $black;?>>
                                             <div>&nbsp;</div>
                                         </td>
-                                        <?php } ?>
+                                        <?php $countSolution++;} ?>
                                     </tr>
                                     <?php } ?>
                                     </tr>
@@ -106,18 +108,6 @@
                 </tbody>
             </table>
                         </div>
-                        <div class="seting">
-                            <h3>Настройки для удобного решения.</h3>
-                            <form>
-                                <label><input type="checkbox" <?=$sess_numligth?> name="num_light" id="num_ligth" onchange="numLight();"/> Подсветка цифр</label><br>
-                                <label><input type="checkbox" <?=$sess_frame?> name="show_frame" id="show_frame" onchange="showFrame();"/> Подсвечивать клетку под курсором</label><br>
-                                <label><input type="checkbox" <?=$sess_lastnum?> name="last_num" id="last_num" onchange="lastNum();"/> Последняя зачеркнутая цифра заполняет строку/столбец крестиками</label><br>
-                                <label><input type="checkbox" <?=$sess_showxy?> name="show_xy" id="show_xy" onchange="showXY();"/> Отображать координаты клетки под курсором</label><br>
-                                <label><input type="checkbox" <?=$sess_scrolltop?> name="scroll_top" id="scroll_top" onchange="scrollTopPanell();"/> Перемещать верхнюю панель</label><br>
-                                <label><input type="checkbox" name="show_timer" id="show_timer" onchange="showTimer();"/> Скрыть/показать таймер</label><br>
-                            </form>
-                        </div>
-                        <!-- c -->
                     </div>
                     <div style="clear: both;"></div>
                 </div>

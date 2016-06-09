@@ -1,7 +1,7 @@
 <?php
     if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();}
     
-    if($_SESSION["admin"]){header("Location: lk.php"); exit();}
+    if($_SESSION["admin"]){header("Location: user.php?id=".getIdFromSes($_SESSION['admin'])); exit();}
     
     if (isset($_POST['submit']))    {$submit = $_POST['submit'];   $submit = trim(stripslashes(htmlspecialchars($submit)));}
     if (isset($_POST['email']))     {$email = $_POST['email'];     $email = trim(stripslashes(htmlspecialchars($email)));}
