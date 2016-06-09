@@ -20,7 +20,7 @@
     function getListCross($limit){
         global $db;
         $arr = array();
-        $sql = "SELECT * FROM dk_cross WHERE type='1' LIMIT ".$limit;
+        $sql = "SELECT id,user_add_id,s_time,time_add,count_star,power,cross_w,cross_h FROM dk_cross WHERE type='1' ORDER BY id DESC LIMIT ".$limit;
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
             $myr = mysqli_fetch_assoc($res);
