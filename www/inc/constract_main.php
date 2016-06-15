@@ -17,15 +17,23 @@
  * Функция выборки данных кроссвордов для главной страницы.
  **/
 
-    function getListCross($limit){
+    function getListCross($limit, $id_user = 0){
         global $db;
         $arr = array();
-        $sql = "SELECT id,user_add_id,s_time,time_add,count_star,power,cross_w,cross_h FROM dk_cross WHERE type='1' ORDER BY id DESC LIMIT ".$limit;
+        $sql = "SELECT id,user_add_id,s_time,time_add,count_star,power,cross_w,cross_h,name FROM dk_cross WHERE type='1' ORDER BY id DESC LIMIT ".$limit;
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
             $myr = mysqli_fetch_assoc($res);
             do{
-                $arr[] = $myr;    
+                $id = $myr['id'];
+                $sql_2 = "SELECT type FROM solution WHERE id_cross='$id' AND id_user='$id_user' AND type='1'";
+                $res_2 =  mysqli_query($db, $sql_2);
+                if(mysqli_num_rows($res_2) > 0){
+                    $myr['type'] = 1;
+                }else{
+                    $myr['type'] = 0;
+                }
+                $arr[] = $myr;  
             }while($myr = mysqli_fetch_assoc($res));
         }
         else{return false;}

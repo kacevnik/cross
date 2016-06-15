@@ -154,7 +154,7 @@ body {
 
 .c_green{
     margin-left: 15px;
-    color: #0ED00E;
+    color: #0ED00E!important;
 }
 
 .cross_info ul li a{
