@@ -103,10 +103,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </td>
-                    
+                        </td>                    
                 </tbody>
             </table>
+            <img  src="img.php?id=<?=$crossData['id']?>" style="margin-top: 20px;"/>
                         </div>
                     </div>
                     <div style="clear: both;"></div>

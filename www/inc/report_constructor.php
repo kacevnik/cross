@@ -13,7 +13,7 @@
     $arr_top = strToArr($top_string);
     $arr_left = strToArr($left_string);
     
-    $solution = str_split($crossData['otvet']);    
+    $solution = str_split($crossData['otvet']);  
        
     if($_COOKIE['size']){$sess_size = $_COOKIE['size'];}else{$sess_size = 'cross_main';}
     if($_COOKIE['numligth']){$sess_numligth = 'checked=""';}else{$sess_numligth = '';}

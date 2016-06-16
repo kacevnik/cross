@@ -7,7 +7,7 @@
                                     <table>
                                         <tr>
                                             <td rowspan="4"><a href="cross.php?cross=<?=$item['id']?>"><img src="http://novostroiki-m.ru/images/18/p.jpg" /></a></td>
-                                            <td  colspan="2"><h4><a href="cross.php?cross=<?=$item['id']?>">Кроссворд №<?=$item['id']?></a><?php if($item['type']){?><span class="icon-checkmark c_green"></span><em><?=$item['name']?></em><?php } ?></h4></td>
+                                            <td  colspan="3"><h4><a href="cross.php?cross=<?=$item['id']?>">Кроссворд №<?=$item['id']?></a><?php if($item['type']){?><span class="icon-checkmark c_green"></span><em><?=$item['name']?></em><?php } ?></h4></td>
                                             <td></td>
                                         </tr>
                                         <tr>
