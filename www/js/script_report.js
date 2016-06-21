@@ -425,7 +425,7 @@
             }
             return count;   
         }
-        //
+        
         function replaceTop(arr, size){
             var topString = '+';
             for(var i = 0; i < size; i++){

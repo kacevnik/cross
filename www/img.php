@@ -165,7 +165,7 @@
     imageline($img, 0, count($arr_top) * 2 + 1, $width, count($arr_top) * 2 + 1, $grey_1);
     imageline($img, 0, count($arr_top) * 2 + 2, $width, count($arr_top) * 2 + 2, $grey_1);
     
-    header ("Content-type: image/jpg"); //Задаем заголовок для вывода картинки
+    header("Content-type: image/jpeg"); //Задаем заголовок для вывода картинки
     
     imagejpeg($img, null, 100); //Вывод картинки
     
