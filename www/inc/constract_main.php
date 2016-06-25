@@ -13,14 +13,44 @@
         echo "<pre>".print_r($array, true)."</pre>";      
     }
 
+
+/**
+ * Получение массива в тремя размерами кроссвордов
+ **/
+
+    function getAllSize(){
+        global $db;
+        $arr = array();
+        $arr['small'] = " AND size > '0' AND size <= '225'";
+        $arr['medium'] = " AND size > '225' AND size <= '1225'";
+        $arr['big'] = " AND size > '1225'";
+        $arr['all'] = " AND size > '0'";
+        return $arr;
+    }
+ /**
+ * Получение массива в тремя Вариантами сложности для будущего составления запроса к базе данных и соортировки соответствующего запроса.
+ **/
+
+    function getAllPower(){
+        global $db;
+        $arr = array();
+        $arr['simple'] = " AND power >= '0' AND power <= '4'";
+        $arr['normal'] = " AND power > '4' AND power <= '7'";
+        $arr['hard'] = " AND power > '7'";
+        $arr['all'] = " AND power >= '0'";
+        return $arr;
+    }
 /**
  * Функция выборки данных кроссвордов для главной страницы.
  **/
 
-    function getListCross($limit, $id_user = 0){
+    function getListCross($limit, $array_sql_size, $array_sql_power, $id_user = 0, $page = 1, $size = 'all', $power = 'simple'){
         global $db;
         $arr = array();
-        $sql = "SELECT id,user_add_id,s_time,time_add,count_star,power,cross_w,cross_h,name FROM dk_cross WHERE type='1' ORDER BY id DESC LIMIT ".$limit;
+        $start = $page * $limit - $limit;
+        $sql = "SELECT id,user_add_id,s_time,time_add,count_star,power,cross_w,cross_h,name,img FROM dk_cross WHERE type='1'".$array_sql_size[$size].$array_sql_power[$power]." ORDER BY id DESC LIMIT ".$start.", ".$limit;
+        $sql_2 = mysqli_query($db, "SELECT id FROM dk_cross WHERE type='1'".$array_sql_size[$size].$array_sql_power[$power]);
+        $total = mysqli_num_rows($sql_2);
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
             $myr = mysqli_fetch_assoc($res);
@@ -37,6 +67,7 @@
             }while($myr = mysqli_fetch_assoc($res));
         }
         else{return false;}
+        $arr[] = $total;
         return $arr;
     }
     
@@ -194,8 +225,9 @@
             if($sol){
                 $name_img = $myr['img'];
                 if($name_img == ''){
-                    $name_img = md5(microtime()).'.jpg';
+                    $name_img = md5(microtime());
                     mysqli_query($db, "UPDATE dk_cross SET img='$name_img' WHERE id='$id_cross'");
+                    $name_img.='.jpg';
                 }   
             }else{
                 $name_img = $id_cross.'.jpg';

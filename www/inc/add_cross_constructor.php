@@ -32,10 +32,11 @@
             mysqli_real_escape_string($db, $left);
             mysqli_real_escape_string($db, $solution);
             $date_add = date("Y-m-d");
+            $size = $h * $w;
             
             $sel_proverka =  mysqli_query($db, "SELECT id FROM dk_cross WHERE otvet='$solution'");
             if(mysqli_num_rows($sel_proverka) == 0){            
-                if(mysqli_query($db, "INSERT INTO dk_cross (name,user_add_id,date_add,time_add,cross_h,cross_w,arr_top,arr_left,otvet) VALUES ('$name','$id','$date_add','".TIMES."','$h','$w','$top','$left','$solution')")){
+                if(mysqli_query($db, "INSERT INTO dk_cross (name,user_add_id,date_add,time_add,cross_h,cross_w,arr_top,arr_left,otvet,size) VALUES ('$name','$id','$date_add','".TIMES."','$h','$w','$top','$left','$solution','$size')")){
                     $last_id = mysqli_insert_id($db);
                     $subject = "Новый кроссворд на сайте: ";
                     $header = "From: \"".TITLE_SITE."\" <".ADMIN_EMAIL.">";

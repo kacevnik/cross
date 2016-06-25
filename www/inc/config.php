@@ -17,6 +17,7 @@
     define(ENTER, '1');
     define(URLKA, $_SERVER['HTTP_REFERER']);
     define(IP_USER, $_SERVER['REMOTE_ADDR']);
+    define(LIMIT, 10);//Количество кроссвордов на странице
     
     //Соединение с базой данных.
     

@@ -765,46 +765,114 @@ body {
     text-decoration: underline;
 }
 
-.list_class_item ul{
-    list-style-type: none;
-}
-
-.list_class_item ul li{
-    background: url('../images/g-line.gif') repeat-x bottom;
-    margin-bottom: 7px;
-    display: table-row;
-}
-
-.list_class_item ul li table img{
-    width: 100px;
+.box_img{
+    background-position: 50%, 50%;
+    min-width: 100px;
+    text-align: center;
+    border: 1px solid #b9b9b9;
+    padding: 17px;
+    vertical-align: middle;
     height: 100px;
 }
 
-.list_class_item ul li table a{
-    color: #000;
-    cursor:pointer;
+.box_img img:hover{
+    box-shadow: 0 0 14px rgba(0,0,0,0.4);
+}
+
+.box_line{
+    background: url('../images/g-line.gif') repeat-x 50% 50%;
+    height: 17px;
+}
+
+.box_data h4{
+    margin: 0 0 10px 15px;
+}
+
+.box_data h4 a{
     text-decoration: none;
+    color: #000000;    
 }
 
-.list_class_item ul li table span{
+.box_data h4 a:hover{
+    text-decoration: underline;   
+}
+
+.box_data h4 em{
+    margin: 0 0 0 5px;
+}
+
+.box_data_table{
+    margin: 0 0 0 15px;
+}
+
+.box_data_table tr td:last-child{
+    padding: 2px 0 0 12px;
+}
+
+.box_data_table tr td:last-child a{
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 1px dashed #000000;
+}
+
+.box_data_table tr td:last-child a:hover{
+    border-bottom: 1px solid #000000;
+}
+
+.box_data_table tr td span{
     color: #7B7B7B;
-    padding-right: 5px;
-    font-size: 15px;
+    margin: 0 5px 0 0;    
 }
 
-.list_class_item ul li table span.c_orange{
-    color: #F5A222;
+.box_data_table .c_orange{
+    color: #F5A222;  
 }
 
-.list_class_item ul li table{
-    margin-top: 7px;
-    margin-bottom: 7px;
+.box_number{
+    padding: 0 7px 0 0;
 }
 
-.list_class_item ul li table tr td:nth-child(2){
-    padding: 0 0 0 7px;
+.nav{
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.list_class_item ul li table tr td:nth-child(3){
-    padding: 0 0 0 10px;
+.nav ul{
+    list-style-type: none;
+    overflow: hidden;
+    display: inline-block;
+    padding: 10px;
+}
+
+.nav li{
+    float: left;
+}
+
+.nav .active_nav {
+    background: #3f3f3f;
+    color: #fff;
+}
+
+.nav .active_nav:hover {
+    background: #3f3f3f;
+    color: #fff;
+    cursor: default;
+}
+
+.nav li a {
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    color: #003f4f;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 7px 13px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.nav li a:hover {
+    background: rgba(63,63,63,0.1);
 }
