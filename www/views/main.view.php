@@ -105,7 +105,6 @@
                     
                 </tbody>
             </table>
-                        </div>
                         <div class="seting">
                             <h3>Настройки для удобного решения.</h3>
                             <form>
