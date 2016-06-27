@@ -12,7 +12,7 @@
     if (isset($_POST['sec']))         {$sec = $_POST['sec'];             $sec = (int)abs($sec);}
     
     if(!preg_match('/1/', $solution)){unset($solution);}
-    if(!$solution){echo '<div class="error">Поле кроссворда пустое, заполните его<a href="" title="Закрыть сообщение" class="close_error"></a></div>';}
+    if(!$solution){echo '<div class="error">Поле кроссворда пустое, заполните его<a title="Закрыть сообщение" class="close_error" onclick="close_error(event);"></a></div>';}
     
     $selCross = mysqli_query($db, "SELECT id,name,otvet,s_time FROM dk_cross WHERE id='$cross' AND type='1' LIMIT 1");
     if(mysqli_num_rows($selCross) > 0){
@@ -22,10 +22,10 @@
         $solutionCross = $resCross['otvet'];
         $sTimenCross = $resCross['s_time'];
     }else{
-        echo '<div class="error">Ошибка запроса. Попробуйте еще раз<a href="" title="Закрыть сообщение" class="close_error"></a></div>';
+        echo '<div class="error">Ошибка запроса. Попробуйте еще раз<a title="Закрыть сообщение" class="close_error" onclick="close_error(event);"></a></div>';
     }
     
-    if($solutionCross != $solution){unset($solution); echo '<div class="error">Неверное решение. Где-то ошибка.<a href="" title="Закрыть сообщение" class="close_error"></a></div>';}
+    if($solutionCross != $solution){unset($solution); echo '<div class="error">Неверное решение. Где-то ошибка.<a title="Закрыть сообщение" class="close_error" onclick="close_error(event);"></a></div>';}
     
     if($solution && $cross && $selCross){
         
@@ -38,7 +38,7 @@
             $solType = $res['type'];
             if($sec > $sekTime && $sekTime != 0){$sec = $sekTime;}
             if((TIMES - $solTime) < $sec){
-                echo '<div class="error">Ошибка запроса. Попробуйте еще раз<a href="" title="Закрыть сообщение" class="close_error"></a></div>';
+                echo '<div class="error">Ошибка запроса. Попробуйте еще раз<a title="Закрыть сообщение" class="close_error" onclick="close_error(event);"></a></div>';
             }else{
                 $up = mysqli_query($db, "UPDATE solution SET sol_time='$sec',type='1' WHERE id='$idSolution'");
                 $selMidleTime = mysqli_query($db, "SELECT AVG(sol_time) AS OrderTotal FROM solution WHERE id_cross='$cross'");

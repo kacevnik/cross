@@ -123,3 +123,7 @@
         }
 
     }
+
+    function close_error(e){
+        e.target.parentNode.style.display = 'none';
+    }
