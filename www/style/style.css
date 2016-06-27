@@ -715,6 +715,15 @@ body {
     text-align: center;
 }
 
+.close_error{
+    background: url('../images/close.gif') no-repeat;
+    display: block;
+    float: right;
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+}
+
 .error_plus {
     border-top: 3px solid #75923C;
     border-bottom: 3px solid #75923C;
