@@ -13,13 +13,14 @@
     if (isset($_POST['name']))        {$name = $_POST['name'];           $name = trim(stripslashes(htmlspecialchars($name)));}
     if (isset($_POST['h']))           {$h = $_POST['h'];                 $h = (int)abs($h);}
     if (isset($_POST['w']))           {$w = $_POST['w'];                 $w = (int)abs($w);}
+    $data= array();
     
     if(!preg_match('/1/', $solution)){unset($solution);}
     if($name == ''){unset($name);}
     
-    if(!$h || !$w){echo "<div class='error'>Ошибка с высотой или шириной кроссворда</div>"; unset($w);}
-    if(!$solution){echo "<div class='error'>Поле кроссворда пустое, заполните его</div>";}
-    if(!$name){echo "<div class='error'>Укажите название кроссворда</div>";}
+    if(!$h || !$w){unset($w); $data['error_message'] .= '<div class="error">Ошибка с высотой или шириной кроссворда.</div>'; $data['type'] = 1;} 
+    if(!$solution){$data['error_message'] .= '<div class="error">Поле кроссворда пустое, заполните его.</div>'; $data['type'] = 1;}
+    if(!$name){$data['error_message'] .= '<div class="error">Укажите название кроссворда.</div>'; $data['type'] = 1;}
     
     if($name && $solution && $h && $w){
         $sel = mysqli_query($db, "SELECT id,login_view FROM dk_user WHERE pass='$passProverka' AND kod='$kodProverka'");
@@ -42,9 +43,10 @@
                     $header = "From: \"".TITLE_SITE."\" <".ADMIN_EMAIL.">";
                     $message = "<h4>Здравствуйте, администратор!</h4><p>Пользователь <a href='".DOMEN."/user.php?id=".$id."' target='blank'>".$login."</a> добавил новый кроссворд с названием: <strong>".$name."</strong>. Для проверки кроссворда следует перейти по ссылке:<br><a href='".DOMEN."/report.php?cross=".$last_id."' target='blank'>Проверка кроссворда</a></p><p>Данное письмо сгенерировано автоматически. Отвечать на него не надо.<br>Спасибо.</p>";
                     mail(ADMIN_EMAIL,$subject,$message,$header."\r\nContent-type:text/html;Charset=utf-8\r\n");
-                    echo "<div class='error_plus'>Кроссворд добавлен, после проверки он появится на сайте</div>";
+                    $data['error_message'] .= '<div class="error_plus">Кроссворд добавлен, после проверки он появится на сайте.</div>'; $data['type'] = 1;
                 }
-            }else{echo "<div class='error'>Такой кроссворд уже есть в базе!</div>";}
+            }else{$data['error_message'] .= '<div class="error">Такой кроссворд уже есть в базе!</div>'; $data['type'] = 1;}
         }
     }
+    echo json_encode($data);
 ?>

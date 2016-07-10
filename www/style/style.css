@@ -15,6 +15,9 @@ body {
     background: #DDDDDD url('../images/bg.png') repeat;
 }
 
+.main{
+    min-width: 1400px;
+}
 .top{
     background: url('../images/top-bg.png') repeat-x;
     color: #FFFFFF;
@@ -23,7 +26,6 @@ body {
 
 .center{
     margin: 0 auto; 
-    min-width: 1400px;
     padding: 0 20px;   
 }
 
@@ -116,58 +118,14 @@ body {
     padding: 0 0 0 220px;    
 }
 
-.cross_info{
-    margin: 0 0 15px 0; 
-    overflow: hidden;  
-}
-
 #timer{
     font-size: 24px;
     color:  #000000;
 }
 
-.cross_info ul{
-    list-style-type: none; 
-    float :left;
-    margin-right: 20px;  
-}
-
-.cross_info ul li{
-    margin:0 0 5px 0;  
-}
-
-.cross_info .cross_info_bold{
-    font-size: 14px;
-    color: #000;
-    font-weight: bold;
-}
-
-.cross_info ul li span{
-    color: #7B7B7B;
-    padding-right: 5px;
-    font-size: 15px  
-}
-
-.cross_info .c_orange{
-    color: #F5A222;  
-}
-
 .c_green{
     margin-left: 15px;
     color: #0ED00E!important;
-}
-
-.cross_info ul li a{
-    color: #000;
-    font-weight: bold;
-}
-
-.cross_info ul li a:hover{
-    text-decoration:  none;
-}
-
-.cross_info ul:last-child{
-    float :none;  
 }
 
 .content h1{
@@ -885,4 +843,91 @@ body {
 
 .nav li a:hover {
     background: rgba(63,63,63,0.1);
+}
+
+.table_info_cross td:nth-child(2n+1){
+    padding: 2px 7px 2px 0;
+}
+
+.table_info_cross td:nth-child(2n){
+    padding: 2px 12px 2px 0;
+}
+
+.table_info_cross span{
+    color: #7B7B7B;
+    padding-right: 5px;
+    font-size: 15px;
+}
+
+.table_info_cross a{
+    color: #000;
+    font-weight: bold;
+}
+
+.table_info_cross a:hover{
+    text-decoration: none;
+}
+
+.table_info_cross .cross_info_bold{
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+.table_info_cross .c_orange{
+    color: #F5A222;  
+}
+
+#error_bg{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #f2f2f2;
+    position: fixed;
+    opacity: 0.9;
+    display: none;
+}
+
+#error_bg span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: url('../images/loader.gif');
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+}
+
+#error_message{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    padding: 20px 20px 0 20px;
+    min-height: 20px;
+    opacity: 1;
+    display: none;
+    border: 1px solid #BBB;
+    box-shadow: 0px 1px 43px 0px #a6a6a6;
+}
+#error_message_wrap{
+    position: relative;
+}
+
+#error_close{
+    position: absolute;
+    top: -12px;
+    right: -15px;
+    height: 30px;
+    width: 30px;
+    background: url('../images/closebox.png') top left no-repeat;
+    cursor: pointer;
+    display: block;
+}
+
+#scroll_td{
+    cursor: default;
+    display: table-cell;
+    background: rgb(241, 241, 241);
 }

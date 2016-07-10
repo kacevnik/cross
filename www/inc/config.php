@@ -6,13 +6,14 @@
  */
 
     define(HOST,"localhost");
-    define(ADMIN_DB,"joomlamix_novo");
-    define(PASS_DB,"9564665");
+    define(ADMIN_DB,"root");
+    define(PASS_DB,"");
     define(NAME_DB,"cross");
     define(NAME_SITE,"Японские кроссворды");
     define(TITLE_SITE,"Samurai-ka.ru");
     define(ADMIN_EMAIL,"kacevnik@yandex.ru");
     define(DOMEN,"http://cross");
+    define(IMG_CROSS, 'slim_cross.gif');
     define(TIMES,time());
     define(ENTER, '1');
     define(URLKA, $_SERVER['HTTP_REFERER']);
@@ -34,4 +35,17 @@
             exit();
         }
     }
+    
+    if(!isset($_COOKIE['numligth'])){
+        setcookie('numligth','0',time()+60*60*24*300,"/");
+    }
+    
+    if(!isset($_COOKIE['frame'])){
+        setcookie('frame','0',time()+60*60*24*300,"/");
+    }
+    
+    if(!isset($_COOKIE['scrolltop'])){
+        setcookie('scrolltop','0',time()+60*60*24*300,"/");
+    }
+
 ?>

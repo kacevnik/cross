@@ -5,15 +5,16 @@
         backgroundStatus: 0,
         nabor:document.querySelectorAll('.cma'),        
         historyFirst:[document.querySelector('#work_file').innerHTML],  
-        history:[document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')],
+        history:[document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/id="scroll_td" style="[height: \d+px;"]*/g, 'id="scroll_td"').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: fixed; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')],
         size: 'cross_main',
         numlight: document.cookie.split('numligth=')[1].charAt(0),
         showframe: document.cookie.split('frame=')[1].charAt(0),
         lastnum: 0,
         showxy: 0,
         timer: 0,
-        countTimer: 0,
-        scrolltop: document.cookie.split('scrolltop=')[1].charAt(0)
+        countTimer: $('#sec_history').html(),
+        scrolltop: document.cookie.split('scrolltop=')[1].charAt(0),
+        scrolltop_flag: 1
     }
     
     var idTimer = '';
@@ -24,6 +25,10 @@
             else if (e.button & 4) e.which = 2; // средняя кнопка
             else if (e.button & 2) e.which = 3; // правая кнопка
          }
+    }
+    
+    function getEventType(e) {
+	   if (!e) e = window.event;
     }
     
     function crossPic(a, tr, td){
@@ -112,13 +117,24 @@
            } 
         }
              
-        if(a.which == 1){
-            ed.style.backgroundColor = SetObj.backgroundColor;
-            ed.style.backgroundImage = '';   
-        }
-        else if(a.which == 3){
-            ed.style.backgroundColor = 'white';
-            ed.style.backgroundImage = SetObj.backgroundImages;   
+        if(navigator.userAgent.search(/Firefox/i) >= 0){
+            if(a.buttons == 1){
+                ed.style.backgroundColor = SetObj.backgroundColor;
+                ed.style.backgroundImage = '';   
+            }
+            else if(a.buttons == 2){
+                ed.style.backgroundColor = 'white';
+                ed.style.backgroundImage = SetObj.backgroundImages;   
+            }
+        }else{
+            if(a.which == 1){
+                ed.style.backgroundColor = SetObj.backgroundColor;
+                ed.style.backgroundImage = '';   
+            }
+            else if(a.which == 3){
+                ed.style.backgroundColor = 'white';
+                ed.style.backgroundImage = SetObj.backgroundImages;   
+            }
         }
     }
     
@@ -215,11 +231,11 @@
     }
     
     document.querySelector('body').onmouseup = function(e){
-        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')){; 
-            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ display: table-cell;/g, '').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: absolute; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"'));
+        if(SetObj.history[SetObj.history.length - 1] != document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/id="scroll_td" style="[height: \d+px;"]*/g, 'id="scroll_td"').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: fixed; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')){; 
+            SetObj.history.push(document.querySelector('#work_file').innerHTML.replace(/ kletka_light/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/id="scroll_td" style="[height: \d+px;]*"/g, 'id="scroll_td"').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: fixed; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"'));
             if(SetObj.history.length > 1){
                 document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
-            }       
+            }                   
         }
     }
     
@@ -235,37 +251,7 @@
             document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';     
         }          
     }
-    
-    function biger(){
-        var a = document.getElementById('work_file');
-        var b = a.getElementsByTagName('DIV');
-            if(parseInt(getComputedStyle(b[0]).width) >= 18 && parseInt(getComputedStyle(b[0]).width) <= 24){
-                w = parseInt(getComputedStyle(b[0]).width) + 2;
-                a.classList.remove(a.className);
-                a.classList.add('cross_main_' + w);
-                SetObj.size = 'cross_main_' + w;
-                setCookie('size', 'cross_main_' + w, {expires: 31536000});
-            }       
-    }  
-    
-    function smally(){
-        var a = document.getElementById('work_file');
-        var b = a.getElementsByTagName('DIV');
-            if(parseInt(getComputedStyle(b[0]).width) >= 20 && parseInt(getComputedStyle(b[0]).width) <= 26){
-                w = parseInt(getComputedStyle(b[0]).width) - 2;
-                a.classList.remove(a.className);
-                if(w <= 20){
-                    a.classList.add('cross_main');
-                    SetObj.size = 'cross_main';
-                    setCookie('size', 'cross_main', {expires: 31536000});
-                }else{
-                    a.classList.add('cross_main_' + w);
-                    SetObj.size = 'cross_main_' + w;
-                    setCookie('size', 'cross_main_' + w, {expires: 31536000});
-                }
-            }       
-    } 
-    
+       
     function numLight(){
         var a = document.getElementById('num_ligth');
         if(a.checked){
@@ -357,44 +343,72 @@
             w.style.display = 'table-cell';
         }
     }
-    
-    var u = 0;
-    
+      
+    var margin_f_top = document.getElementById('scroll_tr').getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop//отступ от верхнего края до шапки кроссвода
+    var margin_f_ecv = document.getElementById('scroll_ecv').getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop//отступ от верхнего края нижней строчки
     window.onscroll = function() {
         if(SetObj.scrolltop == 1){
-            var f = document.getElementById('scroll_tr'); //шапка
-            var v = document.getElementById('scroll_td'); //первый столбец
-            var w = document.getElementById('scroll_td1');
-            //стили по умолчанию
-            f.style.position = '';
-            f.style.top = '';
-            f.style.left = '';
-            w.style.display = 'table-cell';
-            var g = document.getElementById('work_file');//кроссворд
-            var h = v.getBoundingClientRect().left; //отступ с левого края столбца один
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;//размер прокрутки страницы
-            var scrollHeightg = Math.max(g.scrollHeight, g.offsetHeight, g.clientHeight);//высота кроссворда
-            var scrollHeightf = Math.max(f.scrollHeight, f.offsetHeight, f.clientHeight);//высота шапки
-            
-            if(document.documentElement.clientHeight < scrollHeightg){
-                if(f.getBoundingClientRect().top < 0){
-                    if((scrollHeightg + f.getBoundingClientRect().top - scrollHeightf * 2) >= 100){
-                        f.style.position = 'absolute';
-                        f.style.top = scrollTop + 'px';
-                        f.style.left = h  + 'px';
-                        w.style.display = 'none';
-                        u = 0;    
-                    }else{
-                        if(u == 0){u = scrollTop;}
-                        f.style.position = 'absolute';
-                        f.style.top = u + 'px';
-                        f.style.left = h  + 'px';
-                        w.style.display = 'none';                
-                    }
-                } 
+            if(SetObj.scrolltop_flag == 1){
+                var margin_f_left = document.getElementById('scroll_tr').getBoundingClientRect().left//отступ от левого края до фиксированного блока
+                var f = document.getElementById('scroll_tr'); //шапка 
+                var k = document.getElementById('scroll_td'); 
+                var scrollHeightf = Math.max(f.scrollHeight, f.offsetHeight, f.clientHeight);//высота шапки         
+                //стили при начале прокрутки
+                f.style.position = 'fixed';
+                f.style.top = margin_f_top + 'px';
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;//размер прокрутки страницы
+                if(scrollTop < margin_f_top){
+                    f.style.top = (margin_f_top - scrollTop) + 'px';
+                    f.style.left = margin_f_left + 'px';
+                    k.style.height = (scrollHeightf - 2) + 'px';
+                }else if(scrollTop < margin_f_ecv - scrollHeightf - 60){
+                    f.style.top = 0 + 'px';
+                    f.style.left = margin_f_left + 'px';
+                    k.style.height = (scrollHeightf - 2) + 'px'
+                }
+                else{
+                    f.style.top = (margin_f_ecv - scrollHeightf - 60 - scrollTop) + 'px';
+                    f.style.left = margin_f_left + 'px';
+                    k.style.height = (scrollHeightf - 2) + 'px'
+                }
             }
         }
-    }
+    } 
+    
+    function smally(){
+        var a = document.getElementById('work_file');
+        var b = a.getElementsByTagName('DIV');
+        if(parseInt(getComputedStyle(b[0]).width) >= 20 && parseInt(getComputedStyle(b[0]).width) <= 26){
+            w = parseInt(getComputedStyle(b[0]).width) - 2;
+            a.classList.remove(a.className);
+            if(w <= 20){
+                a.classList.add('cross_main');
+                SetObj.size = 'cross_main';
+                setCookie('size', 'cross_main', {expires: 31536000});
+            }else{
+                a.classList.add('cross_main_' + w);
+                SetObj.size = 'cross_main_' + w;
+                setCookie('size', 'cross_main_' + w, {expires: 31536000});
+            }
+        }
+        $('#scroll_tr').attr('style', '');
+        $('#scroll_td').attr('style', '');                 
+    } 
+    
+    function biger(){
+        var a = document.getElementById('work_file');
+        var b = a.getElementsByTagName('DIV');
+        var c = document.getElementById('scroll_tr');
+        if(parseInt(getComputedStyle(b[0]).width) >= 18 && parseInt(getComputedStyle(b[0]).width) <= 24){
+            w = parseInt(getComputedStyle(b[0]).width) + 2;
+            a.classList.remove(a.className);
+            a.classList.add('cross_main_' + w);
+            SetObj.size = 'cross_main_' + w;
+            setCookie('size', 'cross_main_' + w, {expires: 31536000});
+        }
+        $('#scroll_tr').attr('style', '');
+        $('#scroll_td').attr('style', '');       
+    }       
     
     function seeTimer(count){
         var a = document.getElementById('timer');
@@ -409,6 +423,9 @@
     } 
     
     function solution(){
+        $('#error_bg').css({'display': 'block'});
+        $('#scroll_tr').attr('style', '');
+        SetObj.scrolltop_flag = 0;
         var nabor = document.querySelectorAll('.cma');
         var cma = '';
         for(var i = 0; i < nabor.length; i++){
@@ -420,14 +437,118 @@
         }
 
         var cross = parseInt(location.href.split('?cross=')[1]);
-
         
         $.post( "../inc/solution_constructor.php", {solution: cma, cross:cross,sec:SetObj.countTimer}, function(data){
-            if(data.search(/Поздравляем!/) >= 0){
-                clearInterval(idTimer);    
+            var result = JSON.parse(data);
+            if(result.type == 2){
+                clearInterval(idTimer);
+            }else if(result.type == 1){
+                SetObj.scrolltop_flag = 0;
+            }else{
+                $('#error_bg').css({'display': 'none'}); 
+                SetObj.scrolltop_flag = 0;
             }
-           document.getElementById('message').innerHTML = data;
-             
+            $('#error_bg span').css('display', 'none');
+            $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+            var e_h = $('#error_message').innerHeight();
+            var e_w = $('#error_message').width();
+            $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+            $('#error_message_text').html(result.error_message);            
         });
-        console.log(idTimer);
-    }  
+    }
+    
+    function answer(){
+        $('#error_bg').css({'display': 'block'});
+        $('#scroll_tr').attr('style', '');
+        SetObj.scrolltop_flag = 0;
+        
+        var nabor = document.querySelectorAll('.cma');
+        var cma = '';
+        for(var i = 0; i < nabor.length; i++){
+            if(nabor[i].style.backgroundColor == 'black'){
+                cma += '1'; 
+            }else{
+                cma += '0';
+            }   
+        }
+        
+        var cross = parseInt(location.href.split('?cross=')[1]);
+        
+        $.post( "../inc/answer_constructor.php", {answer: cma, cross:cross}, function(data){
+            var result = JSON.parse(data);
+            if(result.type == 2){
+                $('#error_message').removeAttr('style').css({'display': 'block', 'padding': '5px', 'width': 'auto'});
+                var e_h = result.height_img + 12;
+                var e_w = result.width_img + 12;
+                SetObj.scrolltop_flag = 0;
+            }else if(result.type == 1){
+                $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                var e_h = $('#error_message').outerHeight();
+                var e_w = $('#error_message').outerWidth();
+                SetObj.scrolltop_flag = 0;
+            }else{
+                $('#error_bg').css({'display': 'none'}); 
+                SetObj.scrolltop_flag = 0;
+            }
+            
+            $('#error_bg span').css('display', 'none');
+
+            $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+            $('#error_message').css({'display': 'none'});
+            
+            
+            if(result.type == 2){
+                $('#error_message').css({'display': 'block','margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+            }else if(result.type == 1){
+                $('#error_message').css({'display': 'block'});
+            }else{
+                $('#error_bg').css({'display': 'none'}); 
+            }
+
+            $('#error_message_text').html(result.error_message);            
+        });
+    } 
+    
+    function save(){
+        $('#error_bg').css({'display': 'block'});
+        $('#scroll_tr').attr('style', '');
+        SetObj.scrolltop_flag = 0;
+        
+        var nabor = document.querySelectorAll('.cma');
+        var cma = '';
+        for(var i = 0; i < nabor.length; i++){
+            if(nabor[i].style.backgroundColor == 'black'){
+                cma += '1'; 
+            }else if(nabor[i].style.backgroundImage != ''){
+                cma += '2';
+            }else{
+                cma += '0';
+            }   
+        }
+        
+        var cross = parseInt(location.href.split('?cross=')[1]);
+        
+        $.post( "../inc/save_constructor.php", {answer: cma, cross:cross, sec:SetObj.countTimer}, function(data){
+            var result = JSON.parse(data);
+
+            if(result.type == 1 || result.type == 2){
+                $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                SetObj.scrolltop_flag = 0;
+                if(result.type == 2){
+                    clearInterval(idTimer);
+                    SetObj.timer = 0;
+                }
+            }else{
+                $('#error_bg').css({'display': 'none'}); 
+                SetObj.scrolltop_flag = 0;
+            }
+            var e_h = $('#error_message').innerHeight();
+            var e_w = $('#error_message').width();
+            
+            $('#error_bg span').css('display', 'none');
+
+            $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+
+            $('#error_message_text').html(result.error_message);            
+        });
+    } 

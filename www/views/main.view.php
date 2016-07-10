@@ -1,27 +1,40 @@
                     <div class="content">
                         <h1>Японский кроссворд № <?=$crossData['id'].$showType?></h1>
-                        <div class="cross_info">
-                            <ul>
-                                <li title="Этот японский кроссворд добавил <?=getLoginName($crossData['user_add_id'])?>"><span class="icon-user"></span>Добавил: <a href="user.php?id=<?=$crossData['user_add_id']?>"><?=getLoginName($crossData['user_add_id'])?></a></li>
-                                <li><span class="icon-calendar"></span>Добавлен: <span class="cross_info_bold"><?=getShotDate($crossData['time_add'])?></span></li>
-                                <li><span class="icon-target"></span>Решили: <span class="cross_info_bold"><?=getCountSolution($cross)?></span> р<?php echo numberEnd(getCountSolution($cross), array('аз','аза','аз')); ?></li>
-                            </ul>
-                            <ul>
-                                <li><span class="icon-star-full"></span>Рейтинг: <?=showStars($crossData['count_star'])?></li>                                            
-                                <li><span class="icon-trophy"></span>Сложность: <?=showStars($crossData['power'])?></li>
-                            </ul>
-                            <ul>
-                                <li><span class="icon-hour-glass"></span>Ср. скорость: <span class="cross_info_bold"><?=getCountSec($crossData['s_time']);?></span></li>
-                                <li><?php if(bestTime($cross)){$bestTime = bestTime($cross); ?><span class="icon-power" title="<?=getCountSec($bestTime[1])?>"></span>Рекорд: <a href="user.php?id=<?=$bestTime[0]?>"><?=getLoginName($bestTime[0])?></a> <?=getCountSec($bestTime[1])?><?php } ?></li>
-                            </ul>
-                            <ul>
-                                <li><span id="timer">00:00:00</span></li>
-                            </ul>
-                        </div>
+                        <table class="table_info_cross">
+                            <tbody>
+                                <tr>
+                                    <td title="Этот японский кроссворд добавил><?=getLoginName($crossData['user_add_id'])?>"><span class="icon-user"></span>Добавил: </td>
+                                    <td><a href="user.php?id=<?=$crossData['user_add_id']?>"><?=getLoginName($crossData['user_add_id'])?></a></td>
+                                    <td><span class="icon-star-full"></span>Рейтинг:</td>
+                                    <td><?=showStars($crossData['count_star'])?></td>
+                                    <td><span class="icon-hour-glass"></span>Ср. скорость:</td>
+                                    <td><span class="cross_info_bold"><?=getCountSec($crossData['s_time']);?></span></td>
+                                    <td rowspan="3"><div id="sec_history" style="display: none;"><?=$sec_history?></div><span id="timer"><?=getCountSecTimer($sec_history)?></span></span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="icon-calendar"></span>Добавлен:</td>
+                                    <td><span class="cross_info_bold"><?=getShotDate($crossData['time_add'])?></span></td>
+                                    <td><span class="icon-trophy"></span>Сложность:</td>
+                                    <td><?=showStars($crossData['power'])?></td>
+                                    <td><?php if(bestTime($cross)){$bestTime = bestTime($cross); ?><span class="icon-power" title="<?=getCountSec($bestTime[1])?>"></span>Рекорд:</td>
+                                    <td><a href="user.php?id=<?=$bestTime[0]?>"><?=getLoginName($bestTime[0])?></a><?=getCountSec($bestTime[1])?><?php } ?></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="icon-target"></span>Решили:</td>
+                                    <td><span class="cross_info_bold"><?=getCountSolution($cross)?></span> р<?php echo numberEnd(getCountSolution($cross), array('аз','аза','аз')); ?></td>
+                                    <td><span class="icon-enlarge" style="font-size: 13px;"></span>Размеры:</td>
+                                    <td><?=$crossData['cross_w']?>x<?=$crossData['cross_h']?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <div class="seting_but">
                             <ul>
-                                <li><a href="" id="bigger" onclick="biger(); return false;">Увеличить ячейки</a></li>
-                                <li><a href="" id="smally" onclick="smally(); return false;">Уменьшить ячейки</a></li>
+                                <li><a href="" id="bigger" onclick="biger(); return false;"> + Увеличить ячейки +</a></li>
+                                <li><a href="" id="smally" onclick="smally(); return false;">- Уменьшить ячейки -</a></li>
                                 <!--<li><a href="">Мобильная версия</a></li>-->
                             </ul>    
                         </div>
@@ -29,6 +42,8 @@
                             <ul>
                                 <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
                                 <!--<li><a href="">Сохранить</a></li>-->
+                                <li><a href="" onclick="answer(); return false;">Ответ</a></li>
+                                <li><a href="" onclick="save(); return false;">Сохранить</a></li>
                                 <li><a href="" onclick="solution(); return false;">Проверить решение</a></li>
                             </ul>    
                         </div>
@@ -36,9 +51,9 @@
                         <div id="frame">
                         <table class="<?=$sess_size?>" id="work_file" oncontextmenu="return false;">
                 <tbody>
-                    <tr id="scroll_tr">         
-                        <td style="cursor: default; background: rgb(241, 241, 241); display: table-cell;" id="scroll_td1">&nbsp;</td>
-                        <td id="scroll_td">
+                    <tr>         
+                        <td id="scroll_td">&nbsp;</td>
+                        <td  id="scroll_tr">
                             <table>
                                 <tbody>
                                 <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
@@ -46,7 +61,7 @@
                                     foreach($item_top as $item_td_top){
                                         if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}      
                                 ?>
-                                      <td <?php if($item_td_top[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
+                                      <td <?php if($item_td_top[0] == 'n'){echo 'class="td_null'.$class_num_5.'"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
                                         <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
                                       </td>
                                 <?php
@@ -83,19 +98,20 @@
                         <td>
                             <table>
                                 <tbody>
-                                    <?php 
+                                    <?php $count_arr_history = 0;
                                         for($tr = 0; $tr < $crossData['cross_h']; $tr++){
                                             if(($tr + 1)%5 == 0 && ($tr + 1) != $crossData['cross_h']){$class_num_5 = ' class="tr_str5"';}else{$class_num_5 = '';}
+                                            if(($tr + 1) == $crossData['cross_h']){$scroll_ecv = ' id="scroll_ecv"';}
                                     ?>
-                                    <tr<?php echo $class_num_5; ?>>
+                                    <tr<?php echo $class_num_5.$scroll_ecv; ?>>
                                         <?php 
                                             for($td = 0; $td < $crossData['cross_w']; $td++){ 
                                                 if(($td + 1)%5 == 0 && ($td + 1) != $crossData['cross_w']){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}    
                                         ?>
-                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php if($sess_showxy){echo ' title="('.$tr.' - '.$td.')"';}?>>
+                                        <td class="cma<?=$class_num_5?>" id="cma<?=$tr?>_<?=$td?>" onmousedown="crossPic(event, <?=$tr?>, <?=$td?>)" onmouseover="hoverCrossPic(event, <?=$tr?>, <?=$td?>)"<?php if($sess_showxy){echo ' title="('.$tr.' - '.$td.')"';}if($arr_history[$count_arr_history] == 1){echo ' style="background-color: black;"';}elseif($arr_history[$count_arr_history] == 2){echo ' style="background-image: url(\'images/'.IMG_CROSS.'\');"';}?>>
                                             <div>&nbsp;</div>
                                         </td>
-                                        <?php } ?>
+                                        <?php $count_arr_history++;} ?>
                                     </tr>
                                     <?php } ?>
                                     </tr>

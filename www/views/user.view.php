@@ -8,10 +8,10 @@
                             <td>Логин:</td>
                             <td><?=$login?></td>
                         </tr>
-                        <?php if($_SESSION['admin']){ ?>
+                        <?php if($_SESSION['admin'] == $proverka){ ?>
                         <tr>
                             <td>E-mail:</td>
-                            <td><?=$email?></td>
+                            <td><?=$email?> (Не виден другим пользователям)</td>
                         </tr>
                         <?php } ?>
                         <tr>
@@ -20,11 +20,11 @@
                         </tr>
                         <tr>
                             <td>Решено кроссвордов</td>
-                            <td><?=$solution?></td>
+                            <td><?php echo $solution; if($countSecSol > 0){echo ' (на решение ушло: '.getCountSec($countSecSol).')';} ?></td>
                         </tr>
                         <tr>
                             <td>Рейтинг</td>
-                            <td>#<?php echo $mesto." (".round($reting, 4).")" ;?></td>
+                            <td>#<?php echo $mesto; if($reting > 0){echo " (".round($reting, 4).")" ;}?></td>
                         </tr>
                         <tr>
                             <td>Добавлено кроссвордов</td>

@@ -11,8 +11,10 @@
     $page = 1;
     
     if(isset($_GET['page'])){$page = $_GET['page']; if(!(int)abs($page)){$page = 1;}}
+    
     if($page == 1 and isset($_GET['page'])){
-        header("Location: ".str_replace('page=1&', '', $_SERVER['REQUEST_URI']));
+        $arr = array('page=1&', '?page=1');
+        header("Location: ".str_replace($arr, '', $_SERVER['REQUEST_URI']));
         exit();
     }
     

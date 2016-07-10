@@ -3,9 +3,10 @@
     
     if (isset($_GET['id']))       {$id = $_GET['id'];            $id = (int)abs($id);}
     
-    $res = mysqli_query($db, "SELECT id,login_view,email,time_add,reting FROM dk_user WHERE id='$id' AND metka='1' LIMIT 1");
+    $res = mysqli_query($db, "SELECT id,login_view,email,time_add,reting,pass,kod FROM dk_user WHERE id='$id' AND metka='1' LIMIT 1");
     if(mysqli_num_rows($res) > 0){
         $myr = mysqli_fetch_assoc($res);
+        $proverka = $myr['pass'].$myr['kod'];
         $login = $myr['login_view'];
         $email = $myr['email'];
         $reting = $myr['reting'];
@@ -16,6 +17,9 @@
         $add_user = mysqli_num_rows($resCrossUser);
         $resCrossSol = mysqli_query($db, "SELECT id FROM solution WHERE id_user='$id' AND type='1'");
         $solution = mysqli_num_rows($resCrossSol);
+        $resCountSol = mysqli_query($db, "SELECT SUM(sol_time) AS countSecSol FROM solution WHERE id_user='$id' AND type='1'");
+        $countSecSol = mysqli_fetch_assoc($resCountSol);
+        $countSecSol = $countSecSol['countSecSol'];
     }
     else{
         $_SESSION['error'] = "<p class='error'>Ошибка запроса!</p>";

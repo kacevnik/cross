@@ -123,7 +123,18 @@
         }
 
     }
-
-    function close_error(e){
-        e.target.parentNode.style.display = 'none';
+    
+    function closeErrorMessage(){
+        $('#error_bg').css({'display': 'none'});
+        $('error_bg span').css('display', 'block');
+        $('#error_message').css({'display': 'none'});
+        SetObj.scrolltop_flag = 1;
     }
+    
+    $('#error_bg').click(function(){
+        closeErrorMessage();
+    });
+    
+    $('#error_close').click(function(){
+        closeErrorMessage();
+    });

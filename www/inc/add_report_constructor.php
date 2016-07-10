@@ -28,6 +28,7 @@
                 if(mysqli_query($db, "UPDATE dk_cross SET type='1',otvet='$solution',arr_top='$top',arr_left='$left',name='$name' WHERE id='$cross'")){
                 creat_and_add_images($cross, true);
                 creat_and_add_images($cross);
+                creat_and_add_images_answer($cross);
                     echo "<div class='error_plus'>Кроссворд проверен, если были изменения, то они внесены</div>";
                 }
     }

@@ -17,7 +17,7 @@
                 $up = mysqli_query($db, "UPDATE dk_user SET metka='1' WHERE id='$id'");
                 $subject = "Новый пользователь подтвердил регистрацию: ";
                 $header = "From: \"".TITLE_SITE."\" <".ADMIN_EMAIL.">";
-                $message = "<p>Здравствуйте<br>На сайте новый пользователь подтвердил регистрацию.</p><p>Логин : <b>".$login."</b><br>E-mail: <b>".$email."</p><p>Данное письмо сгенерировано автоматически. Отвечать на него не надо.<br>Спасибо.</p>";
+                $message = "<p>Здравствуйте<br>На сайте новый пользователь подтвердил регистрацию.</p><p>Логин : <strong>".$login."</strong><br>E-mail: <strong>".$email."</strong></p><p>Данное письмо сгенерировано автоматически. Отвечать на него не надо.<br>Спасибо.</p>";
                 mail(ADMIN_EMAIL,$subject,$message,$header."\r\nContent-type:text/html;Charset=utf-8\r\n"); 
                 
                 $_SESSION['error'] = "<div class='error_plus'>Поздравляем, Вы подтвердили регистрацию и теперь можете войти в личный кабинет.</div>";

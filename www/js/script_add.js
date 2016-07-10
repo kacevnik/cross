@@ -99,13 +99,24 @@
             }    
         }
              
-        if(a.which == 1){
-            ed.style.backgroundColor = SetObj.backgroundColor;
-            ed.style.backgroundImage = '';   
-        }
-        else if(a.which == 3){
-            ed.style.backgroundColor = 'white';
-            ed.style.backgroundImage = SetObj.backgroundImages;   
+        if(navigator.userAgent.search(/Firefox/i) >= 0){
+            if(a.buttons == 1){
+                ed.style.backgroundColor = SetObj.backgroundColor;
+                ed.style.backgroundImage = '';   
+            }
+            else if(a.buttons == 2){
+                ed.style.backgroundColor = 'white';
+                ed.style.backgroundImage = SetObj.backgroundImages;   
+            }
+        }else{
+            if(a.which == 1){
+                ed.style.backgroundColor = SetObj.backgroundColor;
+                ed.style.backgroundImage = '';   
+            }
+            else if(a.which == 3){
+                ed.style.backgroundColor = 'white';
+                ed.style.backgroundImage = SetObj.backgroundImages;   
+            }
         }
     }
     
@@ -382,6 +393,7 @@
     } 
     
     function postSolution(){
+        $('#error_bg').css({'display': 'block'});
         var h = parseInt(document.getElementById('height_cross').value.trim())||1;
         var w = parseInt(document.getElementById('width_cross').value.trim())||1;
         var nabor = document.querySelectorAll('.cma');
@@ -425,7 +437,7 @@
             }
             return count;   
         }
-        //
+        
         function replaceTop(arr, size){
             var topString = '+';
             for(var i = 0; i < size; i++){
@@ -481,7 +493,17 @@
         
         var name = $('#add_name').val();
         
+        
         $.post( "../inc/add_cross_constructor.php", {solution: cma, top: topNew, left: topLeft, name: name, h: h, w: w},function(data){
-           document.getElementById('message').innerHTML = data;   
+            var result = JSON.parse(data);
+            if(!result.type){$('#error_bg').css({'display': 'none'});}
+            else if(result.type == 1){
+                $('#error_bg span').css('display', 'none');
+                $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                var e_h = $('#error_message').innerHeight();
+                var e_w = $('#error_message').width();
+                $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+                $('#error_message_text').html(result.error_message);
+            }  
         });
     }

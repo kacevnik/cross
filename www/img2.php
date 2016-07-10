@@ -36,7 +36,7 @@
     imageFilledrectangle($img, 2, 2, count($arr_left[0]) * 13, count($arr_top) * 13, $grey_2);//Угловой прямоугольник
     
     //Водный знак названия 
-    for($g=0; $g < 200; $g++){
+    for($g=0; $g < 600; $g++){
         if($g == 0){
                 $p_x = 0;
                 $p_y = 0;
@@ -65,8 +65,6 @@
     
     imageFilledrectangle($img, 2, count($arr_top) * 13 + 3, $width, $height, $white);//прямоугольник закраски белым
     imageFilledrectangle($img, count($arr_left[0]) * 13 + 3, 2, $width, $height, $white);//прямоугольник закраски белым
-    imagerectangle($img, 0, 0, $width -1, $height -1, $black);//Внешняя рамка
-    imagerectangle($img, 1, 1, $width -2, $height -2, $black);//Внутренняя рамка
     
     //Горизонтальные линии в верхней части
     $y1 = 14;
@@ -147,7 +145,7 @@
         for($j = 0;$j < count($arr_left[$i]);$j++){
             if($arr_left[$i][$j][0] != 'n'){
                 imageFilledrectangle($img, $x4 + $j * 13, $y4 + $i * 13, $x4 + $j * 13 + 11, $y4 + $i * 13 + 11, $grey_2);
-                if($arr_left[$i][$j][0] > 9){$x6 = $x4 + $j * 13 + 1;}else{$x6 = $x4 + $j * 13 + 4;} 
+                if($arr_left[$i][$j][0] > 9){$x6 = $x4 + $j * 13;}else{$x6 = $x4 + $j * 13 + 4;} 
                 imagettftext($img, 7, 0, $x6, $y4 + $i * 13 + 10, $black, $font, $arr_left[$i][$j][0]);  
             }
         }
@@ -161,7 +159,7 @@
         if($j%5 == 0){$x4++;}
             if($arr_top[$i][$j][0] != 'n'){
                 imageFilledrectangle($img, $x4 + $j * 13, $y4 + $i * 13, $x4 + $j * 13 + 11, $y4 + $i * 13 + 11, $grey_2);
-                if($arr_top[$i][$j][0] > 9){$x6 = $x4 + $j * 13 + 1;}else{$x6 = $x4 + $j * 13 + 4;} 
+                if($arr_top[$i][$j][0] > 9){$x6 = $x4 + $j * 13;}else{$x6 = $x4 + $j * 13 + 4;} 
                 imagettftext($img, 7, 0, $x6, $y4 + $i * 13 + 10, $black, $font, $arr_top[$i][$j][0]);
             }
         }
@@ -188,6 +186,8 @@
     imageline($img, count($arr_left[0]) * 13 + 2, 0, count($arr_left[0]) * 13 + 2, $height, $black);
     imageline($img, 0, count($arr_top) * 13 + 1, $width, count($arr_top) * 13 + 1, $black);
     imageline($img, 0, count($arr_top) * 13 + 2, $width, count($arr_top) * 13 + 2, $black);
+    imagerectangle($img, 0, 0, $width -1, $height -1, $black);//Внешняя рамка
+    imagerectangle($img, 1, 1, $width -2, $height -2, $black);//Внутренняя рамка
     
     header("Content-type: image/jpeg"); //Задаем заголовок для вывода картинки
     
