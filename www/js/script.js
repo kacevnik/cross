@@ -519,7 +519,7 @@
         for(var i = 0; i < nabor.length; i++){
             if(nabor[i].style.backgroundColor == 'black'){
                 cma += '1'; 
-            }else if(nabor[i].style.backgroundImage != ''){
+            }else if(nabor[i].style.backgroundImage.search(/url/i) >= 0){
                 cma += '2';
             }else{
                 cma += '0';
@@ -551,4 +551,55 @@
 
             $('#error_message_text').html(result.error_message);            
         });
+    }
+    
+    function clearCross(){
+        var cross = parseInt(location.href.split('?cross=')[1]);
+        $('#error_bg').css({'display': 'block'});
+        $('#scroll_tr').attr('style', '');
+        SetObj.scrolltop_flag = 0;
+        $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+        var e_h = $('#error_message').innerHeight();
+        var e_w = $('#error_message').width();
+        $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+        $('#error_message_text').html('<div class="error_plus" style="margin-bottom: 10px;">Вы уверены, что хотите очистить все поля?<br><i style="font-size: 12px;">Вся история так же будет очищена</i></div><div class="seting_but3"><ul><li><a href="" onclick="clear_yes(' + cross + '); return false;">Да</a></li><li><a href="" onclick="closeErrorMessage(); return false;">Нет</a></li></ul></div>');       
     } 
+    
+    function clear_yes(cross){
+        var nabor = document.querySelectorAll('.cma');
+        var cma = '';
+        for(var i = 0; i < nabor.length; i++){
+            if(nabor[i].style.backgroundColor == 'black'){
+                cma += '1'; 
+            }else if(nabor[i].style.backgroundImage.search(/url/i) >= 0){
+                cma += '2';
+            }else{
+                cma += '0';
+            } 
+            nabor[i].style.backgroundColor = 'white';
+            nabor[i].style.backgroundImage = 'none';
+        }
+        
+        $.post( "../inc/clear_constructor.php", {cross: cross, answer: cma}, function(data){
+            var result = JSON.parse(data);
+            if(result.type == 1){
+                $('#error_bg').css({'display': 'block'});
+                $('#scroll_tr').attr('style', '');
+                SetObj.scrolltop_flag = 0;
+                $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                var e_h = $('#error_message').innerHeight();
+                var e_w = $('#error_message').width();
+                $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+                $('#error_bg span').css('display', 'none');
+                $('#error_message_text').html(result.error_message);
+            }    
+        });
+        
+        SetObj.timer = 0;
+        clearInterval(idTimer);
+        $('#timer').html('00:00:00');
+        SetObj.countTimer = 0;
+        SetObj.history = [document.querySelector('#work_file').innerHTML.replace(/ title="\(\d+ - \d+\)"/g, '').replace(/ title="\(\d+ - \d+\)"/g, '').replace(/id="scroll_td" style="[height: \d+px;"]*/g, 'id="scroll_td"').replace(/ display: none;/g, '').replace(/id="scroll_tr" style="[position: fixed; top: \d+px; left: \d+px;]*"/g, 'id="scroll_tr"')];
+        document.querySelector('#rew').innerText = '';
+        closeErrorMessage();
+    }

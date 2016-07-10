@@ -168,4 +168,20 @@
             return $id = $myr["id"];
         }
     }
+    
+ /**
+* Получения LoginName пользователя из ссесии
+*/
+ 
+    function getLoginFromSes($session){
+        global $db;
+        $passProverka = substr($session, 0, 32);
+        $kodProverka = substr($session, 32, 32);
+        $sql = "SELECT login_view FROM dk_user WHERE pass='$passProverka' AND kod='$kodProverka' AND metka='1'";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res) > 0){
+            $myr = mysqli_fetch_assoc($res);
+            return $id = $myr["login_view"];
+        }
+    }
 ?>

@@ -1,3 +1,4 @@
+<?php if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();} ?> 
     <div class="header">
         <div class="center">
             <div class="header-logo">

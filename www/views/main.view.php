@@ -35,13 +35,13 @@
                             <ul>
                                 <li><a href="" id="bigger" onclick="biger(); return false;"> + Увеличить ячейки +</a></li>
                                 <li><a href="" id="smally" onclick="smally(); return false;">- Уменьшить ячейки -</a></li>
+                                <li><a href="" onclick="clearCross(); return false;">Очистить</a></li>
                                 <!--<li><a href="">Мобильная версия</a></li>-->
                             </ul>    
                         </div>
-                        <div class="seting_but">
+                        <div class="seting_but2">
                             <ul>
                                 <li><a href="" onclick="rewerse(); return false;">Отменить<span id="rew"></span></a></li>
-                                <!--<li><a href="">Сохранить</a></li>-->
                                 <li><a href="" onclick="answer(); return false;">Ответ</a></li>
                                 <li><a href="" onclick="save(); return false;">Сохранить</a></li>
                                 <li><a href="" onclick="solution(); return false;">Проверить решение</a></li>
