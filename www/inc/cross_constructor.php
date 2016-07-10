@@ -34,4 +34,20 @@
     if($_COOKIE['lastnum']){$sess_lastnum = 'checked=""';}else{$sess_lastnum = '';}
     if($_COOKIE['showxy']){$sess_showxy = 'checked=""';}else{$sess_showxy = '';}
     if($_COOKIE['scrolltop']){$sess_scrolltop = 'checked=""';}else{$sess_scrolltop = '';}
+    
+    if(!$_SESSION['admin'] && !$_COOKIE['hello_message']){
+        setcookie('hello_message','hello',time()+60*60*24,"/");
+        $hello_message = '<script>
+                            SetObj.scrolltop_flag = 0;
+                            $("#error_message_text").html("<div class=\"error_plus\">Добро пожаловать на сайт японских кроссвордов<br><strong>Samurai-ka.ru</strong><br>Не забудьте войти или зарегистроваться.<br>Регистрация дает ряд дополнительных возможностей при решении.<br>Приятного времяприпровождения.</div>");
+                            $("#error_bg").css("display", "block");
+                            $("#error_bg span").css("display", "none");
+                            $("#error_message").removeAttr("style").css({"display": "block", "min-width": "500px"});
+                            var e_h = $("#error_message").innerHeight();
+                            var e_w = $("#error_message").width();
+                            $("#error_message").css({"margin-left": -1*e_w/2 + "px", "margin-top": -1*e_h/2 + "px"});
+                          </script>';
+    }else{
+        $hello_message = '';
+    }
 ?>

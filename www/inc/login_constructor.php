@@ -24,6 +24,7 @@
                     $kod = $myr["kod"];
                     if($metka == 1){
                         $_SESSION['admin'] = $pass_md.$kod;
+                        setcookie('hello_message','hello',time()+60*60*24*3,"/");
                         setcookie('LoginCookie',$pass_md.$kod,time()+60*60*24*300,"/");
                         $_SESSION['error'] = "<div class='error_plus'>Добро пожаловать!</div>";
                         header("Location: user.php?id=".$id);
