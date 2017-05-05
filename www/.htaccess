@@ -1,2 +1,12 @@
 AddDefaultCharset utf-8
 
+php_flag magic_quotes_gpc off
+
+Options -Indexes +FollowSymLinks
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST}	^www\.(.*)	[NC]
+RewriteRule ^(.*)$ http://%1/$1	[R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+RewriteRule ^index\.php$ http://samurai-ka.ru/ [R=301,L]
