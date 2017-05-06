@@ -1,0 +1,7 @@
+User-agent: Yandex
+Host: samurai-ka.ru
+
+User-agent: Googlebot
+
+User-agent: *
+Sitemap: http://samurai-ka.ru/sitemap.xml
