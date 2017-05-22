@@ -18,6 +18,8 @@
     define(ENTER, '1');
     define(URLKA, $_SERVER['HTTP_REFERER']);
     define(IP_USER, $_SERVER['REMOTE_ADDR']);
+    define(CAPCHA_URL, 'https://www.google.com/recaptcha/api/siteverify');
+    define(SECRET, '66LeafCIUAAAAAOKqQPXrTttDsuQx_MxvbBcV8Ctl');
     define(LIMIT, 10);//Количество кроссвордов на странице
     
     //Соединение с базой данных.

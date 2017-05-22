@@ -146,7 +146,7 @@
         var email = email_id.value.trim();
         var text_id = document.getElementById('form_text_ans');
         var text = text_id.value.trim();
-        var capcha_id = document.getElementById('form_capcha_ans');
+        var capcha_id = document.getElementById('g-recaptcha-response');
         var capcha = capcha_id.value.trim();
         var error_text = '';
         var error_div = document.getElementById('reg_error');
@@ -154,10 +154,10 @@
         if(name != ''){
             if(/^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/.test(email)){
                 if(text != ''){
-                    if(/^[a-zA-Z0-9]{4}$/i.test(capcha)){
+                    if(capcha != ''){
                         return true;                                                                
                     }else{                               
-                        error_text = 'Проверочное поле заполненно не верно';
+                        error_text = 'Подтвердите, что вы не робот!';
                         capcha_id.style.borderColor = '#C73030';
                         error_div.innerText = error_text;
                         return false;

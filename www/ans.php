@@ -12,6 +12,7 @@
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
         <link rel="stylesheet" href="style/style.css" type="text/css">
         <link rel="stylesheet" href="style/font.css" type="text/css">
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta name="keywords" content="японские кроссворды">
         <meta name="description" content="На этой странице Вы можете связаться с администрацией сайта. Если у Вас возникли вопросы с решением японский кроссвордов или другие проблемы, заполните форму обратной связи.">
     	<title>Страничка обрвтной связи</title>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
                     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                    <!-- Last update of sitemap 2017-04-30 01:18:47+06:00 -->
+                    <!-- Last update of sitemap 2017-05-21 01:27:32+06:00 -->
 <url><loc>http://samurai-ka.ru</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/add.php</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/ans.php</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
@@ -34,8 +34,9 @@
 <url><loc>http://samurai-ka.ru/index.php?page=5&amp;saze=simple</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/index.php?page=6&amp;saze=simple</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/index.php?page=7&amp;saze=simple</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+<url><loc>http://samurai-ka.ru/index.php?page=8&amp;saze=simple</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+<url><loc>http://samurai-ka.ru/index.php?page=9&amp;saze=simple</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/index.php?size=normal</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-<url><loc>http://samurai-ka.ru/index.php?page=2&amp;saze=normal</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/index.php?size=hard</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=11</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=12</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
@@ -128,4 +129,9 @@
 <url><loc>http://samurai-ka.ru/cross.php?cross=103</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=104</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=105</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=106</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=107</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=108</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=109</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=110</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 </urlset>
