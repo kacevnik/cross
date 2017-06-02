@@ -1086,3 +1086,42 @@ body {
     text-align: left;
     min-width: 1px;
 }
+
+.best_list_style h1{
+    padding: 8px 0 0 0;
+    margin: 0 0 20px 0;
+}
+
+.best_list table{
+    width: 70%;
+    border: 1px solid #adadad;
+    border-bottom: none;
+    border-right: none;
+}
+
+.best_list table tr{
+    border-bottom: 1px solid #adadad;
+}
+
+.best_list table tr td{
+    border-right: 1px solid #adadad;
+    padding: 5px 10px;
+}
+
+.best_list .tr_header{
+    text-align: center;
+    font-weight: bold;
+    background: #ccc;
+}
+
+.best_list .tr_header td{
+    padding: 7px 0;
+}
+
+.best_list table td a{
+    color: #000;
+}
+
+.odd_best_list_item{
+    background: rgba(204, 204, 204, 0.4);
+}
