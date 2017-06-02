@@ -19,9 +19,27 @@
 <?php
     do{
         if($i%2==0){$od_style = ' class="odd_best_list_item"';}else{$od_style = ''; }
+        foreach ($option_list as $key => $value) {
+            if($value == $myr['id']){
+                if($i == $key+1){
+                    $move_list = '';
+                    $green_red = '';
+                    break;
+                }else{
+                    if(($key+1)-$i > 0){$green_red =' move_to_best_list_green'; }else{$green_red =' move_to_best_list_red';}
+                    if(($key+1)-$i > 0){$move_list = '+';}
+                    $move_list.=($key+1)-$i;
+                    if(($key+1)-$i > 0){$move_list.=' <i class="fa fa-caret-up"></i>'; }else{$move_list.=' <i class="fa fa-caret-down"></i>';}
+                    break;
+                }
+            }else{
+                $green_red = '';
+                $move_list = '';
+            }
+        }
 ?>
                                 <tr<?php echo $od_style; ?>>
-                                    <td>#<?php echo $i; ?></td>
+                                    <td>#<?php echo $i; ?><span class="move_to_best_list<?php echo $green_red; ?>"><?php echo $move_list; ?></span></td>
                                     <td><a href="user.php?id=<?php echo $myr['id']; ?>"><?php echo $myr['login_view']; ?></a></td>
                                     <td><?php echo round($myr['reting'], 2); ?></td>
                                 </tr> 

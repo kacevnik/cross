@@ -1118,10 +1118,26 @@ body {
     padding: 7px 0;
 }
 
+.best_list .tr_header td:first-child{
+    width: 16%;
+}
+
 .best_list table td a{
     color: #000;
 }
 
 .odd_best_list_item{
     background: rgba(204, 204, 204, 0.4);
+}
+
+.move_to_best_list{
+    float: right;
+}
+
+.move_to_best_list_red{
+    color: #e83e3e;
+}
+
+.move_to_best_list_green{
+    color: #06b316;
 }
