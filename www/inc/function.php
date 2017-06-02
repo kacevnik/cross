@@ -5,6 +5,36 @@
  */
  
 
+
+/**
+ * Функция сохранения сир массива первых 100 пользователей по рейтингу
+ */
+ 
+    function addListBestUser(){
+        global $db;
+        $time = time();
+        $name_option = 'list_best_user_'.date("d_m_Y");
+        $sql = "SELECT id FROM dk_options WHERE name='$name_option'";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res) > 0){
+            return;
+        }else{
+            $array = array();
+            $sql_text = "SELECT id FROM dk_user WHERE metka='1' ORDER BY reting DESC LIMIT 100";
+            $res_text = mysqli_query($db, $sql_text);
+            if(mysqli_num_rows($res_text) > 0){
+                $myr_text = mysqli_fetch_assoc($res_text);
+                do{
+                    $array[] = $myr_text['id'];
+                }while($myr_text = mysqli_fetch_assoc($res_text));
+            }
+            $text = serialize($array);
+            $sql_add = "INSERT INTO dk_options (name, date_option, text_option) VALUES ('$name_option', '$time', '$text')";
+            $res_add = mysqli_query($db, $sql_add);
+        }
+    }
+
+
 /**
  * Функция получения массива с сохраненым ответом
  */

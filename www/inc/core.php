@@ -40,6 +40,7 @@
     $MAIN_SETINGS = getMainSetings();
 
     clerarHistory();
+    addListBestUser();
     getSiteMap($MAIN_SETINGS);
     
 ?>
