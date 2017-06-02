@@ -11,6 +11,7 @@
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
         <link rel="stylesheet" href="style/style.css" type="text/css">
         <link rel="stylesheet" href="style/font.css" type="text/css">
+        <link rel="stylesheet" href="style/css/font-awesome.min.css">
         <meta name="keywords" content="японские кроссворды">
         <meta name="description" content="Рейтинг лучших игроков на сайте японских кроссвордов Samurai-ka.ru">
     	<title>Рейтинг лучших игроков</title>

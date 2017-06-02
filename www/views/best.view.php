@@ -20,7 +20,7 @@
     do{
 ?>
                                 <tr>
-                                    <td>#<?php echo $i; ?></td>
+                                    <td>#<i class="fa fa-address-book"></i> <?php echo $i; ?></td>
                                     <td><a href="user.php?id=<?php echo $myr['id']; ?>"><?php echo $myr['login_view']; ?></a></td>
                                     <td><?php echo round($myr['reting'], 2); ?></td>
                                 </tr> 
