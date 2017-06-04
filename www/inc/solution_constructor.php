@@ -129,7 +129,7 @@
 
                         $up = mysqli_query($db, "UPDATE dk_reiting_plus SET reiting='$reiting_gift', date_add='".TIMES."' WHERE id='$id_raiting_gift'");
 
-                        $up = mysqli_query($db, "UPDATE dk_user SET reting='$new_user_reiting_gift' WHERE id='$selIdUser'");
+                        $up = mysqli_query($db, "UPDATE dk_user SET reting='$new_user_reiting_gift' WHERE id='$myr_id_user_gift'");
                     }
                 }else{
                     $res_id_user_gift = mysqli_query($db, "SELECT user_add_id FROM dk_cross WHERE id='$cross'");
@@ -143,10 +143,10 @@
 
                     $ins = mysqli_query($db, "INSERT INTO dk_reiting_plus (id_user, id_user_add, id_cross, date_add, reiting, type) VALUES ('$selIdUser', '$myr_id_user_gift', '$cross', '".TIMES."', '$reiting_gift', '1')");
 
-                    $up = mysqli_query($db, "UPDATE dk_user SET reting='$new_user_reiting_gift' WHERE id='$selIdUser'");
+                    $up = mysqli_query($db, "UPDATE dk_user SET reting='$new_user_reiting_gift' WHERE id='$myr_id_user_gift'");
                 }
 
-                $data['error_message'] .= "<div class='error_plus'>Поздравляем! Вы решили кроссворд - <strong>".$nameCross."</strong>"; $data['type'] = 2;
+                $data['error_message'] .= "<div class='error_plus'>Поздравляем! Вы решили кроссворд - <strong>".$nameCross."</strong>".$selIdUser."</div>"; $data['type'] = 2;
         }
         else{
             if(isset($_COOKIE['sol'])){

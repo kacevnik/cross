@@ -27,23 +27,29 @@
                     break;
                 }else{
                     if(($key+1)-$i > 0){$green_red =' move_to_best_list_green'; }else{$green_red =' move_to_best_list_red';}
-                    if(($key+1)-$i > 0){$move_list = '+';}
+                    if(($key+1)-$i > 0){$move_list_plus = '+';}else{$move_list_plus = '';}
                     $move_list.=($key+1)-$i;
-                    if(($key+1)-$i > 0){$move_list.=' <i class="fa fa-caret-up"></i>'; }else{$move_list.=' <i class="fa fa-caret-down"></i>';}
+                    if(($key+1)-$i > 0){$move_list_i.=' <i class="fa fa-caret-up"></i>'; }else{$move_list_i.=' <i class="fa fa-caret-down"></i>';}
                     break;
                 }
             }else{
                 $green_red = '';
                 $move_list = '';
+                $move_list_plus = '';
+                $move_list_i = '';
             }
         }
 ?>
                                 <tr<?php echo $od_style; ?>>
-                                    <td>#<?php echo $i; ?><span class="move_to_best_list<?php echo $green_red; ?>"><?php echo $move_list; ?></span></td>
+                                    <td>#<?php echo $i; ?><span class="move_to_best_list<?php echo $green_red; ?>"><?php echo $move_list_plus.$move_list.$move_list_i; ?></span></td>
                                     <td><a href="user.php?id=<?php echo $myr['id']; ?>"><?php echo $myr['login_view']; ?></a></td>
                                     <td><?php echo round($myr['reting'], 2); ?></td>
                                 </tr> 
 <?php
+    $green_red = '';
+    $move_list = '';
+    $move_list_plus = '';
+    $move_list_i = '';
     $i++;
     }while($myr = mysqli_fetch_assoc($res));
 ?>                              
