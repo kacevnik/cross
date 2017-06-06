@@ -4,45 +4,6 @@
  * @author kacevnik
  */
  
-/**
-* Функция отображения звезд для рейтинга кроссворда
-*/
- 
-    function showReitingStar($cross, $id_user){
-        global $db;
-        $sql = "SELECT id FROM dk_stars WHERE id_user='$id_user' AND id_cross='$cross'";
-
-        $res = mysqli_query($db, $sql);
-        if(mysqli_num_rows($res) > 0){
-            return '';
-        }else{
-            $text = '<div class="show_reiting_star_header" data_user='.$id_user.' data_cross='.$cross.'>Оцените пожалуйста кроссворд</div>
-            <div class="show_reiting_star">
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-            </div>
-            <div class="show_reiting_star_but">
-                <a href="" onclick="closeErrorMessage(); return false;">Отмена</a>
-            </div>';
-
-            return $text;
-        }
-        
-    }
-
 
 
 /**

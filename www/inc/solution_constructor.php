@@ -146,7 +146,7 @@
                     $up = mysqli_query($db, "UPDATE dk_user SET reting='$new_user_reiting_gift' WHERE id='$myr_id_user_gift'");
                 }
 
-                $data['error_message'] .= "<div class='error_plus'>Поздравляем! Вы решили кроссворд - <strong>".$nameCross."</strong>".$selIdUser."</div>"; $data['type'] = 2;
+                $data['error_message'] .= "<div class='error_plus'>Поздравляем! Вы решили кроссворд - <strong>".$nameCross."</strong></div>".showReitingStar(1,1); $data['type'] = 2;
         }
         else{
             if(isset($_COOKIE['sol'])){
