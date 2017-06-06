@@ -8,8 +8,7 @@
     	<meta http-equiv="content-type" content="text/html" />
     	<meta name="author" content="kacevnik" />
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style/style.css" type="text/css">
-        <link rel="stylesheet" href="style/font.css" type="text/css">
+        <?php include("views/top_include_css.view.php") ?>
         <meta name="keywords" content="японский кроссворд <?=$crossData['name']?>, японский кроссворд <?=$crossData['name']?> решать онлайн, японский кроссворд <?=$crossData['name']?> скачать">
         <meta name="description" content="На этой страинице вы можете решить онлайн или скачать себе на компьютер японский кроссворд <?=$crossData['name']?>">
     	<title>Японский кроссворд #<?php echo $crossData['id']." - ".$crossData['name']?></title>

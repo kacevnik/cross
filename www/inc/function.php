@@ -4,6 +4,14 @@
  * @author kacevnik
  */
  
+/**
+* Функция отображения звезд для рейтинга кроссворда
+*/
+ 
+    function showReitingStar($cross, $id_user){
+            $text = '<div></div>';
+        }
+    }
 
 
 /**

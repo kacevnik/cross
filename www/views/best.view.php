@@ -58,6 +58,7 @@
 <?php 
     }
 ?>
+                        <a href="/article.php?id=3" class="how_reiting">Как Попасть в этот рейтинг?</a>
                     </div>
                 </div>
             </div>

@@ -22,6 +22,7 @@
                             <h4>Навигация</h4>
                             <ul>
                                 <li><a href="index.php">Главная</a></li>
+                                <li><a href="best.php">Рейтинг</a></li>
                                 <li><a href="article.php?id=1">Как решать?</a></li>
                                 <li><a href="add.php">Добавить кроссворд</a></li>
                                 <li><a href="ans.php">Обратная связь</a></li>

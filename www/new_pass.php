@@ -11,8 +11,7 @@
         <meta name="keywords" content="японские кроссворды">
         <meta name="description" content="На этой странице Вы можете восстановить свой пароль для входа в личный кабинет сайта Японских кроссвордов">
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style/style.css" type="text/css">
-        <link rel="stylesheet" href="style/font.css" type="text/css">
+        <?php include("views/top_include_css.view.php") ?>
     	<title>Восстановление пароля</title>
     </head>
     <body>

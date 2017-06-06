@@ -16,6 +16,7 @@
                         <li><span class="top_login_name">(<?=getLoginFromSes($_SESSION['admin'])?>)</span></li>
                         <li><a href="user.php?id=<?php echo getIdFromSes($_SESSION['admin']);?>">Кабинет</a></li>
                         <li><a href="logout.php">Выход</a></li>
+                        <li><a href="best.php"><i class="fa fa-trophy"></i></a></li>
                         <?php } ?>
                     </ul>
             </div>

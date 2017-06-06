@@ -9,8 +9,7 @@
     	<meta name="author" content="kacevnik" />
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style/style.css" type="text/css">
-        <link rel="stylesheet" href="style/font.css" type="text/css">
+        <?php include("views/top_include_css.view.php") ?>
     	<title>Японский кроссворд #<?=$crossData['id']?></title>
         <script>
             var cnt = <?php echo $top = str_replace('n', '\'n\'', $top_string); ?>; 

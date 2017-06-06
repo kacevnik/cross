@@ -1141,3 +1141,11 @@ body {
 .move_to_best_list_green{
     color: #06b316;
 }
+
+.how_reiting{
+    color: #000;
+    margin: 20px 0 0 0;
+    display: inline-block ;
+    font-weight: bold;
+    font-size: 16px;
+}

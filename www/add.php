@@ -21,8 +21,7 @@
     	<meta http-equiv="content-type" content="text/html" />
     	<meta name="author" content="kacevnik" />
         <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-        <link rel="stylesheet" href="style/style.css" type="text/css">
-        <link rel="stylesheet" href="style/font.css" type="text/css">
+        <?php include("views/top_include_css.view.php") ?>
     	<title>Добавить новый кроссворд</title>
     </head>
     <body>
