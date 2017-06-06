@@ -1161,7 +1161,7 @@ body {
     font-size: 26px;
 }
 
-.show_reiting_star .star_item{
+.show_reiting_star span{
     cursor: pointer;
 }
 
@@ -1181,4 +1181,14 @@ body {
 
 .show_reiting_star_but a:hover{
     background-color: #f9f9f9;
+}
+
+.show_reiting_star span:hover > span i:before{
+    content: "\f005";
+    color: #F5A222;
+}
+
+.show_reiting_star span span:hover ~ span i:before{
+    content: "\f006";
+    color: #000;
 }

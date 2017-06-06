@@ -16,22 +16,24 @@
         if(mysqli_num_rows($res) > 0){
             return '';
         }else{
-            $text = '<div class="show_reiting_star_header" data_user='.$id_user.' data_cross='.$cross.'>Оцените пожалуйста кроссворд</div>
+            $text = '<div class="show_reiting_star_header">Оцените пожалуйста кроссворд</div>
             <div class="show_reiting_star">
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
-                </span>
-                <span class="star_item">
-                    <i class="fa fa-star-o"></i>
+                <span>
+                    <span class="star_1" onclick="addStarReiting(1, '.$cross.', '.$id_user.');">
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="star_2" onclick="addStarReiting(2, '.$cross.', '.$id_user.');">
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="star_3" onclick="addStarReiting(3, '.$cross.', '.$id_user.');">
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="star_4" onclick="addStarReiting(4, '.$cross.', '.$id_user.');">
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="star_5" onclick="addStarReiting(5, '.$cross.', '.$id_user.');">
+                        <i class="fa fa-star-o"></i>
+                    </span>
                 </span>
             </div>
             <div class="show_reiting_star_but">

@@ -138,6 +138,10 @@
     $('#error_close').click(function(){
         closeErrorMessage();
     });
+
+    function addStarReiting(star, cross, user){
+        closeErrorMessage();
+    }
     
     function sub_ans(){
         var name_id = document.getElementById('form_name_ans');
