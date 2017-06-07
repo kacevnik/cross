@@ -7,7 +7,7 @@
                                     <td title="Этот японский кроссворд добавил><?=getLoginName($crossData['user_add_id'])?>"><span class="icon-user"></span>Добавил: </td>
                                     <td><a href="user.php?id=<?=$crossData['user_add_id']?>"><?=getLoginName($crossData['user_add_id'])?></a></td>
                                     <td><span class="icon-star-full"></span>Рейтинг:</td>
-                                    <td><?=showStars($crossData['count_star'])?></td>
+                                    <td><?=showStars(getReitingStarCross($crossData['id']))?></td>
                                     <td><span class="icon-hour-glass"></span>Ср. скорость:</td>
                                     <td><span class="cross_info_bold"><?=getCountSec($crossData['s_time']);?></span></td>
                                     <td rowspan="3"><div id="sec_history" style="display: none;"><?=$sec_history?></div><span id="timer"><?=getCountSecTimer($sec_history)?></span></span></td>

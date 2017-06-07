@@ -141,6 +141,20 @@
 
     function addStarReiting(star, cross, user){
         closeErrorMessage();
+        $.post( "../inc/add_star_constructor.php", {star: star, cross: cross, user: user}, function(data){
+            var result = JSON.parse(data);
+            if(result.type && result.text){
+                $('#error_bg').css({'display': 'block'});
+                $('#scroll_tr').attr('style', '');
+                SetObj.scrolltop_flag = 0;
+                $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                var e_h = $('#error_message').innerHeight();
+                var e_w = $('#error_message').width();
+                $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
+                $('#error_bg span').css('display', 'none');
+                $('#error_message_text').html(result.text);
+            }    
+        });
     }
     
     function sub_ans(){

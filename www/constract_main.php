@@ -14,18 +14,6 @@
     }
 
 /**
- * Получения из БД данных для среднешо значения рейтинга кроссворда
- **/
-
-    function getReitingStarCross($cross){
-        global $db;
-        $sql = "SELECT AVG(value) AS sum FROM dk_stars WHERE id_cross='$cross'";
-        $res = mysqli_query($db, $sql);
-        $myr = mysqli_fetch_assoc($res);
-        return $sum = $myr['sum']*2;        
-    }
-
-/**
  * Функция очистки истории старый историй решения
  **/
  
