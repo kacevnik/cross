@@ -29,7 +29,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="icon-star-full"></span>Рейтинг:</td>
-                                                        <td><?=showStars($item['count_star'])?></td>
+                                                        <td><?=showStars(getReitingStarCross($item['id']))?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
