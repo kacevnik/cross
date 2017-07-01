@@ -83,7 +83,7 @@
                 $up = mysqli_query($db, "UPDATE dk_cross SET power='$selMax2' WHERE id='$cross'");
 
                 //Вычисление и добавление в БД наибольшего рейтинга за решение кроссворда
-                $reiting_full = $size/10/$sec_reiting*10;
+                $reiting_full = $size*$size/$sec_reiting/1000;
                 $res_reiting_full = mysqli_query($db, "SELECT * FROM dk_reiting_plus WHERE id_user='$selIdUser' AND id_cross='$cross' AND type = '0'");
                 if(mysqli_num_rows($res_reiting_full) > 0){
                     $sel_reiting_full = mysqli_fetch_assoc($res_reiting_full);
