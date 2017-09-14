@@ -134,48 +134,9 @@
                                 <label><input type="checkbox" name="show_timer" id="show_timer" onchange="showTimer();"/> Скрыть/показать таймер</label><br>
                             </form>
                         </div>
-                        <div class="cross_comments">
-                            <h3>Комментарии:</h3>
-                            <a href="" class="add_comment">Добавить комментарий</a>
-                            <div class="comment_list">
-                                <div class="comment_item">
-                                    <div class="comment_avatar">
-                                        <a href="">
-                                            <img src="" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="comment_body">
-                                        <div class="comment_header">
-                                            <div class="comment_header_body">
-                                                <a href="">Kacevnik</a>
-                                                <div class="add_date_comment">20. 10. 2014</div>
-                                            </div>
-                                        </div>
-                                        <div class="comment_text">
-                                            По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="comment_item">
-                                    <div class="comment_avatar">
-                                        <a href="">
-                                            <img src="" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="comment_body">
-                                        <div class="comment_header">
-                                            <a href="">Kacevnik</a>
-                                            <div class="add_date_comment">20. 10. 2014</div>
-                                        </div>
-                                        <div class="comment_text">
-                                            По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- c -->
+                        <!-- START COMMENTS -->
+<?php include("comments.view.php"); ?>
+                        <!-- END COMMENTS -->
                         <div id="array_history"><?=$history?></div>
 
                     </div>
