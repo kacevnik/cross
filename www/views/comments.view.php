@@ -46,10 +46,12 @@
                                 <h4>Добавить комментарий</h4>
                                 <form action="post">
                                 <?php if(!$idUser > 0){ ?>
-                                    <input type="text" name="email_comment" placeholder="Укажите E-mail">
+                                    <input type="text" name="email_comment" placeholder="Укажите E-mail" style="margin: 0 0 15px 0;">
+                                    <input type="text" name="name" placeholder="Укажите Ваше имя">
                                 <?php } ?>
                                     <input type="hidden" name="id_user" value="<?php echo $idUser; ?>">
                                     <input type="hidden" name="id_cross" value="<?php echo $cross; ?>">
+                                    <input type="hidden" name="hash_cross" value="<?php echo $crossData['img']; ?>">
                                     <textarea name="text_comment" cols="30" rows="10" placeholder="Введите комментарий"></textarea>
                                     <input type="submit" name="send_comment" class="registr_in_sub">
                                 </form>

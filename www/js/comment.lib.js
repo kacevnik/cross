@@ -19,13 +19,15 @@ $('input[name="send_comment"]').click(function() {
 	var idCross = $('input[name="id_cross"]').val();
 	var text    = $('textarea[name="text_comment"]').val();
 	var email   = $('input[name="email_comment"]').val();
+	var hash    = $('input[name="hash_cross"]').val();
+	var name    = $('input[name="name"]').val();
 	$('#spin_comment').show();
 	$('input[name="send_comment"]').hide();
 	$('#comment_result_message').html('');
 	$.ajax({
 		url: '../inc/add_comment.php',
 		type: 'POST',
-		data: {user: idUser, cross: idCross, text: text, email: email},
+		data: {user: idUser, cross: idCross, text: text, email: email, name: name, hash: hash},
 		success: function(result_com){
 		    var res = $.parseJSON(result_com);
 		    if(res.error == 1){

@@ -16,11 +16,14 @@
 	$mail->Port = 465;
 
 	$adminEmail = 'admin@samurai-ka.ru';
+	$metka = md5(microtime());
 
 	if($_POST['user']){$user   =  (int)trim($_POST['user']);}
 	if($_POST['cross']){$cross =  (int)trim($_POST['cross']);}
-	if($_POST['text']){$text   =  htmlspecialchars(trim($_POST['text']));}
+	if($_POST['text']){$text   =  htmlspecialchars(nl2br(trim($_POST['text'])));}
 	if($_POST['email']){$email =  htmlspecialchars(trim($_POST['email']));}
+	if($_POST['name']){$name   =  htmlspecialchars(trim($_POST['name']));}
+	if($_POST['hash']){$hash   =  htmlspecialchars(trim($_POST['hash']));}
 
 	$data = array();
 
@@ -57,9 +60,9 @@
 		return 0;
 	}
 
-	function addNewComment($id_user=0, $cross, $text, $email, $name, $type=0){
+	function addNewComment($id_user=0, $cross, $text, $email, $name, $type=0, $metka){
 		global $db;
-		$sql = "INSERT INTO dk_comments (date_add, id_user, id_cross, email_user, name_user, text_comment, type) VALUES ('".TIMES."','$id_user','$cross', '$email', '$name', '$text', '$type')";
+		$sql = "INSERT INTO dk_comments (date_add, id_user, id_cross, email_user, name_user, text_comment, type, metka) VALUES ('".TIMES."','$id_user','$cross', '$email', '$name', '$text', '$type', '$metka')";
 		if(mysqli_query($db, $sql)){
 			return true;
 		}
@@ -90,13 +93,14 @@
 			$name           = $user_data['login_view'];
 			$email          = $user_data['email'];
 			$text_mail      = '';
-			if(addNewComment($id_user, $cross, $text, $email, $name, 1)){
+			if(addNewComment($id_user, $cross, $text, $email, $name, 1, $metka)){
 				$text_mail .= '<p>Комментарий пользователя: <a href="http://samurai-ka.ru/user.php?id='.$id_user.'" target="_blank">'.$name.'</a><br>';
-				$text_mail .= '<p>Комментарий к кроссворду: <a href="http://samurai-ka.ru/cross.php?cross'.$cross.'" target="_blank">'.$name_cross_res.'</a><br>';
+				$text_mail .= 'Комментарий к кроссворду: <a href="http://samurai-ka.ru/cross.php?cross'.$cross.'" target="_blank">'.$name_cross_res.'</a><br>';
 				$text_mail .= 'E-mail пользователя: '.$email.'<br>';
 				$text_mail .= 'Дата добавления: '.getMainDate(time()).'<br>';
-				$text_mail .= 'Комментарий:<br>'.$text.'</p>';
-				//$text .= '<p>Комментарий пользователя: <a>'..'</a><br></p>';
+				$text_mail .= 'Комментарий:<br><span style="background: #ebebeb; padding: 10px; margin: 10px 0; display: inline-block; border-radius: 5px">'.$text.'</span></p>';
+				$text_mail .= '<p><a style="color: #ff5759;" href="http://samurai-ka.ru/del_comment.php?m='.$metka.'">Удалить Комментарий</a><br>';
+				$text_mail .= '<a style="color: #ff5759;" href="http://samurai-ka.ru/del_comment.php?m='.$metka.'&ban=1">Удалить Комментарий с баном</a></p>';
 
 				$mail->setFrom('admin@samurai-ka.ru', 'Samurai-ka.ru');
 				$mail->addAddress($adminEmail, $adminEmail);          // Add a recipient            
