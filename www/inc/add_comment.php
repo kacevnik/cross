@@ -69,9 +69,27 @@
 		return false;
 	}
 
+	function checkCrossComment($cross, $hash){
+		global $db;
+		$sql = "SELECT id FROM dk_cross WHERE id='$cross' AND img='$hash'";
+		$res = mysqli_query($db, $sql);
+		if(mysqli_num_rows($res) > 0){
+			return true;
+		}
+		return false;
+	}
+
 	if(!$text){
 		$data['error']   = 1;
 		$data['message'] = '<div class="add_comment_error">Укажите текст комментария</div>';
+		$data = json_encode($data);
+		echo $data;
+		exit();
+	}
+
+	if(!checkCrossComment($cross, $hash)){
+		$data['error']   = 1;
+		$data['message'] = '<div class="add_comment_error">Ошибка данных кроссворда</div>';
 		$data = json_encode($data);
 		echo $data;
 		exit();
