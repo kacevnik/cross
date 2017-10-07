@@ -1,8 +1,22 @@
 <?php
 
 	include("inc/core.php");
+	require 'PHPMailer/PHPMailerAutoload.php';
 
-	if($_GET['m']) {$hash = $_GET['m'];}
+	$mail = new PHPMailer;
+    $mail->CharSet = 'UTF-8';
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.yandex.ru';                       // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'admin@samurai-ka.ru';              // SMTP username
+	$mail->Password = 'A9564665a';                        // SMTP password
+	$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 465;
+
+
+	if($_GET['m'])    {$hash = $_GET['m'];}
 	if($_GET['ban'])  {$ban = $_GET['ban'];}
 	//Проверка через регулярные выражения входной переменной
 	if (preg_match("/^[a-z0-9]{32,32}$/i",$hash)){$hash = $hash;}else{unset($hash);}
@@ -14,7 +28,7 @@
 
 	function getCommentData($hash){
 		global $db;
-		$sql = "SELECT id_user FROM dk_comments WHERE metka='$hash'";
+		$sql = "SELECT name_user,email_user,id_user FROM dk_comments WHERE metka='$hash'";
 		$res = mysqli_query($db, $sql);
 		if(mysqli_num_rows($res) > 0){
 			$myr = mysqli_fetch_assoc($res);
@@ -45,11 +59,31 @@
 		exit();
 	}else{
 		$dataComment = getCommentData($hash);
-		$user = $dataComment['id_user'];
+		$user      = $dataComment['id_user'];
+		$userEmail = $dataComment['email_user'];
+		$name_user = $dataComment['name_user'];
 		if(!delComment($user, $hash, $ban)){
 			echo "<h2>Ошибка: Комментарий не удален</h2>";
 		}else{
-			echo "<h2>Комментарий удален</h2>";
+			if($ban == 1){
+				$text_mail  = '<h4>Здравствуйте, '. $name_user .'</h4>';
+				$text_mail .= '<p>В связи с нарушением правил использования сервиса обмена сообщениями и комментирования на сайте Samurai-ka.ru, Ваш аккаунт будет заблокирован сроком на 30 дней. В связи с чем вы не сможете пользоваться вышеречисленными сервисами. Остальные функции остаются доступными.</p>';
+				$text_mail .= '<p>Данное сообщение сгенерированно автоматически. Отвечать на него не надо!</p>';
+
+				$mail->setFrom('admin@samurai-ka.ru', 'Samurai-ka.ru');
+				$mail->addAddress($userEmail, $userEmail);          // Add a recipient            
+
+				$mail->isHTML(true);                                // Set email format to HTML
+
+				$mail->Subject = 'Сообщение с сайта Samurai-ka.ru';
+				$mail->Body    = $text_mail;
+
+				if(!$mail->send()) {
+				    //echo 'Mailer Error: ' . $mail->ErrorInfo;
+				} else {
+					echo "<h2>Комментарий удален</h2>";
+				}
+			}
 		}
 	}
 
