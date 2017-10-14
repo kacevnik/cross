@@ -27,9 +27,9 @@
 
 	$data = array();
 
-	function getInfoUserComment($id_user){
+	function getInfoUserComment($email){
 		global $db;
-		$sql = "SELECT text_option FROM dk_options WHERE name='ban_comment_".$id_user."'";
+		$sql = "SELECT text_option FROM dk_options WHERE name='ban_comment_".$email."'";
 		$res = mysqli_query($db, $sql);
 		if(mysqli_num_rows($res) > 0){
 			$myr = mysqli_fetch_array($res);
@@ -104,12 +104,12 @@
 			echo $data;
 			exit();
 		}
-		if(getInfoUserComment($id_user) < time()) {
-			$user_data      = getdataUserForComment($id_user);
+		$user_data      = getdataUserForComment($id_user);
+		$name           = $user_data['login_view'];
+		$email          = $user_data['email'];
+		if(getInfoUserComment($email) < time()) {
 			$name_cross     = getCrossName($cross);
 			$name_cross_res = $name_cross['name'];
-			$name           = $user_data['login_view'];
-			$email          = $user_data['email'];
 			$text_mail      = '';
 			if(addNewComment($id_user, $cross, $text, $email, $name, 1, $metka)){
 				$text_mail .= '<p>Комментарий пользователя: <a href="http://samurai-ka.ru/user.php?id='.$id_user.'" target="_blank">'.$name.'</a><br>';
@@ -137,7 +137,7 @@
 			}
 		}else{
 			$data['error']   = 1;
-			$data['message'] = '<div class="add_comment_error">За нарушение правил<br>Вам запрещено пользоваться<br>комментариями до '. getMainDate(getInfoUserComment($id_user)) .'</div>';
+			$data['message'] = '<div class="add_comment_error">За нарушение правил<br>Вам запрещено пользоваться<br>комментариями до '. getMainDate(getInfoUserComment($email)) .'</div>';
 		}
 
 	}else{
@@ -147,6 +147,41 @@
 			$data = json_encode($data);
 			echo $data;
 			exit();
+		}
+		if(!$name){
+			$data['error']   = 1;
+			$data['message'] = '<div class="add_comment_error">Укажите Ваше имя</div>';
+			$data = json_encode($data);
+			echo $data;
+			exit();
+		}
+		if(getInfoUserComment($email) < time()) {
+			if(addNewComment(0, $cross, $text, $email, $name, 0, $metka)){
+				$text_mail .= '<p>Добрый день.<br>';
+				$text_mail .= 'Вы оставили комментарий на сайте японских кроссвордов <a href="http://samurai-ka.ru" target="_blank">Samurai-ka.ru</a><br>';
+				$text_mail .= 'Для того, что-бы он стал отображаться, следует подтвердить, что Вы не робот, перейдя по ссылке ниже.</p>';
+				$text_mail .= '<p><a href="http://samurai-ka.ru/check_comment.php?m='.$metka.'" target="_blank">Подтвердить комментарий</a></p>';
+				$text_mail .= '<p>Данное сообщение сгенерированно автоматически. Отвечать на него не нужно. Спасибо.</p>';
+
+				$mail->setFrom('admin@samurai-ka.ru', 'Samurai-ka.ru');
+				$mail->addAddress($email, $email);          // Add a recipient            
+
+				$mail->isHTML(true);                                  // Set email format to HTML
+
+				$mail->Subject = 'Новый комментарий на сайте';
+				$mail->Body    = $text_mail;
+
+				if(!$mail->send()) {
+				    //echo 'Mailer Error: ' . $mail->ErrorInfo;
+				} else {
+				    $data['error']   = 2;
+					$data['message'] = 'Ваш комментарий добавлен.<br>Перейдите на указанную почту:<br><i style="font-size: 16px;
+    color: #188400;">'.$email.'</i><br>И подтвердите комментарий';
+				}
+			}
+		}else{
+			$data['error']   = 1;
+			$data['message'] = '<div class="add_comment_error">За нарушение правил<br>Вам запрещено пользоваться<br>комментариями до '. getMainDate(getInfoUserComment($email)) .'</div>';
 		}
 	}
 

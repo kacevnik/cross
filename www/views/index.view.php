@@ -1,4 +1,8 @@
                     <div class="content">
+<?php
+    echo $_SESSION['error'];
+    unset($_SESSION['error']); 
+?>
                         <h1>Японские кроссворды</h1>
                         <div class="list_class_item">
                             <table>

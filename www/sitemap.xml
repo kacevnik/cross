@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
                     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                    <!-- Last update of sitemap 2017-10-01 04:21:50+06:00 -->
+                    <!-- Last update of sitemap 2017-10-08 04:23:24+06:00 -->
 <url><loc>http://samurai-ka.ru</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/add.php</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 <url><loc>http://samurai-ka.ru/ans.php</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
@@ -142,4 +142,5 @@
 <url><loc>http://samurai-ka.ru/cross.php?cross=113</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=114</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 <url><loc>http://samurai-ka.ru/cross.php?cross=115</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<url><loc>http://samurai-ka.ru/cross.php?cross=116</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
 </urlset>

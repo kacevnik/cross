@@ -10,14 +10,15 @@
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'smtp.yandex.ru';                       // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = 'admin@samurai-ka.ru';              // SMTP username
-	$mail->Password = 'A9564665a';                        // SMTP password
+	$mail->Username = ADMIN_EMAIL;                        // SMTP username
+	$mail->Password = ADMIN_EMAIL_PASS;                   // SMTP password
 	$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 465;
 
 
 	if($_GET['m'])    {$hash = $_GET['m'];}
 	if($_GET['ban'])  {$ban = $_GET['ban'];}
+
 	//Проверка через регулярные выражения входной переменной
 	if (preg_match("/^[a-z0-9]{32,32}$/i",$hash)){$hash = $hash;}else{unset($hash);}
 
@@ -37,10 +38,10 @@
 		return 0;
 	}
 
-	function delComment($user, $hash, $ban = 0){
+	function delComment($email, $hash, $ban = 0){
 		global $db;
 		$ban_data = time() + 2592000;
-		$sql   = "INSERT INTO dk_options (name, text_option, date_option) VALUES ('ban_comment_".$user."','$ban_data', '".TIMES."')";
+		$sql   = "INSERT INTO dk_options (name, text_option, date_option) VALUES ('ban_comment_".$email."','$ban_data', '".TIMES."')";
 		$sql_2 = "DELETE FROM dk_comments WHERE metka='$hash'";
 
 		if(!mysqli_query($db, $sql_2)){
@@ -62,7 +63,7 @@
 		$user      = $dataComment['id_user'];
 		$userEmail = $dataComment['email_user'];
 		$name_user = $dataComment['name_user'];
-		if(!delComment($user, $hash, $ban)){
+		if(!delComment($userEmail, $hash, $ban)){
 			echo "<h2>Ошибка: Комментарий не удален</h2>";
 		}else{
 			if($ban == 1){
@@ -70,7 +71,7 @@
 				$text_mail .= '<p>В связи с нарушением правил использования сервиса обмена сообщениями и комментирования на сайте Samurai-ka.ru, Ваш аккаунт будет заблокирован сроком на 30 дней. В связи с чем вы не сможете пользоваться вышеречисленными сервисами. Остальные функции остаются доступными.</p>';
 				$text_mail .= '<p>Данное сообщение сгенерированно автоматически. Отвечать на него не надо!</p>';
 
-				$mail->setFrom('admin@samurai-ka.ru', 'Samurai-ka.ru');
+				$mail->setFrom(ADMIN_EMAIL, TITLE_SITE);
 				$mail->addAddress($userEmail, $userEmail);          // Add a recipient            
 
 				$mail->isHTML(true);                                // Set email format to HTML

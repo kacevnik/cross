@@ -12,6 +12,7 @@
     define(NAME_SITE,"Японские кроссворды");
     define(TITLE_SITE,"Samurai-ka.ru");
     define(ADMIN_EMAIL,"admin@samurai-ka.ru");
+    define(ADMIN_EMAIL_PASS,"A9564665a");
     define(DOMEN,"http://samurai-ka.ru");
     define(IMG_CROSS, 'slim_cross.gif');
     define(TIMES,time());
