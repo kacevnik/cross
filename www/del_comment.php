@@ -82,9 +82,10 @@
 				if(!$mail->send()) {
 				    //echo 'Mailer Error: ' . $mail->ErrorInfo;
 				} else {
-					echo "<h2>Комментарий удален</h2>";
+
 				}
 			}
+			echo "<h2>Комментарий удален</h2>";
 		}
 	}
 

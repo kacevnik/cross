@@ -88,7 +88,7 @@
 			$name_cross_res = $name_cross['name'];
 			if(upComment($hash)){
 				$text_mail .= '<p>Комментарий пользователя: '.$name_user.' (Гость)<br>';
-				$text_mail .= 'Комментарий к кроссворду: <a href="http://samurai-ka.ru/cross.php?cross'.$id_cross.'" target="_blank">'.$name_cross_res.'</a><br>';
+				$text_mail .= 'Комментарий к кроссворду: <a href="http://samurai-ka.ru/cross.php?cross='.$id_cross.'" target="_blank">'.$name_cross_res.'</a><br>';
 				$text_mail .= 'E-mail пользователя: '.$userEmail.'<br>';
 				$text_mail .= 'Дата добавления: '.getMainDate($date_add).'<br>';
 				$text_mail .= 'Комментарий:<br><span style="background: #ebebeb; padding: 10px; margin: 10px 0; display: inline-block; border-radius: 5px">'.$text.'</span></p>';

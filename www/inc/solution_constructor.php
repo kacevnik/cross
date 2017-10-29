@@ -70,7 +70,7 @@
             $date_clear_history = TIMES + 60 * 60 * 24 * 365; //1 Год
             if($sec > $sekTime && $sekTime != 0){$sec = $sekTime;}
                 $up = mysqli_query($db, "UPDATE solution SET sol_time='$sec',type='1',history='$string',sec_history='$sec',clear='1',date_clear_history='$date_clear_history' WHERE id='$idSolution'");
-                $selMidleTime = mysqli_query($db, "SELECT AVG(sol_time) AS OrderTotal FROM solution WHERE id_cross='$cross'");
+                $selMidleTime = mysqli_query($db, "SELECT AVG(sol_time) AS OrderTotal FROM solution WHERE id_cross='$cross' AND type='1'");
                 $a = mysqli_fetch_assoc($selMidleTime);
                 $a = floor($a['OrderTotal']);
                 if($a == 0){$a = $sec;}

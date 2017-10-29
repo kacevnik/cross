@@ -1,44 +1,49 @@
-                        <div class="cross_comments">
+<?php
+    function getDataForCommentList($cross){
+        global $db;
+        $arr = array();
+        $sql = "SELECT id_user,name_user,date_add,text_comment,metka FROM dk_comments WHERE id_cross='$cross' AND type='1' ORDER BY date_add DESC";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res) > 0){
+            $myr = mysqli_fetch_assoc($res);
+            do{
+                $arr[] = $myr;
+            }while($myr = mysqli_fetch_assoc($res));
+            return $arr;
+        }
+        return false;
+    }
+
+?>
+
+
+                       <div class="cross_comments">
                             <h3>Комментарии:</h3>
                             <a href="" class="add_comment">Добавить комментарий</a>
-                            <!--
+<?php if(getDataForCommentList($cross)){ ?>                            
                             <div class="comment_list">
+<?php $arrComment = getDataForCommentList($cross); foreach ($arrComment as $itemComment) { ?>
                                 <div class="comment_item">
                                     <div class="comment_avatar">
-                                        <a href="">
+                                        <a href="http://samurai-ka.ru/user.php?id=<?php echo $itemComment['id_user']; ?>">
                                             <img src="" alt="">
                                         </a>
                                     </div>
                                     <div class="comment_body">
                                         <div class="comment_header">
                                             <div class="comment_header_body">
-                                                <a href="">Kacevnik</a>
-                                                <div class="add_date_comment">20. 10. 2014</div>
+                                                <a href="http://samurai-ka.ru/user.php?id=<?php echo $itemComment['id_user']; ?>"><?php echo $itemComment['name_user']; ?></a>
+                                                <div class="add_date_comment"><?php echo date("d. m. Y", $itemComment['date_add']); ?></div>
                                             </div>
                                         </div>
                                         <div class="comment_text">
-                                            По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
+                                            <?php echo $itemComment['text_comment']; ?>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="comment_item">
-                                    <div class="comment_avatar">
-                                        <a href="">
-                                            <img src="" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="comment_body">
-                                        <div class="comment_header">
-                                            <a href="">Kacevnik</a>
-                                            <div class="add_date_comment">20. 10. 2014</div>
-                                        </div>
-                                        <div class="comment_text">
-                                            По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
+<?php } ?>
+                            </div>
+<?php } ?>
                         </div>
                         <div id="comment_back_list">
                             <div id="add_comment_body">
