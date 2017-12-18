@@ -26,6 +26,36 @@
     }
 
 /**
+ * Функция для получения дат различных праздников. Формат вводимых данных D-M
+ * Входные аргументы STRING, второй параметр необязательно
+ **/
+
+    function setHollyday($string_data_1, $string_data_2 = ''){
+        if( $string_data_2 == '' ){
+            if( $string_data_1 != date("j-n") ){
+                return false;
+            }
+        }else{
+            $date = $string_data_1;
+            $arr_date = array($date);
+            $day = explode('-', $string_data_1);
+            $d = $day[0];
+            $m = $day[1];
+            $y = date("Y");
+            $mk =  mktime(0, 0, 0, $m, $d, $y);
+            do{
+                $mk = $mk + 86400;
+                $arr_date[] = date("j-n", $mk);
+            }
+            while ( $string_data_2 != date("j-n", $mk));
+            if ( !in_array(date("j-n"), $arr_date) ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+/**
  * Функция очистки истории старый историй решения
  **/
  
@@ -38,9 +68,10 @@
             $myr = mysqli_fetch_assoc($res);
             $id = $myr['id'];
             $up = mysqli_query($db, "UPDATE solution SET history='',date_clear_history='0',clear='0',sec_history='0' WHERE id='$id'");
-            return true;                
+            return true;
         }  
     }
+
 /**
  * Функция получения из БД основных настроек сайта.
  **/
@@ -51,7 +82,7 @@
         $sql = "SELECT * FROM dk_set WHERE id='1' LIMIT 1";
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res)){
-            $myr = mysqli_fetch_assoc($res);                
+            $myr = mysqli_fetch_assoc($res);
         }
         else{return false;}
         return $myr;   

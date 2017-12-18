@@ -21,4 +21,6 @@
                     </ul>
             </div>
         </div>
+        <?php if(setHollyday('15-12', '15-1')){ ?>
         <div class="branch_hny"></div>
+        <?php } ?>
