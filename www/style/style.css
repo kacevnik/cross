@@ -1382,6 +1382,15 @@ body {
     font-size: 64px;
 }
 
+/******************* Стили для новогодней темы ***************************/
 
+.branch_hny{
+    background: url(../images/hny_cross.png)center center;
+    height: 90px;
+    margin-top: -37px;
+}
 
+.hny {
+    background: url(../images/samurai-hny.png) no-repeat bottom right;
+}
 

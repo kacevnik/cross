@@ -1,7 +1,7 @@
     <div class="main">
         <div class="center">
             <div class="main-bg">
-                <div class="samurai_bg">
+                <div class="samurai_bg hny">
                     <div class="left">
                         <div class="left_modul">
                             <h4>Японские кроссворды</h4>
