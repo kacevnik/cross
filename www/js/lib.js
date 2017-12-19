@@ -128,6 +128,7 @@
         $('#error_bg').css({'display': 'none'});
         $('error_bg span').css('display', 'block');
         $('#error_message').css({'display': 'none'});
+        $('body').removeAttr('style');
         SetObj.scrolltop_flag = 1;
     }
     

@@ -347,10 +347,10 @@
             nabor_rewers(SetObj.history[SetObj.history.length - 1]); 
         }
         if(SetObj.history.length == 1){
-            document.querySelector('#rew').innerText = '';   
+            document.querySelector('#rew').innerText = '';
         }
         else{
-            document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';     
+            document.querySelector('#rew').innerText = ' (' + (SetObj.history.length - 1) + ')';
         }          
     }
 //---------------------------------------------------------------------------------------------------------        
@@ -358,7 +358,7 @@
         var a = document.getElementById('num_ligth');
         if(a.checked){
             SetObj.numlight = 1;
-            setCookie('numligth', '1', {expires: 31536000});    
+            setCookie('numligth', '1', {expires: 31536000});
         }else{
             SetObj.numlight = 0;
             setCookie('numligth', '0', {expires: 31536000});
@@ -385,7 +385,7 @@
         if(a.checked){
             SetObj.showframe = '1';
             b.classList.add('frame');
-            setCookie('frame', '1', {expires: 31536000});   
+            setCookie('frame', '1', {expires: 31536000});
         }else{
             SetObj.showframe = '0';
             b.classList.remove(b.className);
@@ -397,7 +397,7 @@
         var a = document.getElementById('scroll_show_number');
         if(a.checked){
             SetObj.shownumber = '1';
-            setCookie('number', '1', {expires: 31536000});   
+            setCookie('number', '1', {expires: 31536000});
         }else{
             SetObj.shownumber = '0';
             setCookie('number', '0', {expires: 31536000})
@@ -408,7 +408,7 @@
         var a = document.getElementById('last_num');
         if(a.checked){
             SetObj.lastnum = 1;
-            setCookie('lastnum', '1', {expires: 31536000});    
+            setCookie('lastnum', '1', {expires: 31536000});
         }else{
             SetObj.lastnum = 0;
             setCookie('lastnum', '0', {expires: 31536000});
@@ -424,26 +424,26 @@
                 if(b[i].hasAttribute('title'))break; 
                 c = b[i].id.slice(3).split('_');
                 var x = parseInt(c[0]) + 1; var y = parseInt(c[1]) + 1;
-                b[i].setAttribute('title', '(' + x + ' - ' + y + ')');   
+                b[i].setAttribute('title', '(' + x + ' - ' + y + ')');
             }
             SetObj.showxy = 1;
-            setCookie('showxy', '1', {expires: 31536000});              
+            setCookie('showxy', '1', {expires: 31536000});
         }else{
             for(var i = 0; i < b.length; i++){
                 if(b[i].hasAttribute('title')){
-                    b[i].removeAttribute('title');    
-                }  
+                    b[i].removeAttribute('title');
+                }
             }
             SetObj.showxy = 0;
             setCookie('showxy', '0', {expires: 31536000}); 
-        }        
+        }
     }
 //---------------------------------------------------------------------------------------------------------     
     function scrollTopPanell(){
         var a = document.getElementById('scroll_top');
         if(a.checked){
             SetObj.scrolltop = 1;
-            setCookie('scrolltop', '1', {expires: 31536000});    
+            setCookie('scrolltop', '1', {expires: 31536000});
         }else{
             SetObj.scrolltop = 0;
             setCookie('scrolltop', '0', {expires: 31536000});
@@ -543,6 +543,7 @@
     function solution(){
         $('#error_bg').css({'display': 'block'});
         $('#scroll_tr').attr('style', '');
+        $('body').css('overflow-y', 'hidden');
         
         SetObj.scrolltop_flag = 0;
         
@@ -600,6 +601,7 @@
     }
 //---------------------------------------------------------------------------------------------------------     
     function answer(){
+        $('body').css('overflow-y', 'hidden');
         $('#error_bg').css({'display': 'block'});
         $('#scroll_tr').attr('style', '');
         SetObj.scrolltop_flag = 0;
@@ -611,7 +613,7 @@
                 cma += '1'; 
             }else{
                 cma += '0';
-            }   
+            }
         }
         
         var cross = parseInt(location.href.split('?cross=')[1]);
@@ -649,10 +651,11 @@
 
             $('#error_message_text').html(result.error_message);
         });
-    } 
+    }
 //---------------------------------------------------------------------------------------------------------     
     function save(){
         $('#error_bg').css({'display': 'block'});
+        $('body').css('overflow-y', 'hidden');
         $('#scroll_tr').attr('style', '');
         SetObj.scrolltop_flag = 0;
         var cma = '';        
@@ -663,7 +666,7 @@
                 last += '1'; 
             }else{
                 last += '0';
-            }   
+            }
         }
         
         for(var i = 0; i < SetObj.history.length; i++){
@@ -678,7 +681,7 @@
                 if(arr[j] != arr[j + 1]){
                     if(a > 0){cma+= a + '-0+'; a = 0;}
                     if(b > 0){cma+= b + '-1+'; b = 0;}
-                    if(c > 0){cma+= c + '-2+'; c = 0;}   
+                    if(c > 0){cma+= c + '-2+'; c = 0;}
                 }
             }
             cma = cma.slice(0, -1);
@@ -708,12 +711,13 @@
 
             $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
 
-            $('#error_message_text').html(result.error_message);            
+            $('#error_message_text').html(result.error_message);
         });
     }
 //---------------------------------------------------------------------------------------------------------     
     function clearCross(){
         var cross = parseInt(location.href.split('?cross=')[1]);
+        $('body').css('overflow-y', 'hidden');
         $('#error_bg').css({'display': 'block'});
         $('#scroll_tr').attr('style', '');
         SetObj.scrolltop_flag = 0;
@@ -737,7 +741,7 @@
                 cma += '0';
             } 
             if(nabor[i].hasAttribute('style')){
-                nabor[i].removeAttribute('style');    
+                nabor[i].removeAttribute('style');
             }
         }
         
@@ -748,6 +752,7 @@
                 $('#scroll_tr').attr('style', '');
                 SetObj.scrolltop_flag = 0;
                 $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
+                $('body').css('overflow-y', 'hidden');
                 var e_h = $('#error_message').innerHeight();
                 var e_w = $('#error_message').width();
                 $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
