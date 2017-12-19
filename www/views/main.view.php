@@ -54,7 +54,7 @@
                 <tbody>
                     <tr>         
                         <td id="scroll_td">&nbsp;</td>
-                        <td  id="scroll_tr">
+                        <td  id="scroll_tr" style="position: relative;">
                             <table>
                                 <tbody>
                                 <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
@@ -66,11 +66,11 @@
                                         <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
                                       </td>
                                 <?php
-                                         $count_td_top++;              
+                                         $count_td_top++;
                                     }
                                     echo "</tr>";
                                     $count_td_top = 0;
-                                    $count_tr_top++;  
+                                    $count_tr_top++;
                                 }
                                 ?>
                                 </tbody>
@@ -122,6 +122,18 @@
                     
                 </tbody>
             </table>
+                    <div id="small_cross_view">
+                            <table>
+                                <?php $count_prev_history = 0; for($count_i = 0; $count_i < $crossData['cross_h']; $count_i++){ ?>
+                                <tr>
+                                    <?php for($count_j = 0; $count_j < $crossData['cross_w']; $count_j++){ ?>
+                                        <td<?php if($arr_history[$count_prev_history] == 1){echo ' style="background-color: black;"';} ?> id="<?php echo 'prev_cma' . $count_i . '_' . $count_j; ?>"></td>
+                                    <?php $count_prev_history++; } ?>
+                                </tr>
+                                <?php }?>
+                            </table>
+                        </div>
+                        <div style="clear: both;"></div>
                         <div class="seting">
                             <h3>Настройки для удобного решения.</h3>
                             <form>

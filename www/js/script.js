@@ -1,11 +1,11 @@
   
     var SetObj = {
-        backgroundColor: '',   
-        backgroundImages: '',   
+        backgroundColor: '',
+        backgroundImages: '',
         backgroundStatus: 0,
         countNumber: [],
         shownumber: document.getElementById('info_count_item').innerHTML,
-        nabor:document.querySelectorAll('.cma'),          
+        nabor:document.querySelectorAll('.cma'),
         history: getHistoruArray(),
         size: 'cross_main',
         numlight: document.cookie.split('numligth=')[1].charAt(0),
@@ -32,6 +32,29 @@
     function getEventType(e) {
 	   if (!e) e = window.event;
     }
+
+/*********************** Функция отрисовки превью решения слева от основного меню ************************/
+
+    $('.cma').mouseup(function(event) {
+        showPreview();
+    });
+
+    function showPreview(){
+        var Prev = {}
+        var name_id = '';
+        $('.cma').each(function(index, el) {
+            if($(this).css('background-color') == 'rgb(0, 0, 0)'){
+                name_id = $(this).attr('id');
+                Prev[name_id] = 1;
+            }
+        });
+
+        $('#small_cross_view table td').css('background-color', 'white');
+
+        $.each(Prev, function(index, el) {
+            $('#prev_' + index).css('background-color', 'black');
+        });
+    }
 //---------------------------------------------------------------------------------------------------------  
     function getHistoruArray(){
         var array = [];
@@ -55,7 +78,7 @@
         }else{
             array = [nabor()];
         }
-        return array;   
+        return array;
     } 
 //---------------------------------------------------------------------------------------------------------    
     function crossPic(a, tr, td){
@@ -82,7 +105,7 @@
                 ed.style.backgroundColor = 'white';
                 ed.style.backgroundImage = 'url("images/slim_cross.gif")';
                 SetObj.backgroundImages = 'url("images/slim_cross.gif")'; 
-                SetObj.backgroundStatus = 2;    
+                SetObj.backgroundStatus = 2;
             }
             else{
                 ed.style.backgroundImage = '';
@@ -92,12 +115,12 @@
         }
         if(SetObj.shownumber == 1){
             if(SetObj.backgroundStatus == 1){
-                SetObj.countNumber.push(id);  
+                SetObj.countNumber.push(id);
             }
         }
     }
 //---------------------------------------------------------------------------------------------------------     
-    function hoverCrossPic(a,tr, td){
+    function hoverCrossPic(a, tr, td){
         fixWhich(a);
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
@@ -110,13 +133,12 @@
                     s.classList.add('kletka_light');
                 }
             }
-            
-            
+
             for(var k = 0; k < cnl[tr].length; k++){
                 if(cnl[tr][k][0] != 'n'){
                     var lId = 'cnl'+tr+'_'+k; 
                     var l = document.querySelector('#'+lId);
-                    l.classList.add('kletka_light');   
+                    l.classList.add('kletka_light');
                 }
             }
             ed.onmouseout = function(e){
@@ -136,9 +158,9 @@
                         u.classList.add('kletka');
                     }
                 }
-            }    
+            }
         }
-        
+
         document.getElementById('work_file').onclick = function(){
            if(SetObj.timer){return;}else{
            idTimer = setInterval(function(){
@@ -146,17 +168,17 @@
                 seeTimer(SetObj.countTimer);
             }, 1000); 
             SetObj.timer = 1;
-           } 
+           }
         }
-             
+
         if(navigator.userAgent.search(/Firefox/i) >= 0){
             if(a.buttons == 1){
                 ed.style.backgroundColor = SetObj.backgroundColor;
-                ed.style.backgroundImage = '';   
+                ed.style.backgroundImage = '';
             }
             else if(a.buttons == 2){
                 ed.style.backgroundColor = 'white';
-                ed.style.backgroundImage = SetObj.backgroundImages;   
+                ed.style.backgroundImage = SetObj.backgroundImages;
             }
         }else{
             if(a.which == 1){
@@ -165,7 +187,7 @@
             }
             else if(a.which == 3){
                 ed.style.backgroundColor = 'white';
-                ed.style.backgroundImage = SetObj.backgroundImages;   
+                ed.style.backgroundImage = SetObj.backgroundImages;
             }
         }
         if(SetObj.shownumber == 1){
@@ -225,11 +247,13 @@
                     if(numberTD[1] == td){
                         if(nabor[j].style.backgroundColor != 'black' && nabor[j].style.backgroundImage != 'url("images/slim_cross.gif")')
                             nabor[j].style.backgroundImage = 'url("images/slim_cross.gif")';
-                    }                    
+                        }
+                    }
                 }
             }
-        }   
-    }               
+        }
+    
+
 
 //---------------------------------------------------------------------------------------------------------     
     function crossLineGorizontal(tr, td){
@@ -426,21 +450,22 @@
             var f = document.getElementById('scroll_tr'); //шапка
             var w = document.getElementById('scroll_td1');
             //стили по умолчанию
-            f.style.position = '';
+            f.style.position = 'relative';
             f.style.top = '';
             f.style.left = '';
-            w.style.display = 'table-cell';
+
+            $('#small_cross_view').css({'position': 'relative' , 'top': '', 'margin-top': '25px'});
         }
     }
       
     var margin_f_top = document.getElementById('scroll_tr').getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop//отступ от верхнего края до шапки кроссвода
     var margin_f_ecv = document.getElementById('scroll_ecv').getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop//отступ от верхнего края нижней строчки
     window.onscroll = function() {
+        var margin_f_left = document.getElementById('scroll_tr').getBoundingClientRect().left//отступ от левого края до фиксированного блока
+        var f = document.getElementById('scroll_tr'); //шапка 
+        var k = document.getElementById('scroll_td');
         if(SetObj.scrolltop == 1){
             if(SetObj.scrolltop_flag == 1){
-                var margin_f_left = document.getElementById('scroll_tr').getBoundingClientRect().left//отступ от левого края до фиксированного блока
-                var f = document.getElementById('scroll_tr'); //шапка 
-                var k = document.getElementById('scroll_td'); 
                 var scrollHeightf = Math.max(f.scrollHeight, f.offsetHeight, f.clientHeight);//высота шапки         
                 //стили при начале прокрутки
                 f.style.position = 'fixed';
@@ -460,7 +485,11 @@
                     f.style.left = margin_f_left + 'px';
                     k.style.height = (scrollHeightf - 2) + 'px'
                 }
+
+                $('#small_cross_view').css({'position': 'fixed' , 'top': $('#scroll_tr').css('top'), 'margin-top': '0'});
             }
+        }else{
+            f.style.position = 'relative';
         }
     } 
 //---------------------------------------------------------------------------------------------------------     
@@ -618,7 +647,7 @@
                 $('#error_bg').css({'display': 'none'}); 
             }
 
-            $('#error_message_text').html(result.error_message);            
+            $('#error_message_text').html(result.error_message);
         });
     } 
 //---------------------------------------------------------------------------------------------------------     
@@ -696,6 +725,7 @@
     } 
 //---------------------------------------------------------------------------------------------------------     
     function clear_yes(cross){
+        $('#small_cross_view table td').css('background-color', 'white');
         var nabor = document.querySelectorAll('.cma');
         var cma = '';
         for(var i = 0; i < nabor.length; i++){

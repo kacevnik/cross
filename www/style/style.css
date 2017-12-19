@@ -141,6 +141,7 @@ body {
 .cross_main{
     border: 2px solid black;
     margin: 25px 0 0 0;
+    float: left;
 }
 
 .cross_main_20{
@@ -1392,5 +1393,24 @@ body {
 
 .hny {
     background: url(../images/samurai-hny.png) no-repeat bottom right;
+}
+
+/******************** Стили превью решения кроссворда ********************/
+
+#small_cross_view{
+    border: 2px solid #000;
+    display: inline-block;
+    margin: 25px 0 0 25px;
+}
+
+#small_cross_view table{
+    border: 1px solid #fff;
+}
+
+#small_cross_view table td{
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border: none;
 }
 
