@@ -17,8 +17,16 @@
                         <li><a href="user.php?id=<?php echo getIdFromSes($_SESSION['admin']);?>">Кабинет</a></li>
                         <li><a href="logout.php">Выход</a></li>
                         <li><a href="best.php"><i class="fa fa-trophy"></i></a></li>
+                        <li><a href="" id="but_search_header"><i class="fa fa-search"></i></a></li>
                         <?php } ?>
                     </ul>
+                    <div class="search_form_header">
+                        <form action="">
+                            <input type="text" placeholder="Найти кроссворд по названию ..." name="search_input">
+                        </form>
+                        <div id="search_result">
+                        </div>
+                    </div>
             </div>
         </div>
         <?php if(setHollyday('15-12', '15-1')){ ?>

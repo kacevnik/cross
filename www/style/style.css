@@ -147,21 +147,25 @@ body {
 .cross_main_20{
     border: 2px solid black;
     margin: 25px 0 0 0;
+    float: left;
 }
 
 .cross_main_22{
     border: 2px solid black;
     margin: 25px 0 0 0;
+    float: left;
 }
 
 .cross_main_24{
     border: 2px solid black;
     margin: 25px 0 0 0;
+    float: left;
 }
 
 .cross_main_26{
     border: 2px solid black;
     margin: 25px 0 0 0;
+    float: left;
 }
 
 .cross_main td {
@@ -1412,5 +1416,75 @@ body {
     height: 4px;
     background: #fff;
     border: none;
+}
+
+/******************* Стили кнопки, формы и всех элементов поиска ********/
+
+#but_search_header{
+    height: 44px;
+    width: 30px;
+    padding: 0;
+    text-align: center;
+    line-height: 40px;
+}
+
+.search_form_header{
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 45px;
+    padding: 15px 25px;
+    background: #fff;
+    border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -o-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -webkit-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+}
+
+.search_form_header input{
+    padding: 7px 5px;
+    width: 200px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#search_result{
+    display: none;
+    position: absolute;
+    background: #FFF;
+    width: 211px;
+    overflow-y: scroll;
+    max-height: 191px;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -o-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+    -webkit-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.29);
+}
+
+#search_result li{
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    padding: 7px 5px;
+}
+
+#search_result li a{
+    text-decoration: none;
+    color: #000;
+}
+
+#search_result li:hover{
+    background: #f7f7f7;
+}
+
+#search_result li:last-child{
+    border-bottom: none;
 }
 

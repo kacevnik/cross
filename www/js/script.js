@@ -55,6 +55,21 @@
             $('#prev_' + index).css('background-color', 'black');
         });
     }
+
+/************************* функция отработки кнопки и поиска соответсвующего модуля в header ****************/
+
+    $('#but_search_header').click(function(event) {
+        if($(this).children('i').hasClass('fa-search')){
+            $(this).children('i').removeClass('fa-search');
+            $(this).children('i').addClass('fa-times');
+            $('.search_form_header').fadeIn('300')
+        }else{
+            $(this).children('i').removeClass('fa-times');
+            $(this).children('i').addClass('fa-search');
+            $('.search_form_header').fadeOut('300');
+        }
+        return false;
+    });
 //---------------------------------------------------------------------------------------------------------  
     function getHistoruArray(){
         var array = [];
@@ -83,7 +98,7 @@
 //---------------------------------------------------------------------------------------------------------    
     function crossPic(a, tr, td){
         fixWhich(a);
-        a.preventDefault();
+        a.preventDefalit();
         var id = 'cma'+tr+'_'+td;
         var ed = document.querySelector('#'+id);
         if(a.which == 1){
@@ -582,10 +597,10 @@
         var cross = parseInt(location.href.split('?cross=')[1]);
 
         $.post( "../inc/solution_constructor.php", {solution:last, cross:cross, sec:SetObj.countTimer, history:cma}, function(data){
-            var result = JSON.parse(data);
-            if(result.type == 2){
+            var reslit = JSON.parse(data);
+            if(reslit.type == 2){
                 clearInterval(idTimer);
-            }else if(result.type == 1){
+            }else if(reslit.type == 1){
                 SetObj.scrolltop_flag = 0;
             }else{
                 $('#error_bg').css({'display': 'none'}); 
@@ -596,7 +611,7 @@
             var e_h = $('#error_message').innerHeight();
             var e_w = $('#error_message').width();
             $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
-            $('#error_message_text').html(result.error_message);            
+            $('#error_message_text').html(reslit.error_message);            
         });
     }
 //---------------------------------------------------------------------------------------------------------     
@@ -619,13 +634,13 @@
         var cross = parseInt(location.href.split('?cross=')[1]);
         
         $.post( "../inc/answer_constructor.php", {answer: cma, cross:cross}, function(data){
-            var result = JSON.parse(data);
-            if(result.type == 2){
+            var reslit = JSON.parse(data);
+            if(reslit.type == 2){
                 $('#error_message').removeAttr('style').css({'display': 'block', 'padding': '5px', 'width': 'auto'});
-                var e_h = result.height_img + 12;
-                var e_w = result.width_img + 12;
+                var e_h = reslit.height_img + 12;
+                var e_w = reslit.width_img + 12;
                 SetObj.scrolltop_flag = 0;
-            }else if(result.type == 1){
+            }else if(reslit.type == 1){
                 $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
                 var e_h = $('#error_message').outerHeight();
                 var e_w = $('#error_message').outerWidth();
@@ -641,15 +656,15 @@
             $('#error_message').css({'display': 'none'});
             
             
-            if(result.type == 2){
+            if(reslit.type == 2){
                 $('#error_message').css({'display': 'block','margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
-            }else if(result.type == 1){
+            }else if(reslit.type == 1){
                 $('#error_message').css({'display': 'block'});
             }else{
                 $('#error_bg').css({'display': 'none'}); 
             }
 
-            $('#error_message_text').html(result.error_message);
+            $('#error_message_text').html(reslit.error_message);
         });
     }
 //---------------------------------------------------------------------------------------------------------     
@@ -691,12 +706,12 @@
         var cross = parseInt(location.href.split('?cross=')[1]);
         
         $.post( "../inc/save_constructor.php", {history:cma, answer:last, cross:cross, sec:SetObj.countTimer}, function(data){
-            var result = JSON.parse(data);
+            var reslit = JSON.parse(data);
 
-            if(result.type == 1 || result.type == 2){
+            if(reslit.type == 1 || reslit.type == 2){
                 $('#error_message').removeAttr('style').css({'display': 'block', 'min-width': '500px'});
                 SetObj.scrolltop_flag = 0;
-                if(result.type == 2){
+                if(reslit.type == 2){
                     clearInterval(idTimer);
                     SetObj.timer = 0;
                 }
@@ -711,7 +726,7 @@
 
             $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
 
-            $('#error_message_text').html(result.error_message);
+            $('#error_message_text').html(reslit.error_message);
         });
     }
 //---------------------------------------------------------------------------------------------------------     
@@ -725,7 +740,7 @@
         var e_h = $('#error_message').innerHeight();
         var e_w = $('#error_message').width();
         $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
-        $('#error_message_text').html('<div class="error_plus" style="margin-bottom: 10px;">Вы уверены, что хотите очистить все поля?<br><i style="font-size: 12px;">Вся история так же будет очищена</i></div><div class="seting_but3"><ul><li><a href="" onclick="clear_yes(' + cross + '); return false;">Да</a></li><li><a href="" onclick="closeErrorMessage(); return false;">Нет</a></li></ul></div>');       
+        $('#error_message_text').html('<div class="error_plus" style="margin-bottom: 10px;">Вы уверены, что хотите очистить все поля?<br><i style="font-size: 12px;">Вся история так же будет очищена</i></div><div class="seting_but3"><li><li><a href="" onclick="clear_yes(' + cross + '); return false;">Да</a></li><li><a href="" onclick="closeErrorMessage(); return false;">Нет</a></li></li></div>');       
     } 
 //---------------------------------------------------------------------------------------------------------     
     function clear_yes(cross){
@@ -746,8 +761,8 @@
         }
         
         $.post( "../inc/clear_constructor.php", {cross: cross, answer: cma}, function(data){
-            var result = JSON.parse(data);
-            if(result.type == 1){
+            var reslit = JSON.parse(data);
+            if(reslit.type == 1){
                 $('#error_bg').css({'display': 'block'});
                 $('#scroll_tr').attr('style', '');
                 SetObj.scrolltop_flag = 0;
@@ -757,7 +772,7 @@
                 var e_w = $('#error_message').width();
                 $('#error_message').css({'margin-left': -1*e_w/2 + 'px', 'margin-top': -1*e_h/2 + 'px'});
                 $('#error_bg span').css('display', 'none');
-                $('#error_message_text').html(result.error_message);
+                $('#error_message_text').html(reslit.error_message);
             }    
         });
         SetObj.timer = 0;

@@ -6,7 +6,7 @@
                                 <tr>
                                     <td title="Этот японский кроссворд добавил><?=getLoginName($crossData['user_add_id'])?>"><span class="icon-user"></span>Добавил: </td>
                                     <td><a href="user.php?id=<?=$crossData['user_add_id']?>"><?=getLoginName($crossData['user_add_id'])?></a></td>
-                                    <td><span class="icon-star-full"></span>Рейтинг:</td>
+                                    <td><span class="icon-star-flil"></span>Рейтинг:</td>
                                     <td><?=showStars(getReitingStarCross($crossData['id']))?></td>
                                     <td><span class="icon-hour-glass"></span>Ср. скорость:</td>
                                     <td><span class="cross_info_bold"><?=getCountSec($crossData['s_time']);?></span></td>
@@ -62,7 +62,7 @@
                                     foreach($item_top as $item_td_top){
                                         if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}      
                                 ?>
-                                      <td <?php if($item_td_top[0] == 'n'){echo 'class="td_null'.$class_num_5.'"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
+                                      <td <?php if($item_td_top[0] == 'n'){echo 'class="td_nlil'.$class_num_5.'"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
                                         <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
                                       </td>
                                 <?php
@@ -87,7 +87,7 @@
                                     ?>
                                     <tr<?php echo $class_num_5; ?>>
                                         <?php foreach($item_left as $item_td_left){ ?>
-                                        <td <?php if($item_td_left[0] == 'n'){echo 'class="td_null"';}else{echo 'id="cnl'.$count_tr_left.'_'.$count_td_left.'" onmousedown="crossNumderLeft(event, '.$count_tr_left.', '.$count_td_left.')" class="kletka"';} ?>>
+                                        <td <?php if($item_td_left[0] == 'n'){echo 'class="td_nlil"';}else{echo 'id="cnl'.$count_tr_left.'_'.$count_td_left.'" onmousedown="crossNumderLeft(event, '.$count_tr_left.', '.$count_td_left.')" class="kletka"';} ?>>
                                             <div><?php if($item_td_left[0] == 'n'){echo '&nbsp;';}else{echo $item_td_left[0];} ?></div>
                                         </td>
                                         <?php $count_td_left++; } ?>
