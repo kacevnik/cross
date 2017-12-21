@@ -140,7 +140,7 @@ body {
 
 .cross_main{
     border: 2px solid black;
-    margin: 25px 0 0 0;
+    margin: 25px 25px 0 0;
     float: left;
 }
 
@@ -1404,7 +1404,7 @@ body {
 #small_cross_view{
     border: 2px solid #000;
     display: inline-block;
-    margin: 25px 0 0 25px;
+    margin: 25px 0 0 0;
 }
 
 #small_cross_view table{
@@ -1472,12 +1472,13 @@ body {
 #search_result li{
     cursor: pointer;
     border-bottom: 1px solid #ccc;
-    padding: 7px 5px;
 }
 
 #search_result li a{
     text-decoration: none;
     color: #000;
+    padding: 7px 0 7px 5px;
+    display: block;
 }
 
 #search_result li:hover{

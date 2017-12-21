@@ -11,7 +11,7 @@
                     <ul class="login-top">
                         <?php if(!$_SESSION['admin']){ ?>
                         <li><a href="login.php">Вход</a></li>
-                        <li><a href="registr.php">Регистрация</a></li>                    
+                        <li><a href="registr.php">Регистрация</a></li>
                         <?php }else{ ?>
                         <li><span class="top_login_name">(<?=getLoginFromSes($_SESSION['admin'])?>)</span></li>
                         <li><a href="user.php?id=<?php echo getIdFromSes($_SESSION['admin']);?>">Кабинет</a></li>
@@ -22,9 +22,10 @@
                     </ul>
                     <div class="search_form_header">
                         <form action="">
-                            <input type="text" placeholder="Найти кроссворд по названию ..." name="search_input">
+                            <input type="text" placeholder="Найти кроссворд по названию ..." name="search_input" id="search_input">
                         </form>
                         <div id="search_result">
+                            <ul></ul>
                         </div>
                     </div>
             </div>

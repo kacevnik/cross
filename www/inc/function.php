@@ -5,6 +5,29 @@
  */
  
 /**
+* Функция получения из БД массива кроссвордов для формирования списка поиска
+*/
+ 
+    function getCrossForSearch(){
+        global $db;
+        $text = 'SearchObj = {';
+        $sql = "SELECT id, name  FROM dk_cross WHERE type='1'";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res) > 0){
+            $myr = mysqli_fetch_assoc($res);
+            do{
+                $text = $text . $myr['id'] . ': "' . $myr['name'] . '", ';
+            }
+            while($myr = mysqli_fetch_assoc($res));
+        }else{
+            return false;
+        }
+        $text = trim($text, ', ');
+        $text = $text . '}';
+        echo $text;
+    }
+
+/**
 * Функция отображения звезд для рейтинга кроссворда
 */
  
