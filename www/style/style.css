@@ -1489,3 +1489,24 @@ body {
     border-bottom: none;
 }
 
+/************************ Стили случайного кроссворда *************************/
+
+.random_cross{
+    width: 135px;
+    margin: 25px auto;
+}
+
+.random_cross .wraper{
+    width: 135px;
+    height: 135px;
+    border: 1px solid #b9b9b9;
+    margin: 20px auto;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.random_cross img:hover{
+    box-shadow: 0 0 14px rgba(0,0,0,0.4);
+}
+

@@ -28,6 +28,17 @@
                                 <li><a href="ans.php">Обратная связь</a></li>
                             </ul>
                         </div>
+                        <div class="left_modul">
+                            <h4>Случайный кроссворд</h4>
+                            <div class="random_cross">
+                                <div class="wraper">
+                                    <?php $randomCross = getRandomCross(); ?>
+                                    <a href="cross.php?cross=<?php echo $randomCross['id']; ?>">
+                                        <img src="img_cross/<?php echo $randomCross['img']; ?>.jpg" alt="Японский кроссворд - <?php echo $randomCross['name']; ?>">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <?php
                                 function SpiderDetect($USER_AGENT){

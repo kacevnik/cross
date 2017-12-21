@@ -5,6 +5,22 @@
  */
  
 /**
+* Функция получения данных для модуля Случайный кроссворд
+*/
+ 
+    function getRandomCross(){
+        global $db;
+        $sql = "SELECT id, name, img FROM dk_cross ORDER BY RAND() LIMIT 1";
+        $res = mysqli_query($db, $sql);
+        if(mysqli_num_rows($res) > 0){
+            $myr = mysqli_fetch_assoc($res);
+            return $myr;
+        }else{
+            return false;
+        }
+    }
+
+/**
 * Функция получения из БД массива кроссвордов для формирования списка поиска
 */
  
