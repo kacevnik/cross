@@ -49,7 +49,7 @@
             }
         });
 
-        $('#small_cross_view table td').css('background-color', 'white');
+        $('#small_cross_view table td').css('background-color', 'rgb(224, 224, 224)');
 
         $.each(Prev, function(index, el) {
             $('#prev_' + index).css('background-color', 'black');

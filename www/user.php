@@ -19,6 +19,8 @@
 <?php include("views/header.view.php") ?>
 <?php include("views/left.view.php") ?>
 <?php include("views/user.view.php") ?>
-<?php include("views/footer.view.php") ?>     
+<?php include("views/footer.view.php") ?>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
     </body>
 </html>

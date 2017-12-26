@@ -1414,7 +1414,7 @@ body {
 #small_cross_view table td{
     width: 4px;
     height: 4px;
-    background: #fff;
+    background: rgb(224, 224, 224);
     border: none;
 }
 
@@ -1509,4 +1509,136 @@ body {
 .random_cross img:hover{
     box-shadow: 0 0 14px rgba(0,0,0,0.4);
 }
+
+/************************ Стили Личного кабинета *********************************/
+
+.lk_body{
+    margin: 30px 0 0 5px;
+}
+
+.lk_menu{
+    border-bottom: 1px solid #ababab;
+    overflow: hidden;
+    width: 70%;
+}
+
+.lk_menu ul{
+    list-style: none;
+    padding: 0;
+}
+
+.lk_menu ul li{
+    float: left;
+    border: 1px solid #ababab;
+    border-right: none;
+    border-bottom: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.lk_menu ul li:hover{
+    background: #e2e2e2;
+}
+
+.lk_menu ul li:last-child{
+    border-right: 1px solid #ababab;
+}
+
+.lk_menu ul li.activ{
+    background: #6f6e6e;
+    color: #fff;
+}
+
+.lk_tab_item{
+    margin-top: 20px;
+}
+
+.lk_settings{
+    display: block;
+}
+
+.lk_message{
+    display: none;
+}
+
+.lk_my_cross{
+    display: none;
+}
+
+.message_list{
+    width: 70%;
+}
+
+.message_list ul{
+    list-style: none;
+}
+
+.message_list_item{
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.message_list_item a{
+    color: #949494;
+}
+
+.message_list_item.d_1{
+    background: #dedede;
+}
+
+.message_list_item.d_2{
+    background: #ececec;
+}
+
+.message_list_item ul{
+    list-style: none;
+    float: right;
+    padding-right: 6px;
+}
+
+.message_list_item ul li{
+    float: left;
+    margin-left: 6px;
+}
+
+.message_autor{
+    float: left;
+    width: 15%;
+}
+
+.message_name{
+    width: 70%;
+    float: left;
+}
+
+.message_item_menu{
+    font-size: 18px;
+    text-align: right;
+    overflow: hidden;
+}
+
+.message_item_menu a{
+    color: #949494;
+}
+
+.message_item_menu a:hover{
+    color: #656565;
+}
+
+.message_bold .message_item_menu a{
+    color: #949494;
+}
+
+.message_bold .message_item_menu a:hover{
+    color: #656565;
+}
+
+.message_bold a{
+    font-weight: bold;
+    color: #000;
+}
+
 
