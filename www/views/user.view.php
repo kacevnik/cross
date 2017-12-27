@@ -36,7 +36,7 @@
                             <div class="lk_menu">
                                 <ul>
                                     <li class="activ" data="lk_settings">Настройки</li>
-                                    <li data="lk_message">Сообщения</li>
+                                    <li data="lk_message">Сообщения <?php if($list_message['count'] > 0){ ?> <span class="count_message"><?php echo $list_message['count']; ?></span> <?php } ?></li>
                                     <li data="lk_my_cross">Мои кроссворды</li>
                                 </ul>
                             </div>
@@ -45,71 +45,26 @@
                             </div>
                             <div class="lk_message lk_tab_item" id="lk_message">
                                 <h3>Сообщения</h3>
-                                <div class="message_list" style="display: none;">
-                                    <ul>
-                                        <li>
-                                            <div class="message_list_item d_1 message_bold">
-                                                <div class="message_autor"><a href="">Administrator</a></div>
-                                                <div class="message_name"><a href="">Название сообщения</a></div>
-                                                <div class="message_item_menu">
-                                                    <ul>
-                                                        <li><a href="" title="Прчитать"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="" title="Почитано"><i class="fa fa-check-square-o"></i></a></li>
-                                                        <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>                                            
-                                            <div class="message_list_item d_2">
-                                                <div class="message_autor"><a href="">Administrator</a></div>
-                                                <div class="message_name"><a href="">Название сообщения</a></div>
-                                                <div class="message_item_menu">
-                                                    <ul>
-                                                        <li><a href="" title="Прчитать"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="" title="Почитано"><i class="fa fa-check-square-o"></i></a></li>
-                                                        <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>                                            
-                                            <div class="message_list_item d_1">
-                                                <div class="message_autor"><a href="">Administrator</a></div>
-                                                <div class="message_name"><a href="">Название сообщения</a></div>
-                                                <div class="message_item_menu">
-                                                    <ul>
-                                                        <li><a href="" title="Прчитать"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="" title="Почитано"><i class="fa fa-check-square-o"></i></a></li>
-                                                        <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>                                            
-                                            <div class="message_list_item d-2">
-                                                <div class="message_autor"><a href="">Administrator</a></div>
-                                                <div class="message_name"><a href="">Название сообщения</a></div>
-                                                <div class="message_item_menu">
-                                                    <ul>
-                                                        <li><a href="" title="Прчитать"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="" title="Почитано"><i class="fa fa-check-square-o"></i></a></li>
-                                                        <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>                                            
-                                            <div class="message_list_item d_1">
-                                                <div class="message_autor"><a href="">Administrator</a></div>
-                                                <div class="message_name"><a href="">Название сообщения</a></div>
-                                                <div class="message_item_menu">
-                                                    <ul>
-                                                        <li><a href="" title="Прчитать"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="" title="Почитано"><i class="fa fa-check-square-o"></i></a></li>
-                                                        <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
-                                                    </ul>
-                                                </div>
+                                <div class="message_list">
+                                    <?php if(count($list_message) > 1){ ?>
+                                        <?php $count_list_message = 0; $d_class = 'd_1'; foreach ($list_message as $mess) { if($count_list_message != 0){ ?>
+                                        <?php
+                                            if($d_class == 'd_2'){$d_class = 'd_1';}else{$d_class = 'd_2';}
+                                        ?>
+                                        <div class="message_list_item d_1<?php if($mess['date_read'] == 0){ echo ' message_bold'; }else{ echo ''; } echo ' ' . $d_class; ?>">
+                                            <div class="message_autor"><a href=""><?php echo $mess['login_view']; ?></a></div>
+                                            <div class="message_name"><a href=""><?php echo $mess['name']; ?></a></div>
+                                            <div class="message_item_menu">
+                                                <ul>
+                                                    <li><a href="" title="Прочитать"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="" title="Прочитано"><i class="fa fa-check-square-o"></i></a></li>
+                                                    <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
+                                                    <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                        <?php }$count_list_message++; } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="lk_my_cross lk_tab_item" id="lk_my_cross">

@@ -23,10 +23,7 @@
 <?php include("views/left.view.php") ?>
 <?php include("views/main.view.php") ?>
 <?php include("views/footer.view.php") ?>
-    <script src="js/jquery.js"></script>
-    <script src="js/lib.js"></script>    
-    <script src="js/comment.lib.js"></script>    
-    <script src="js/script.js"></script>
-    <?=$hello_message?>    
+<script src="js/script.js"></script>
+    <?=$hello_message?>
     </body>
 </html>
