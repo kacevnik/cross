@@ -185,7 +185,7 @@
 		}
 	}
 
-			$data = json_encode($data);
-			echo $data;
+	$data = json_encode($data);
+	echo $data;
 
 ?>

@@ -1661,4 +1661,52 @@ body {
     border: 1px solid #5d5d5d;
 }
 
+.content_message_item{
+    display: none;
+}
+
+.content_message_item_header{
+    margin-left: -30px;
+    margin-right: -30px;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 20px 25px 10px 25px;
+    font-weight: bold;
+}
+
+.content_message_item_body{
+    margin-left: -30px;
+    margin-right: -30px;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 10px 25px;
+}
+
+.content_message_item_footer{
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 10px 25px 0 25px;
+    font-size: 12px;
+}
+
+.content_message_item_footer_left{
+    float: left;
+}
+
+.content_message_item_footer_left i{
+    margin-left: 5px;
+}
+
+.content_message_item_footer_right{
+    float: right;
+}
+
+.content_message_item_footer_right ul{
+    list-style: none;
+}
+
+.content_message_item_footer_right li{
+    float: left;
+    margin-left: 5px;
+    font-size: 15px;
+}
+
 
