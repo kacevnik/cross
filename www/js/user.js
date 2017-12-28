@@ -61,6 +61,24 @@
         return false;
     });
 
+    $(document).on('click', 'a[del-data-hash]', function(event) {
+        var hash = $(this).attr('del-data-hash');
+        var id = document.location.href.split('id=');
+        id = id[1];
+        $.ajax({
+            url: '../inc/delete_message.php',
+            type: 'POST',
+            data: {hash: hash, id: id},
+            success: function(result_com){
+                var res = $.parseJSON(result_com);
+            }
+        });
+        clearCount();
+        $('.message_list_item[data-hash="'+ hash +'"]').remove();
+        showMessageWindow('#delete_message');
+        return false;
+    });
+
     $('.message_item_menu').find('.fa-check-square-o').parent().click(function(event) {
         var hash = $(this).parent().parent().parent().parent().attr('data-hash');
         var id = document.location.href.split('id=');

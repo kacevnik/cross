@@ -60,7 +60,7 @@
                                                     <li><a href="" title="Прочитать"><i class="fa fa-eye"></i></a></li>
                                                     <li><a href="" title="Прочитано"><i class="fa fa-check-square-o"></i></a></li>
                                                     <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                    <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
+                                                    <li><a href="" title="Удалить" del-data-hash="<?php echo $mess['hash']; ?>"><i class="fa fa-trash-o"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                                 <div class="content_message_item_footer_right message_item_menu">
                                                     <ul>
                                                         <li><a href="" title="Ответить"><i class="fa fa-pencil"></i></a></li>
-                                                        <li><a href="" title="Удалить"><i class="fa fa-trash-o"></i></a></li>
+                                                        <li><a href="" title="Удалить" del-data-hash="<?php echo $mess['hash']; ?>"><i class="fa fa-trash-o"></i></a></li>
                                                         <li><a href="" title="Пожаловаться"><i class="fa fa-frown-o"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -80,6 +80,7 @@
                                         </div>
                                         <?php }$count_list_message++; } ?>
                                     <?php } ?>
+                                    <div id="delete_message"><div class="error_plus">Сообщение удалено</div></div>
                                 </div>
                                 <!-- END LIST MESSAGE -->
                             </div>
