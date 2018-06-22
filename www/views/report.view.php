@@ -87,7 +87,7 @@
                         <div id="frame">
                         <table class="<?=$sess_size?>" id="work_file" oncontextmenu="return false;">
                 <tbody>
-                    <tr id="scroll_tr">         
+                    <tr id="scroll_tr">
                         <td style="cursor: default; background: rgb(241, 241, 241); display: table-cell;" id="scroll_td1">&nbsp;</td>
                         <td id="scroll_td">
                             <table>
@@ -95,13 +95,13 @@
                                 <?php $count_tr_top = 0; $count_td_top = 0; foreach($arr_top as $item_top){
                                     echo "<tr>";
                                     foreach($item_top as $item_td_top){
-                                        if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}      
+                                        if(($count_td_top + 1)%5 == 0 && ($count_td_top + 1) != count($item_top)){$class_num_5 = ' td_str5';}else{$class_num_5 = '';}
                                 ?>
                                       <td <?php if($item_td_top[0] == 'n'){echo 'class="td_null'.$class_num_5.'"';}else{echo 'id="cnt'.$count_td_top.'_'.$count_tr_top.'" onmousedown="crossNumderTop(event, '.$count_td_top.', '.$count_tr_top.')" class="kletka'.$class_num_5.'"';} ?>>
                                         <div><?php if($item_td_top[0] == 'n'){echo '&nbsp;';}else{echo $item_td_top[0];} ?></div>
                                       </td>
                                 <?php
-                                         $count_td_top++;              
+                                         $count_td_top++;
                                     }
                                     echo "</tr>";
                                     $count_td_top = 0;
@@ -154,7 +154,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </td>                    
+                        </td>
                 </tbody>
             </table>
             <img  src="img.php?id=<?=$crossData['id']?>" style="margin-top: 20px;"/>

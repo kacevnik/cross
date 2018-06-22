@@ -1,3 +1,4 @@
+<?php if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();} ?> 
                     <div class="content">
                         <h1>Вход на сайт</h1>
 <?php
@@ -22,7 +23,7 @@
                             <tr>
                                 <td>
                                     <ul>
-                                        <li><a href="registr.php">Рнгистрация</a></li>
+                                        <li><a href="registr.php">Регистрация</a></li>
                                         <li><a href="new_pass.php">Забыли пароль?</a></li>
                                     </ul>
                                 </td>

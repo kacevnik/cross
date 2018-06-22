@@ -20,9 +20,9 @@
             $myr = mysqli_query($db,"INSERT INTO solution (sol_time_end,id_user,id_cross) VALUES ('".TIMES."','$idUser','$cross')");
         }
     }
-       
-    $top_string = strReplase($crossData[arr_top]);
-    $left_string = strReplase($crossData[arr_left]);
+
+    $top_string = strReplase($crossData['arr_top']);
+    $left_string = strReplase($crossData['arr_left']);
     $arr_top = strToArr($top_string);
     $arr_left = strToArr($left_string);
         
@@ -36,7 +36,7 @@
     if($_COOKIE['scrolltop']){$sess_scrolltop = 'checked=""';}else{$sess_scrolltop = '';}
     if($_COOKIE['number']){$sess_show_number = 'checked=""';}else{$sess_show_number = '';}
     if($_COOKIE['number']){$sess_show_number_data = 1;}else{$sess_show_number_data = 0;}
-    
+
     if(!$_SESSION['admin'] && !$_COOKIE['hello_message']){
         setcookie('hello_message','hello',time()+60*60*24,"/");
         $hello_message = '<script>

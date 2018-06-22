@@ -1,3 +1,4 @@
+<?php if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();} ?> 
                     <div class="content">
                         <h1>Регистрация</h1>
 <?php

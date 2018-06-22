@@ -4,7 +4,7 @@
     $selIdUser = 0;
     
     if($_SESSION["admin"]){
-        $selIdUser = getIdFromSes($_SESSION['admin']);   
+        $selIdUser = getIdFromSes($_SESSION['admin']);
     }
     
     if (isset($_POST['answer']))    {$answer = $_POST['answer'];   $answer = trim(stripslashes(htmlspecialchars($answer)));}

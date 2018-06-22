@@ -1,4 +1,4 @@
-<?php if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();} ?>   
+<?php if(ENTER != 1){echo "УПС, ОБЛОМ"; exit();} ?>
     <div class="main">
         <div id="error_bg"><span></span></div>
         <div id="error_message">

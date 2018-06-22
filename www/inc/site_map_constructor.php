@@ -14,7 +14,7 @@
             $sql = "SELECT id,size,power FROM dk_cross WHERE type='1' AND time_of_public<'".TIMES."'";
             $res = mysqli_query($db, $sql);
             if(mysqli_num_rows($res)){
-                $myr = mysqli_fetch_assoc($res);                
+                $myr = mysqli_fetch_assoc($res);
                 do{
                     $arr[] =  $myr;
                     if($myr['size'] > 0 && $myr['size'] <= 225){
@@ -118,7 +118,7 @@
                 $up = mysqli_query($db, "UPDATE dk_set SET date_site_map='$newDate',count_link_sitemap='$counLink'");
                 
                 $fp=fopen($engine_root.'/sitemap.xml','w+');if(!fwrite($fp,$text)){return false;}fclose($fp); 
-            }   
-        }        
+            }
+        }
     }
 ?>

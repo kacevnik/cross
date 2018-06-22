@@ -3,14 +3,14 @@
 /**
  * @author kacevnik
  */
- 
+
 /**
 * Функция получения данных для модуля Случайный кроссворд
 */
- 
+
     function getRandomCross(){
         global $db;
-        $sql = "SELECT id, name, img FROM dk_cross ORDER BY RAND() LIMIT 1";
+        $sql = "SELECT id, name, img FROM dk_cross WHERE type=1 ORDER BY RAND() LIMIT 1";
         $res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res) > 0){
             $myr = mysqli_fetch_assoc($res);
@@ -23,7 +23,7 @@
 /**
 * Функция получения из БД массива кроссвордов для формирования списка поиска
 */
- 
+
     function getCrossForSearch(){
         global $db;
         $text = 'SearchObj = {';
@@ -46,7 +46,7 @@
 /**
 * Функция отображения звезд для рейтинга кроссворда
 */
- 
+
     function showReitingStar($cross, $id_user){
         global $db;
         $sql = "SELECT id FROM dk_stars WHERE id_user='$id_user' AND id_cross='$cross'";
@@ -84,12 +84,10 @@
         
     }
 
-
-
 /**
  * Функция сохранения сир массива первых 100 пользователей по рейтингу
  */
- 
+
     function addListBestUser(){
         global $db;
         $time = time();
@@ -114,11 +112,10 @@
         }
     }
 
-
 /**
  * Функция получения массива с сохраненым ответом
  */
- 
+
     function getArrayHistory($history){
         $arr = array();
         $str = '';
@@ -137,11 +134,10 @@
         }
     }
 
- 
 /**
  * Функция сравнения ответа кроссворда и запрашиваемого решения. Возвращает процени совпадения решений
  */
- 
+
     function getAnswerProcent($answer, $otwet){
         $str1 = str_split($answer);
         $str2 = str_split($otwet);
@@ -170,11 +166,10 @@
         
     }
 
- 
 /**
  * Функция даты и времени в верхней части сайта.
  */
- 
+
     function dateTop($time){
         $month = array('янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
         $wick = array('Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб');
@@ -184,26 +179,25 @@
 /**
  * Основная Функция даты и времени. 06 ноя 1982 04:42
  */
- 
+
     function getMainDate($time){
         $month = array('янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
         return date("d ", $time).$month[date("n", $time)-1]." ".date("Y ", $time).date(" H:i", $time);
     }
- 
- 
+
 /**
 * Основная Функция даты и времени. 06 ноя 1982
 */
- 
+
     function getShotDate($time){
         $month = array('янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
         return date("d ", $time).$month[date("n", $time)-1]." ".date("Y ", $time);
     }
- 
+
 /**
 * функция приведения количества секунд к нормальному времени
 */
- 
+
     function getCountSec($count){
         $s = $count%60;
         if($s == 0){
@@ -241,41 +235,41 @@
             $s = '00';
         }else{
             if($s < 10){
-                $s = '0'.$s;    
+                $s = '0'.$s;
             }else{
                 $s = $s;
-            }    
+            }
         }
-                
+
         $m = floor($count/60);
         $m = $m%60;
         if($m == 0){
            $m = '00'; 
         }else{
             if($m < 10){
-                $m = '0'.$m;    
+                $m = '0'.$m;
             }else{
                 $m = $m;
-            } 
+            }
         }
-        
+
         $h = floor($count/60/60);
         if($h == 0){
            $h = '00'; 
         }else{
             if($m < 10){
-                $h = '0'.$h;    
+                $h = '0'.$h;
             }else{
                 $h = $h;
-            } 
+            }
         }
         return $h.':'.$m.':'.$s;
     }
-    
+
 /**
 * Получения ID пользователя из ссесии
 */
- 
+
     function getIdFromSes($session){
         global $db;
         $passProverka = substr($session, 0, 32);
@@ -287,11 +281,11 @@
             return $id = $myr["id"];
         }
     }
-    
+
  /**
 * Получения LoginName пользователя из ссесии
 */
- 
+
     function getLoginFromSes($session){
         global $db;
         $passProverka = substr($session, 0, 32);
